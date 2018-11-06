@@ -1,0 +1,121 @@
+/* common for navigation on all pages */
+
+#navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    
+}
+
+#navigation ul li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+#navigation ul li:last-child {
+    border-right: none;
+    float:right;
+}
+
+/*#navigation a:hover:not(.active){
+    background-color: rgb(80, 156, 133);
+}*/
+
+#navigation ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 6px 16px;
+    text-decoration: none;
+}
+
+#navigation ul li img {
+    display: block;
+    padding: 14px 16px;
+}
+
+#logo {
+    display: block;
+    width:100px;
+
+}
+
+/* ------------ common for navigation on all pages ------------- */
+
+
+/* home page */
+
+#homebody #navigation a:hover:not(#index){
+    background-color: rgb(80, 156, 133);
+}
+
+#homebody #navigation ul li:nth-child(2) { 
+    background-color: rgb(255, 0, 0);
+}
+
+#homebody{
+    background-color: black;
+    color: white;
+}
+
+/* ------------------------- home page -----------------------------------------------*/
+
+/* about us page */
+
+#aboutusbody #navigation a:hover:not(#aboutus){
+    background-color: rgb(80, 156, 133);
+}
+
+#aboutusbody #navigation ul li:nth-child(3) { 
+    background-color: rgb(255, 0, 0);
+}
+
+#aboutusbody{
+    background-color: black;
+    color: white;
+}
+
+#aboutusbody h1, #aboutusbody h3{
+    margin-left: 40%;
+}
+
+
+#aboutusbody  h3:hover{
+    color:rgb(80, 156, 133);
+}
+
+#aboutusbody a:visited{
+    color:white;
+}
+
+#aboutusbody a:link{
+    color:white;
+    text-decoration: none;
+}
+
+.panel{
+    padding: 20px;
+    float: left;
+}
+
+.box {
+    width: 220px;
+    height: 210px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+.box:hover {
+    filter: sepia(1);
+}
+
+.box a img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+/* ----------------------- about us page --------------------------------- */
+
+

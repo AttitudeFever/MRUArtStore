@@ -1,0 +1,120 @@
+/* common for navigation on all pages */
+
+#navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    
+}
+
+#navigation ul li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+#navigation ul li:last-child {
+    border-right: none;
+    float:right;
+}
+
+/*#navigation a:hover:not(.active){
+    background-color: rgb(80, 156, 133);
+}*/
+
+#navigation ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 6px 16px;
+    text-decoration: none;
+}
+
+#navigation ul li img {
+    display: block;
+    padding: 14px 16px;
+}
+
+#logo {
+    display: block;
+    width:100px;
+
+}
+
+/* login page */
+#logbody #navigation a:hover:not(#index){
+    background-color: rgb(80, 156, 133);
+}
+
+#logbody #navigation ul li:nth-child(2) { 
+    background-color: rgb(255, 0, 0);
+}
+
+#logBody{
+    text-align: center;
+    background-color: black;
+    /*color: white;*/
+    
+}
+#logForm{
+    padding: 40px;
+    /*text-align: center;*/
+    content-align: center;
+    border: 1px solid #FFFFFF;
+    box-shadow: 7px 12px 5px #808080;
+    background-color: #c0c0c0;
+    border-radius: 2px 30px;
+    margin:10%;
+}
+#inEmail{
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    
+}
+#inPass{
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;   
+}
+.formText{
+    
+    left-margin:20px;
+}
+
+#cancel{
+    width: 20%;
+    margin:; 10px;
+    display: inline-block;
+    background-color: #DF3362;
+    box-shadow: 1px 2px 5px #C62F59;
+    
+}
+#loginbtn{
+    width: 20%;
+    margin: 10px;
+    display: inline-block;
+    background-color: #2EABCF;
+    box-shadow: 1px 2px 5px #2644B1;
+    
+    
+}
+/*#bot*/
+/*{*/
+/*    width: 60%;*/
+/*    border-radius: 20px;*/
+/*    background-color: #6F6F6F;*/
+/*    content-align:center;*/
+/*}*/
+
+h2{
+    color: white;
+}
+/* ------------------------- log page -----------------------------------------------*/
