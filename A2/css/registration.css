@@ -1,10 +1,10 @@
-#loginBody{
+#registerBody{
     background-color: black;
     color: white;
     /*padding-left: 10%;*/
 }
 
-#loginBody h2{
+#registerBody h2{
     position: relative;
 }
 
@@ -13,7 +13,7 @@
     position: relative;
 }
 
-#login_panel{
+#register_panel{
     width: auto;
     height: auto;
     position: relative;
@@ -22,9 +22,9 @@
     top:0%;
 }
 
-.formBody{
+.RegisterFormBody{
     width: 500px;
-    height: 550px;
+    height: 450px;
     border: 1px solid rgb(80, 156, 133);
     -webkit-border-radius:25px;
     -moz-border-radius:25px;
@@ -32,21 +32,10 @@
     -o-border-radius:25px;
     border-radius:25px;
     position: relative;
+padding: 20px;
 }
 
-.formBody .avatar{
-    padding-top: 20px;
-    padding-left: 150px;
-    padding-right: 150px;
-    padding-bottom: 20px;
-}
-
-.upperForm{
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.upperForm input[type=text], input[type=password]{
+#registrationForm input[type=text]{
     width: 100%;
     padding: 12px 20px;
     border: 1px solid #ccc;
@@ -54,7 +43,7 @@
     position: relative;
 }
 
-#loginBody .formBody .upperForm button {
+#registrationForm input[type=submit] {
     background-color: rgb(80, 156, 133);
     color: white;
     padding: 14px 20px;
@@ -64,16 +53,11 @@
     width: 100%;
 }
 
-#loginBody .formBody .upperForm button:hover {
+#registrationForm input[type=submit]:hover {
     opacity: 0.8;
 }
 
-.bottomForm{
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-#loginBody .formBody .bottomForm #cancel {
+#cancel {
     color: white;
     width: auto;
     padding: 10px 18px;
@@ -83,35 +67,30 @@
     background-color: #f44336;
 }
 
-#loginBody .formBody .bottomForm #cancel:hover {
+#cancel:hover {
     opacity: 0.8;
 }
 
-#loginBody .formBody .bottomForm span{
-    padding: 10px;
-    margin-top: 10px;
-    float: right;
-}
 
-#loginBody a:visited{
+#registerBody a:visited{
     color:white;
 }
 
-#loginBody a:link{
+#registerBody a:link{
     color:white;
     text-decoration: none;
 }
 
-#loginBody  a:hover{
+#registerBody  a:hover{
     color:rgb(80, 156, 133);
 }
 
 /*smartphone / tablet look*/
 @media only screen and (max-width: 600px) {
     
-.formBody{
-    width: 480px;
-    height: 550px;
+.RegisterFormBody{
+    width: 400px;
+    height: 450px;
     border: 1px solid rgb(80, 156, 133);
     -webkit-border-radius:25px;
     -moz-border-radius:25px;
@@ -119,18 +98,19 @@
     -o-border-radius:25px;
     border-radius:25px;
     position: relative;
+padding: 20px;
 }
 
-#loginBody h2{
+#registerBody h2{
     position: relative;
-    font-size: 12pt;
+    font-size: 10pt;
 }
 #logo{
-    width:80px;
+    width:60px;
     position: relative;
 }
 
-#login_panel{
+#register_panel{
     width: auto;
     height: auto;
     position: relative;
