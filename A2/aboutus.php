@@ -5,15 +5,19 @@
 <!DOCTYPE html>
 <html lang="eng">
     <head>
-        <meta charset="utf-8"/>  
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>About Us</title>   
-        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/navigation.css">
+        <link rel="stylesheet" href="css/aboutus.css">
+        <script src="js/hamburger-functionality.js"></script>
         <script src=""></script>
     </head>
     <body id = "aboutusbody">
-            <div id="navigation">
-                     <?php createNavBar(); ?>
-                </div>
+        
+    <?php createNavBar(); ?>
+    
+<div id="aboutus_panel">
         <h1>Futureproof Team <img src="images/logo.png" atl="futureproof Logo" width="100px"/></h1>
         <a href= "https://github.com/AttitudeFever/comp3512-A2" target ="_blank">
             <h3>Assignment 2 Github Repository</h3>
@@ -58,4 +62,6 @@
                 </a>
             </section>
         </div>
+    </div>
+
     </body>

@@ -1,52 +1,3 @@
-/* common for navigation on all pages */
-
-#navigation ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    
-}
-
-#navigation ul li {
-    float: left;
-    border-right: 1px solid #bbb;
-}
-
-#navigation ul li:last-child {
-    border-right: none;
-    float:right;
-}
-
-/*#navigation a:hover:not(.active){
-    background-color: rgb(80, 156, 133);
-}*/
-
-#navigation ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 6px 16px;
-    text-decoration: none;
-}
-
-#navigation ul li img {
-    display: block;
-    padding: 14px 16px;
-}
-
-#logo {
-    display: block;
-    width:100px;
-
-}
-
-/* ------------ common for navigation on all pages ------------- */
-
-
-/* home page */
-
 #homebody #navigation a:hover:not(#index){
     background-color: rgb(80, 156, 133);
 }
@@ -55,67 +6,181 @@
     background-color: rgb(255, 0, 0);
 }
 
-#homebody{
-    background-color: black;
-    color: white;
+#navigation{grid-area: top;}
+#navigation_mobile{grid-area: top;}
+#galleryList_panel{ grid-area: left; }
+#artist_panel { grid-area: middle-top; }
+#genre_panel{grid-area: middle-bottom;}
+
+#homebody {
+  display: grid;
+  grid-template-areas:
+    'top top top top'
+    'left middle-top middle-top middle-top'
+    'left middle-bottom middle-bottom middle-bottom';
+  grid-gap: 10px;
+  background-color: black;
+  color: white;
+  padding: 10px;
 }
 
-/* ------------------------- home page -----------------------------------------------*/
-
-/* about us page */
-
-#aboutusbody #navigation a:hover:not(#aboutus){
-    background-color: rgb(80, 156, 133);
+#galleryList_panel ul{
+    list-style-type: none;
 }
 
-#aboutusbody #navigation ul li:nth-child(3) { 
-    background-color: rgb(255, 0, 0);
+#galleryList_panel h3{
+    position: relative;
+    left: 5%;
+    font-size: 25pt;
+    }
+
+
+#galleryList_panel{
+    width: 200px;;
+    height: auto;
+    border: 1px  rgb(80, 156, 133) solid;
+    border-radius:25px;
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    -ms-border-radius:25px;
+    -o-border-radius:25px;
+    box-shadow: 5px 5px rgba(80, 156, 133, 0.2);
 }
 
-#aboutusbody{
-    background-color: black;
-    color: white;
+#galleryList_panel ul li:hover{
+    cursor: pointer;
+    color: rgb(80, 156, 133);
 }
 
-#aboutusbody h1, #aboutusbody h3{
-    margin-left: 40%;
+#artist_panel{
+    width: auto;
+    height: auto;
+    border: 1px  rgb(80, 156, 133) solid;
+    border-radius:25px;
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    -ms-border-radius:25px;
+    -o-border-radius:25px;
+    box-shadow: 5px 5px rgba(80, 156, 133, 0.2);
 }
 
-
-#aboutusbody  h3:hover{
-    color:rgb(80, 156, 133);
+#artist_panel h3{
+position: relative;
+left: 40%;
+font-size: 25pt;
 }
 
-#aboutusbody a:visited{
-    color:white;
-}
-
-#aboutusbody a:link{
-    color:white;
-    text-decoration: none;
-}
-
-.panel{
-    padding: 20px;
-    float: left;
-}
-
-.box {
-    width: 220px;
-    height: 210px;
-    background-color: black;
-    color: white;
+.artist_box {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
     padding: 10px;
+    margin: 20px;
+    text-align: center;
+    position: relative;
+    background-color: rgba(80, 156, 133, 0.1);
+    filter:drop-shadow(1px 1px 1px  rgb(80, 156, 133));
+    -webkit-filter:drop-shadow(1px 1px 1px  rgb(80, 156, 133));
+    border-radius: 25px;
 }
-.box:hover {
+
+.artist_box img {
     filter: sepia(1);
+    border-radius: 25px;
 }
 
-.box a img {
-    width: 100px;
-    border-radius: 50%;
+.artist_box a{
+    text-decoration: none;
+    color: white;
 }
 
-/* ----------------------- about us page --------------------------------- */
+.artist_box a:hover img{
+    filter: none;
+    -webkit-filter: none;
+}
+
+.artist_box:hover{
+    filter:  drop-shadow(2px 2px 5px grey);
+    -webkit-filter:  drop-shadow(2px 2px 5px  rgb(237, 241, 240));
+}
+
+
+
+
+#genre_panel{
+    width: auto;
+    height: auto;
+    border: 1px  rgb(80, 156, 133) solid;
+    border-radius:25px;
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    -ms-border-radius:25px;
+    -o-border-radius:25px;
+    box-shadow: 5px 5px rgba(80, 156, 133, 0.2);
+}
+
+#genre_panel h3{
+position: relative;
+left: 40%;
+font-size: 25pt;
+}
+
+.genre_box {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+    position: relative;
+
+    background-color: rgba(80, 156, 133, 0.1);
+    filter:drop-shadow(1px 1px 1px  rgb(80, 156, 133));
+    -webkit-filter:drop-shadow(1px 1px 1px  rgb(80, 156, 133));
+    border-radius: 25px;
+}
+
+.genre_box img {
+    filter: sepia(1);
+    border-radius: 25px;
+}
+
+.genre_box a{
+    text-decoration: none;
+    color: white;
+}
+
+.genre_box a:hover img{
+    filter: none;
+    -webkit-filter: none;
+}
+
+.genre_box:hover{
+    filter:  drop-shadow(2px 2px 5px grey);
+    -webkit-filter:  drop-shadow(2px 2px 5px  rgb(237, 241, 240));
+}
+
+/*smartphone / tablet look*/
+@media only screen and (max-width: 600px) {
+    
+    #galleryList_panel h3{
+        position: relative;
+        left: 5%;
+        font-size: 20pt;
+    }
+
+    #artist_panel h3{
+        position: relative;
+        left: 25%;
+        font-size: 20pt;
+    }
+
+    #genre_panel h3{
+        position: relative;
+        left: 25%;
+        font-size: 20pt;
+    }
+}
+
 
 

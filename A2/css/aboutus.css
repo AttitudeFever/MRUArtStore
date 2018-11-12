@@ -1,0 +1,87 @@
+#aboutusbody #navigation a:hover:not(#aboutus){
+    background-color: rgb(80, 156, 133);
+}
+
+#aboutusbody #navigation ul li:nth-child(3) { 
+    background-color: rgb(255, 0, 0);
+}
+#navigation{grid-area: top;}
+#navigation_mobile{grid-area: top;}
+#aboutus_panel{ grid-area: middle; }
+
+#aboutusbody{
+    display: grid;
+    grid-template-areas:
+      'top top top top'
+      'middle middle middle middle';
+    grid-gap: 10px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+#aboutus_panel{
+    width: auto;
+    height: auto;
+    /*border: 1px  rgb(80, 156, 133) solid;*/
+    border-radius:25px;
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    -ms-border-radius:25px;
+    -o-border-radius:25px;
+    /*box-shadow: 5px 5px rgba(80, 156, 133, 0.2);*/
+}
+
+
+#aboutusbody h1, #aboutusbody h3{
+    position: relative;
+    left: 40%;
+
+}
+
+
+#aboutusbody  h3:hover{
+    color:rgb(80, 156, 133);
+}
+
+#aboutusbody a:visited{
+    color:white;
+}
+
+#aboutusbody a:link{
+    color:white;
+    text-decoration: none;
+}
+
+.panel{
+    padding: 20px;
+    float: left;
+}
+
+.box {
+    width: 220px;
+    height: 210px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+.box:hover {
+    filter: sepia(1);
+}
+
+.box a img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+/*smartphone / tablet look*/
+@media only screen and (max-width: 600px) {
+    
+    #aboutusbody h1, #aboutusbody h3{
+    font-size: 15pt;
+    position: relative;
+    left: 10%;
+
+}
+
+}

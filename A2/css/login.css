@@ -1,120 +1,143 @@
-/* common for navigation on all pages */
-
-#navigation ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    
-}
-
-#navigation ul li {
-    float: left;
-    border-right: 1px solid #bbb;
-}
-
-#navigation ul li:last-child {
-    border-right: none;
-    float:right;
-}
-
-/*#navigation a:hover:not(.active){
-    background-color: rgb(80, 156, 133);
-}*/
-
-#navigation ul li a {
-    display: block;
+#loginBody{
+    background-color: black;
     color: white;
-    text-align: center;
-    padding: 6px 16px;
+    /*padding-left: 10%;*/
+}
+
+#loginBody h2{
+    position: relative;
+}
+
+#logo{
+    width:100px;
+    position: relative;
+}
+
+#login_panel{
+    width: auto;
+    height: auto;
+    position: relative;
+    position: absolute;
+    left:25%;
+    top:10%;
+}
+
+.formBody{
+    width: 500px;
+    height: 550px;
+    border: 1px solid rgb(80, 156, 133);
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    -ms-border-radius:25px;
+    -o-border-radius:25px;
+    border-radius:25px;
+    position: relative;
+}
+
+.formBody .avatar{
+    padding-top: 20px;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-bottom: 20px;
+}
+
+.upperForm{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.upperForm input[type=text], input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#loginBody .formBody .upperForm button {
+    background-color: rgb(80, 156, 133);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+#loginBody .formBody .upperForm button:hover {
+    opacity: 0.8;
+}
+
+.bottomForm{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#loginBody .formBody .bottomForm #cancel {
+    color: white;
+    width: auto;
+    padding: 10px 18px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    background-color: #f44336;
+}
+
+#loginBody .formBody .bottomForm #cancel:hover {
+    opacity: 0.8;
+}
+
+#loginBody .formBody .bottomForm span{
+    padding: 10px;
+    margin-top: 10px;
+    float: right;
+}
+
+#loginBody a:visited{
+    color:white;
+}
+
+#loginBody a:link{
+    color:white;
     text-decoration: none;
 }
 
-#navigation ul li img {
-    display: block;
-    padding: 14px 16px;
+#loginBody  a:hover{
+    color:rgb(80, 156, 133);
 }
 
-#logo {
-    display: block;
-    width:100px;
-
-}
-
-/* login page */
-#logbody #navigation a:hover:not(#index){
-    background-color: rgb(80, 156, 133);
-}
-
-#logbody #navigation ul li:nth-child(2) { 
-    background-color: rgb(255, 0, 0);
-}
-
-#logBody{
-    text-align: center;
-    background-color: black;
-    /*color: white;*/
+/*smartphone / tablet look*/
+@media only screen and (max-width: 600px) {
     
-}
-#logForm{
-    padding: 40px;
-    /*text-align: center;*/
-    content-align: center;
-    border: 1px solid #FFFFFF;
-    box-shadow: 7px 12px 5px #808080;
-    background-color: #c0c0c0;
-    border-radius: 2px 30px;
-    margin:10%;
-}
-#inEmail{
-    width: 60%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    
-}
-#inPass{
-    width: 60%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;   
-}
-.formText{
-    
-    left-margin:20px;
+.formBody{
+    width: 480px;
+    height: 550px;
+    border: 1px solid rgb(80, 156, 133);
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    -ms-border-radius:25px;
+    -o-border-radius:25px;
+    border-radius:25px;
+    position: relative;
 }
 
-#cancel{
-    width: 20%;
-    margin:; 10px;
-    display: inline-block;
-    background-color: #DF3362;
-    box-shadow: 1px 2px 5px #C62F59;
-    
+#loginBody h2{
+    position: relative;
+    font-size: 12pt;
 }
-#loginbtn{
-    width: 20%;
-    margin: 10px;
-    display: inline-block;
-    background-color: #2EABCF;
-    box-shadow: 1px 2px 5px #2644B1;
-    
-    
+#logo{
+    width:80px;
+    position: relative;
 }
-/*#bot*/
-/*{*/
-/*    width: 60%;*/
-/*    border-radius: 20px;*/
-/*    background-color: #6F6F6F;*/
-/*    content-align:center;*/
-/*}*/
 
-h2{
-    color: white;
+#login_panel{
+    width: auto;
+    height: auto;
+    position: relative;
+    position: absolute;
+    left:0%;
+    top:0%;
 }
-/* ------------------------- log page -----------------------------------------------*/
+
+
+}
