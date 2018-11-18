@@ -18,10 +18,32 @@
     'top top top top'
     'left middle-top middle-top middle-top'
     'left middle-bottom middle-bottom middle-bottom';
-  grid-gap: 10px;
+  grid-gap: 40px;
   background-color: black;
   color: white;
   padding: 10px;
+  position: fixed;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
 }
 
 #galleryList_panel ul{
@@ -29,22 +51,29 @@
 }
 
 #galleryList_panel h3{
-    position: relative;
-    left: 5%;
+    position: fixed;
+    margin-top:10px;
+    left: 3%;
     font-size: 25pt;
     }
 
 
 #galleryList_panel{
-    width: 200px;;
-    height: auto;
-    border: 1px  rgb(80, 156, 133) solid;
-    border-radius:25px;
-    -webkit-border-radius:25px;
-    -moz-border-radius:25px;
-    -ms-border-radius:25px;
-    -o-border-radius:25px;
-    box-shadow: 5px 5px rgba(80, 156, 133, 0.2);
+    width: 230px;
+    height: 500px;
+}
+
+#galleryList_panel ul{
+
+    margin-top: 60px;
+    height: 440px;
+    width: 210px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#galleryList_panel ul li{
+    padding-top:5px; 
 }
 
 #galleryList_panel ul li:hover{
@@ -55,38 +84,34 @@
 #artist_panel{
     width: auto;
     height: auto;
-    border: 1px  rgb(80, 156, 133) solid;
-    border-radius:25px;
-    -webkit-border-radius:25px;
-    -moz-border-radius:25px;
-    -ms-border-radius:25px;
-    -o-border-radius:25px;
-    box-shadow: 5px 5px rgba(80, 156, 133, 0.2);
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
+
+
 #artist_panel h3{
-position: relative;
-left: 40%;
+position: fixed;
+margin-top:10px;
+left: 55%;
 font-size: 25pt;
 }
 
+
 .artist_box {
     display: inline-block;
-    width: 120px;
-    height: 120px;
-    padding: 10px;
-    margin: 20px;
+    width: 170px;
+    height: 140px;
+    padding: 2%;
     text-align: center;
     position: relative;
-    background-color: rgba(80, 156, 133, 0.1);
-    filter:drop-shadow(1px 1px 1px  rgb(80, 156, 133));
-    -webkit-filter:drop-shadow(1px 1px 1px  rgb(80, 156, 133));
-    border-radius: 25px;
+    top:60px;
 }
 
 .artist_box img {
     filter: sepia(1);
-    border-radius: 25px;
+    border-radius: 10px;
 }
 
 .artist_box a{
@@ -99,50 +124,47 @@ font-size: 25pt;
     -webkit-filter: none;
 }
 
-.artist_box:hover{
+.artist_box a:hover{
     filter:  drop-shadow(2px 2px 5px grey);
-    -webkit-filter:  drop-shadow(2px 2px 5px  rgb(237, 241, 240));
+    -webkit-filter:  drop-shadow(2px 2px 5px rgb(80, 156, 133));
 }
 
+.artist_box a:hover .caption_artist{
+
+    color: rgb(80, 156, 133);
+}
 
 
 
 #genre_panel{
     width: auto;
     height: auto;
-    border: 1px  rgb(80, 156, 133) solid;
-    border-radius:25px;
-    -webkit-border-radius:25px;
-    -moz-border-radius:25px;
-    -ms-border-radius:25px;
-    -o-border-radius:25px;
-    box-shadow: 5px 5px rgba(80, 156, 133, 0.2);
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 #genre_panel h3{
-position: relative;
-left: 40%;
-font-size: 25pt;
+    position: fixed;
+    margin-top:8px;
+    left: 55%;
+    font-size: 25pt;
 }
 
 .genre_box {
     display: inline-block;
-    width: 120px;
+    width: 170px;
     height: 120px;
-    padding: 10px;
-    margin: 20px;
+    padding: 2%;
     text-align: center;
     position: relative;
+    top:60px;
 
-    background-color: rgba(80, 156, 133, 0.1);
-    filter:drop-shadow(1px 1px 1px  rgb(80, 156, 133));
-    -webkit-filter:drop-shadow(1px 1px 1px  rgb(80, 156, 133));
-    border-radius: 25px;
 }
 
 .genre_box img {
     filter: sepia(1);
-    border-radius: 25px;
+    border-radius: 10px;
 }
 
 .genre_box a{
@@ -155,29 +177,50 @@ font-size: 25pt;
     -webkit-filter: none;
 }
 
-.genre_box:hover{
+.genre_box a:hover{
     filter:  drop-shadow(2px 2px 5px grey);
-    -webkit-filter:  drop-shadow(2px 2px 5px  rgb(237, 241, 240));
+    -webkit-filter:  drop-shadow(2px 2px 5px rgb(80, 156, 133));
+}
+
+.genre_box a:hover .caption_genre{
+
+    color: rgb(80, 156, 133);
 }
 
 /*smartphone / tablet look*/
 @media only screen and (max-width: 600px) {
     
+    #galleryList_panel{
+    width: 120px;
+    height: 500px;
+    }
+    
+    #galleryList_panel ul{
+
+    margin-top: 60px;
+    height: 440px;
+    width: 110px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    }
+
+    
     #galleryList_panel h3{
-        position: relative;
-        left: 5%;
+        position: fixed;
+        margin-top:10px;
+        left: 8%;
         font-size: 20pt;
     }
 
     #artist_panel h3{
-        position: relative;
-        left: 25%;
+        position: fixed;
+        left: 60%;
         font-size: 20pt;
     }
 
     #genre_panel h3{
-        position: relative;
-        left: 25%;
+        position: fixed;
+        left: 60%;
         font-size: 20pt;
     }
 }

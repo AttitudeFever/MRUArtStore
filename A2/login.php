@@ -12,7 +12,7 @@
         <div id="login_panel">
         <h2>Futureproof Premium Members Login <img id="logo" src="images/logo.png"/></h2>
         <div class = "formBody" >
-            <img src="images/login-avtar.png" alt="Avatar" class="avatar" height="200" width="200"><br>
+            <img src="images/web/login-avtar.png" alt="Avatar" class="avatar" height="200" width="200"><br>
             <form method = "GET" action = "php/form-functionality.inc.php" id="loginForm">
                 <div class="upperForm">
                     <label><b>Username</b></label><br>

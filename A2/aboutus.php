@@ -1,5 +1,5 @@
 <?php 
-    include('php/nav-bar.inc.php');
+    include('includes/nav-bar.inc.php');
 ?>
 
 <!DOCTYPE html>
@@ -18,14 +18,14 @@
     <?php createNavBar(); ?>
     
 <div id="aboutus_panel">
-        <h1>Futureproof Team <img src="images/logo.png" atl="futureproof Logo" width="100px"/></h1>
+        <h1>Futureproof Team <img src="images/web/logo.png" atl="futureproof Logo" width="100px"/></h1>
         <a href= "https://github.com/AttitudeFever/comp3512-A2" target ="_blank">
             <h3>Assignment 2 Github Repository</h3>
         </a>
         <div class ="panel">
             <section class="box">
                 <a href="https://github.com/AttitudeFever" target="_blank">
-                    <img src="images/hamid.jpg" alt="">
+                    <img src="images/members/hamid.jpg" alt="">
                     <p>Hamid Hemani</p>
                     <p>I love to drink tea!</p>
                     <p>Click me to see my github profile</p>
@@ -35,7 +35,7 @@
         <div class ="panel">
             <section class="box">
                 <a href="https://github.com/klam260" target="_blank">
-                    <img src="images/kevin.jpg" alt="">
+                    <img src="images/members/kevin.jpg" alt="">
                     <p>Kevin Lam</p>
                     <p>I love sleeping!</p>
                     <p>Click me to see my github profile</p>
@@ -45,7 +45,7 @@
         <div class ="panel">
             <section class="box">
                 <a href="https://github.com/Lilrex2015" target="_blank">
-                    <img src="images/arif.jpg" alt="">
+                    <img src="images/members/arif.jpg" alt="">
                     <p>Arif Mitha</p>
                     <p>I like to stream!</p>
                     <p>Click me to see my github profile</p>
@@ -55,7 +55,7 @@
         <div class ="panel">
             <section class="box">
                 <a href="https://github.com/ckwon498" target="_blank">
-                    <img src="images/chris.jpg" alt="">
+                    <img src="images/members/chris.jpg" alt="">
                     <p>Chris Kwong</p>
                     <p>I love eating!</p>
                     <p>Click me to see my github profile</p>
