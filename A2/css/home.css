@@ -22,7 +22,7 @@
   background-color: black;
   color: white;
   padding: 10px;
-  position: fixed;
+  /*position: fixed;*/
 }
 /* width */
 ::-webkit-scrollbar {
@@ -51,7 +51,7 @@
 }
 
 #galleryList_panel h3{
-    position: fixed;
+    position: absolute;
     margin-top:10px;
     left: 3%;
     font-size: 25pt;
@@ -92,7 +92,7 @@
 
 
 #artist_panel h3{
-position: fixed;
+position: absolute;
 margin-top:10px;
 left: 55%;
 font-size: 25pt;
@@ -145,7 +145,7 @@ font-size: 25pt;
 }
 
 #genre_panel h3{
-    position: fixed;
+    position: absolute;
     margin-top:8px;
     left: 55%;
     font-size: 25pt;
@@ -206,24 +206,22 @@ font-size: 25pt;
 
     
     #galleryList_panel h3{
-        position: fixed;
+        position: absolute;
         margin-top:10px;
         left: 8%;
         font-size: 20pt;
     }
 
     #artist_panel h3{
-        position: fixed;
+        position: absolute;
         left: 60%;
         font-size: 20pt;
     }
 
     #genre_panel h3{
-        position: fixed;
+        position: absolute;
         left: 60%;
         font-size: 20pt;
     }
 }
-
-
 
