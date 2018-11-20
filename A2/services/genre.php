@@ -13,7 +13,7 @@ header('Content-Type: application/json');
 //check if query string is being asked then set sql accordingly
 if (isset($_GET['genreID'] ) and $_GET['genreID'] != ""){
     
-   //get id from query string
+   //get id from query string`
     $genreID = $_GET['genreID'];
     
      //get particular sql querry from the sql collection

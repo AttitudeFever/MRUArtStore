@@ -9,6 +9,7 @@ include('includes/nav-bar.inc.php');
     <head>
         <meta charset="utf-8"/>  
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="images/web/logo.png">
         <title>Art Store Web2-A2</title>   
         <link rel="stylesheet" href="css/home.css">
         <link rel="stylesheet" href="css/navigation.css">

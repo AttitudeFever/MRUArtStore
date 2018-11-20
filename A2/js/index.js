@@ -50,6 +50,7 @@ window.addEventListener('load', function() {
         populate_galleryList(); 
     }
 
+
     //popluate gallery list method, creating gallery list from local storage
     function populate_galleryList(){
 
@@ -58,11 +59,15 @@ window.addEventListener('load', function() {
         const galleryList =  document.getElementById('galleryList');
         
         for (let g_list of GalleryList_Local_Data_Parsed){
-            galleryList.innerHTML += "<li>" + g_list.GalleryName + "</li>";
+            
+            let galleryLink = "https://comp3512-assignment-hamid786.c9users.io/A2/singleGallery.php?galleryID="+ g_list.GalleryID;
+            
+            galleryList.innerHTML += "<a href="+galleryLink+"><li>" + g_list.GalleryName + "</li></a>";
         }
 
-
     }
+    
+
     
 ///////////------------------------------without local storage -------------------------------------------------//////////////////// 
     // var galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php";
@@ -161,6 +166,8 @@ window.addEventListener('load', function() {
             
             let img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=artists/square/" + a_list.ArtistID + "&width=100";
             
+            let artistLink = "https://comp3512-assignment-hamid786.c9users.io/A2/singleArtist.php?artistID="+ a_list.ArtistID;
+            
             let artistName;
             
             if (a_list.FirstName != null){
@@ -171,16 +178,16 @@ window.addEventListener('load', function() {
                 
                 artistName = "<br>" + a_list.LastName;
             }
-            
+                    
+                    
                     artist_imgs_box.innerHTML += "<div class= 'artist_box' >" + 
-                                                "<a href='#'>" +
+                                                "<a href="+ artistLink + ">" +
                                                     "<img src=" + img_file + "alt=" + a_list.LastName + "/>" +
                                                     "<div class='caption_artist'>" + artistName + "</div>" +
                                                 "</a>"+
                                             "</div>";
         }
-
-
+               
     }
     
     
@@ -242,18 +249,20 @@ window.addEventListener('load', function() {
         
         
         for (let gen_list of Genre_Local_Data_Parsed){
-            
+
             let img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=genres/" + gen_list.GenreID + "&width=100";
             
+            let genreLink = "https://comp3512-assignment-hamid786.c9users.io/A2/singleGenre.php?genreID="+ gen_list.GenreID;
+            
                     genre_imgs_box.innerHTML += "<div class= 'genre_box' >" + 
-                                                "<a href='#'>" +
+                                                "<a href="+ genreLink + ">" +
                                                     "<img src=" + img_file + "alt=" + gen_list.GenreName + "/>" +
                                                     "<div class='caption_genre'>" + gen_list.GenreName + "</div>" +
                                                 "</a>"+
                                             "</div>";
+       
+
         }
-
-
     }
     
 

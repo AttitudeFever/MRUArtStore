@@ -1,0 +1,13 @@
+.container{
+    grid-template-areas: "top top top top"
+    "middle middle middle ."
+    "bottom bottom bottom . ";
+    grid-gap: 40px; 
+}
+
+
+
+html{
+    background-color: black;
+    
+}

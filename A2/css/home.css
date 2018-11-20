@@ -72,6 +72,11 @@
     overflow-x: hidden;
 }
 
+#galleryList_panel ul a{
+    text-decoration: none;
+    color: white;
+}
+
 #galleryList_panel ul li{
     padding-top:5px; 
 }
@@ -80,6 +85,10 @@
     cursor: pointer;
     color: rgb(80, 156, 133);
 }
+
+
+
+
 
 #artist_panel{
     width: auto;
