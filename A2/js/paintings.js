@@ -174,6 +174,8 @@ var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/ser
 
             paintings_details[i].title = Painting_Local_Data_Parsed[i].Title;
             paintings_details[i].year = Painting_Local_Data_Parsed[i].YearOfWork;
+            
+            paintings_details[i].paintingID = Painting_Local_Data_Parsed[i].PaintingID;
         }
 
         return paintings_details;
@@ -194,8 +196,9 @@ var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/ser
             let image_id = sortedPaintings[i].img_id;
             let img_url = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=paintings/square/" + image_id + "&width=100";
             
+            let paintingURL = "https://comp3512-assignment-hamid786.c9users.io/A2/singlePainting.php?paintingID="+sortedPaintings[i].paintingID;
             let anchor = document.createElement('a');
-            anchor.setAttribute('href', '#');
+            anchor.setAttribute('href', paintingURL);
             
             let thumbnail = document.createElement('img');
             thumbnail.setAttribute('src', img_url);
@@ -205,11 +208,11 @@ var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/ser
             
             table_row_set.push(table_data_img);
             
-            let artisURL = "https://comp3512-assignment-hamid786.c9users.io/A2/singleArtist.php?artistID="+a_ID;    
-            table_data_artist.innerHTML = "<a href="+artisURL+">"+sortedPaintings[i].artist+"</a>";
+            let artistURL = "https://comp3512-assignment-hamid786.c9users.io/A2/singleArtist.php?artistID="+a_ID;    
+            table_data_artist.innerHTML = "<a href="+artistURL+">"+sortedPaintings[i].artist+"</a>";
             table_row_set.push(table_data_artist);
 
-            table_data_title.innerHTML = "<a href='#'>"+sortedPaintings[i].title+"</a>";
+            table_data_title.innerHTML = "<a href="+paintingURL+">"+sortedPaintings[i].title+"</a>";
             table_data_title.setAttribute('class','p_title');
             table_row_set.push(table_data_title);
 
