@@ -98,9 +98,10 @@ function getGenreIDFromPaintingGenreSQL($paintingID){
 // //table view paintings belongs to an artist
 function getPaintingArtistSQL($artistID){
     
-    $sql = 'SELECT PaintingID, ImageFileName, Title, Artists.ArtistID, YearOfWork, FirstName, LastName';
+    $sql = 'SELECT PaintingID, ImageFileName, GalleryID, Title, Artists.ArtistID, YearOfWork, FirstName, LastName';
     $sql .= ' FROM Paintings INNER JOIN Artists ON Paintings.ArtistID = Artists.ArtistID';
     $sql .=" WHERE Artists.ArtistID = $artistID";
+    $sql .= " ORDER BY Title";
     
     return $sql;
 }
@@ -109,9 +110,10 @@ function getPaintingArtistSQL($artistID){
 //table view paintings belongs to a gallery
 function getPaintingGallerySQL($galleryID){
     
-    $sql = 'SELECT PaintingID, ImageFileName, Title, YearOfWork, Galleries.GalleryID, GalleryName';
-    $sql .= ' FROM Paintings INNER JOIN Galleries ON Paintings.GalleryID = Galleries.GalleryID';
-    $sql .=" WHERE Galleries.GalleryID = $galleryID";
+    $sql = 'SELECT PaintingID, ImageFileName, GalleryID, Title, Artists.ArtistID, YearOfWork, FirstName, LastName';
+    $sql .= ' FROM Paintings INNER JOIN Artists ON Paintings.ArtistID = Artists.ArtistID';
+    $sql .=" WHERE GalleryID = $galleryID";
+    $sql .= " ORDER BY Title";
     
     return $sql;
 }
@@ -119,11 +121,13 @@ function getPaintingGallerySQL($galleryID){
 //table view paintings belongs to genres
 function getPaintingGenreSQL($genreID){
     
-    $sql = 'SELECT P.PaintingID, ImageFileName, Title, YearOfWork, PG.GenreID, G.GenreName';
+    $sql = 'SELECT P.PaintingID, ImageFileName, Title, YearOfWork, PG.GenreID, G.GenreName, A.ArtistID, FirstName, LastName';
     $sql .= " FROM Paintings P";
     $sql .= " INNER JOIN PaintingGenres PG ON P.PaintingID = PG.PaintingID";
     $sql .= " INNER JOIN Genres G ON G.GenreID = PG.GenreID";
+    $sql .= " INNER JOIN Artists A ON P.ArtistID = A.ArtistID";
     $sql .= " WHERE G.GenreID = $genreID";
+    $sql .= " ORDER BY Title";
     
     return $sql;
 }

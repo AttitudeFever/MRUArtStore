@@ -1,55 +1,104 @@
 window.addEventListener('load' , ()=>{
 
-var a_ID = document.getElementById('atristID').textContent;
 
-var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?artistID="+a_ID;
-
-
-
-//fetch and create local storage for paintings of that particular gallery
-        fetch(paintingsArtistAPI)
-        .then(function(response){
-            if (response.ok){
-                return response.json();
-            }else {
-                return Promise.reject({
-                    status: response.status,
-                    statusText: response.statusText
-                })
-            }
-        })
-        .then((painting_data)=> {
-            
-            Create_Painting_Local_Storage(painting_data);
-            
-        })
-        .catch( (error)=> {
-            console.log(error);
-        })
-   
-
-    //creating local storage for paintings of that particular gallery
-    //calling populate paintings method
-    function Create_Painting_Local_Storage(painting_data){
-
-        localStorage.setItem('Painting_Local_Data', JSON.stringify(painting_data));
-
-        populate_paintings();
+    var urlQuery = window.location.href;
+    var a_ID;
+    var gal_ID;
+    var gen_ID;
+    
+    if (urlQuery.includes("artistID")){
+       
+        a_ID = document.getElementById('atristID').textContent; 
+        var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?artistID="+a_ID;
+        
+        let storageName = "paintingArtist_Local_Data";
+        
+        //this array will return an ampty array for the first time, next time data from local storage
+        let temp_local_data_array = retrieveStorage_paintings(storageName); 
+        
+        fetching(paintingsArtistAPI, temp_local_data_array, storageName);
+    }
+    else if (urlQuery.includes("galleryID")){
+        
+        gal_ID = document.getElementById('galleryID').textContent;
+        var paintingsGalleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?galleryID="+gal_ID;
+        
+        let storageName = "paintingGallery_Local_Data";
+        
+        //this array will return an ampty array for the first time, next time data from local storage
+        let temp_local_data_array = retrieveStorage_paintings(storageName); 
+        
+        fetching(paintingsGalleryAPI, temp_local_data_array, storageName);
+        
+    }
+    else if (urlQuery.includes("genreID")){
+        
+        gen_ID = document.getElementById('genreID').textContent; 
+        var paintingsGenreAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?genreID="+gen_ID;
+        
+        let storageName = "paintingGenre_Local_Data";
+        
+        //this array will return an ampty array for the first time, next time data from local storage
+        let temp_local_data_array = retrieveStorage_paintings(storageName);
+        
+        fetching(paintingsGenreAPI, temp_local_data_array, storageName);
+        
     }
 
 
-    //populate painthings methods is calling: 
-    //Create Table Head Method: to create clickable headings for the painting table
-    //based on artist method: when table is first created it will based on artist's last name
-    //sorting_request method: listening for different type of sorting button clicks
-    function populate_paintings(){
-
-        let Painting_Local_Data_Parsed = JSON.parse(localStorage.getItem('Painting_Local_Data'));
-
-        Create_Table_Head();
-        basedOnArtist(Painting_Local_Data_Parsed);
-        sorting_request(Painting_Local_Data_Parsed);   
+    //fetch and create local storage for paintings of that particular gallery
+    function fetching(api, temp_local_data_array, storageName){
         
+        if (temp_local_data_array == 0) {
+            
+            fetch(api)
+            
+            .then(function(response){
+                if (response.ok){
+                    return response.json();
+                }else {
+                    return Promise.reject({
+                        status: response.status,
+                        statusText: response.statusText
+                    })
+                }
+            })
+            .then((data)=> {
+                Create_Painting_Local_Storage(data, storageName);
+                populate_table(storageName);
+            
+            })
+            .catch( (error)=> {
+                console.log(error);
+            })
+        //otherwise calls directly to popluate gallery list from local storage
+        } else {
+            populate_table(storageName);
+        }
+    }
+   
+    // retrieve from storage or return empty array if doesn't exist
+    function retrieveStorage_paintings(storageName) {        
+        return JSON.parse(localStorage.getItem(storageName)) || [];
+    } 
+
+
+    //local storage creation method
+    //calling populate gallery list method
+    function Create_Painting_Local_Storage(data, storageName){
+
+        localStorage.setItem(storageName, JSON.stringify(data));
+
+    }
+
+
+    //popluate gallery list method, creating gallery list from local storage
+    function populate_table(storageName){
+
+        let Painting_Local_Data_Parsed = JSON.parse(localStorage.getItem(storageName));
+        Create_Table_Head();
+        basedOnTitle(Painting_Local_Data_Parsed)
+        sorting_request(Painting_Local_Data_Parsed);   
     }
 
     //create table head method is creating painting table head with clickable buttons
@@ -64,15 +113,15 @@ var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/ser
         th_img.textContent = "";
         th_set.push(th_img);
 
-        var th_artist = document.createElement('th');
-        th_artist.innerHTML = "<button id='btn_artist'>Artist &nbsp; &nbsp; &nbsp; &#9660;</button>";
-        th_artist.setAttribute('id', 'artist');
-        th_set.push(th_artist);
-
         var th_title = document.createElement('th');
         th_title.innerHTML = "<button id='btn_title'>Title &nbsp; &nbsp; &nbsp; &#9660;</button>";
         th_title.setAttribute('id', 'title');
         th_set.push(th_title);
+        
+        var th_artist = document.createElement('th');
+        th_artist.innerHTML = "<button id='btn_artist'>Artist &nbsp; &nbsp; &nbsp; &#9660;</button>";
+        th_artist.setAttribute('id', 'artist');
+        th_set.push(th_artist);
 
         var th_year = document.createElement('th');
         th_year.innerHTML = "<button id='btn_year'>Year &nbsp; &nbsp; &nbsp; &#9660;</button>";
@@ -84,12 +133,8 @@ var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/ser
         }
         
         document.getElementById('table_body').appendChild(tr);
-        
-        
-        
-        
     }
-
+    
     //based on artist method is creating paintings table body from painting local storage for that particular clicked gallery
     //nested sort function to arrange based on artist's last name
     //calling helper methods: painting_details_Array_Object and populate_sorted_paintings
@@ -158,7 +203,8 @@ var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/ser
         populate_sorted_paintings(sortedPaintingsByYear); //helper method
 
     }
-
+    
+    
     //Helper method painting_details_Array_Object creates and return an Array of Objects for painting local data for easy sorting
     function painting_details_Array_Object(Painting_Local_Data_Parsed){
 
@@ -171,17 +217,23 @@ var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/ser
 
             paintings_details[i].img_id = Painting_Local_Data_Parsed[i].ImageFileName;
 
-            paintings_details[i].artist = document.getElementById('artistName').textContent; 
-
             paintings_details[i].title = Painting_Local_Data_Parsed[i].Title;
+            
+            if (Painting_Local_Data_Parsed[i].FirstName !=null){
+                paintings_details[i].artist = Painting_Local_Data_Parsed[i].FirstName+" "+Painting_Local_Data_Parsed[i].LastName;
+            }else{
+                paintings_details[i].artist = Painting_Local_Data_Parsed[i].LastName;
+            }
+            
             paintings_details[i].year = Painting_Local_Data_Parsed[i].YearOfWork;
             
             paintings_details[i].paintingID = Painting_Local_Data_Parsed[i].PaintingID;
+            paintings_details[i].artistID = Painting_Local_Data_Parsed[i].ArtistID;
         }
 
         return paintings_details;
     }
-
+    
     //Helper method populate_sorted_paintings is populating sorted data into table rows
     function populate_sorted_paintings(sortedPaintings){
 
@@ -209,14 +261,14 @@ var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/ser
             
             table_row_set.push(table_data_img);
             
-            let artistURL = "https://comp3512-assignment-hamid786.c9users.io/A2/singleArtist.php?artistID="+a_ID;    
-            table_data_artist.innerHTML = "<a href="+artistURL+">"+sortedPaintings[i].artist+"</a>";
-            table_row_set.push(table_data_artist);
-
             table_data_title.innerHTML = "<a href="+paintingURL+">"+sortedPaintings[i].title+"</a>";
             table_data_title.setAttribute('class','p_title');
             table_row_set.push(table_data_title);
 
+            let artistURL = "https://comp3512-assignment-hamid786.c9users.io/A2/singleArtist.php?artistID="+sortedPaintings[i].artistID;    
+            table_data_artist.innerHTML = "<a href="+artistURL+">"+sortedPaintings[i].artist+"</a>";
+            table_row_set.push(table_data_artist);
+            
             table_data_year.textContent = sortedPaintings[i].year;
             table_row_set.push(table_data_year);
 
@@ -230,8 +282,8 @@ var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/ser
 
         thumbnail_effect();
     }
-
-    //sorting_request method: listening to clicks button on table head, each button is calling different based on methods
+    
+        //sorting_request method: listening to clicks button on table head, each button is calling different based on methods
     //whenever a based on method is requested, refresh table is called up to refresh the existing table body 
     function sorting_request(Painting_Local_Data_Parsed){
 
@@ -270,8 +322,8 @@ var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/ser
             parentNode.removeChild(currentNode.nextSibling);
         }
     }
-
-function thumbnail_effect(){
+    
+    function thumbnail_effect(){
 
     var thumbnails = document.querySelectorAll('#table_body .table_data td img');
     
@@ -320,6 +372,5 @@ function thumbnail_effect(){
         
     }
 }
-
-
+    
 });

@@ -81,7 +81,7 @@ include('includes/nav-bar.inc.php');
                 
                     populateArtist($artistID);
                     populateGallery($galleryID);
-                    echo "<ul>".populateGenres($paintingID)."</ul>";
+                    echo "<p>Genres: </p><ul>".populateGenres($paintingID)."</ul>";
                     populateRatingsReviews($paintingID);
                     echo "</div>";
                 

@@ -14,7 +14,7 @@ include('includes/nav-bar.inc.php');
         <link rel="stylesheet" href="css/singleArtist.css">
         <link rel="stylesheet" href="css/navigation.css">
         <script src="js/hamburger-functionality.js"></script>
-        <script src="js/paintings.js"></script>
+        <script src="js/paintingTable.js"></script>
     </head>
     <body id = "artistBody">
          <?php createNavBar(); ?>

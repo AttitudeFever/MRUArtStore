@@ -14,7 +14,7 @@ include('includes/nav-bar.inc.php');
         <link rel="stylesheet" href="css/navigation.css">
         <link rel="stylesheet" href="css/singleGenre.css">
         <script src="js/hamburger-functionality.js"></script>
-        <script src="js/paintings.js"></script>
+        <script src="js/paintingTable.js"></script>
     </head>
     <body id = "genreBody">
         <?php createNavBar(); ?>
@@ -41,6 +41,7 @@ include('includes/nav-bar.inc.php');
                 <img src='$img' alt='$key->GenreName'/>
                 <p>$key->Description</p>
                 <a href='$key->Link'>Link to Wikipedia</a>
+                <p id='genreID' style='display:none'>$key->GenreID</p>
                 </div>";
             }
             

@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="">
         <link rel="stylesheet" href="css/navigation.css">
         <script src="js/hamburger-functionality.js"></script>
-        <script src="js/paintings.js"></script>
+        <script src="js/paintingTable.js"></script>
     </head>
     <body id = "galleryBody">
         <?php createNavBar(); ?>
@@ -42,6 +42,7 @@
                         <p>GalleryCity: $key->GalleryCity </p>
                         <p>GalleryAddress: $key->GalleryAddress </p>
                         <p>GalleryCountry: $key->GalleryCountry </p>
+                        <p id='galleryID' style='display:none'>$key->GalleryID </p>
                      </div> 
                       <div id='galleryMap'>
                         
@@ -53,6 +54,15 @@
         ?>
         
         </div>
+            <div id="painting_panel">
+            <section>
+          <h2 id="p_heading">Paintings in this Gallery</h2>  
+          <table id="painting_table">
+            <tbody id="table_body"></tbody>
+          </table>
+        </section>     
+        
+    </div>
     </body>
     
 </html>

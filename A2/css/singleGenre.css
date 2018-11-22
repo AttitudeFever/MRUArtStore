@@ -8,7 +8,7 @@
 
 #navigation{grid-area: top;}
 #navigation_mobile{grid-area: top;}
-#genre_panel {grid-area: left; }
+#genre_panel { grid-area: left; }
 #painting_panel{grid-area: right;}
 
 #genreBody {
@@ -22,11 +22,7 @@
   padding: 10px;
 }
 
-.profile{
-  position: relative;
-  text-align: center;
-  
-}
+
 
 #genre_panel{
     
@@ -35,18 +31,99 @@
     float: left;
 }
 
+
+.profile{
+  position: relative;
+  text-align: center;
+  
+}
+
 .profile img{
-  border-radius: 20px;
-  box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
- 
+border-radius: 20px;
+box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
+  
 }
 
 a{
     text-decoration: none;
-    color: rgb(80, 156, 133);
+    color: white;
 }
 
 a:hover{
     cursor: pointer;
-    color: white;
+    color: rgb(80, 156, 133);
+}
+
+
+#painting_panel{
+  
+    width: auto;
+    height: auto;
+  text-align: center;
+    float: right;
+
+}
+
+#p_heading{
+  margin-left:25%;
+  
+}
+
+#painting_table{
+  /*border: 1px red dashed;*/
+  /*padding: 5px;*/
+  /*position: relative;*/
+  /*left:60%;*/
+
+}
+
+#table_body{
+  /*background-color: rgba(80, 156, 133,0.1);*/
+  }
+  
+
+
+#btn_title, #btn_artist, #btn_year{
+width:100px;
+height: 20px;
+color:white;
+background-color: black; 
+}
+
+#btn_title:hover, #btn_artist:hover, #btn_year:hover{
+background-color: rgb(80, 156, 133);
+}
+
+
+tbody tr td {
+  width: 250px;
+  height: 160px;
+}
+
+.table_data td img{
+position: relative;
+/*padding:5px;*/
+/*background-color: white;*/
+border-radius: 10px;
+box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
+}
+
+/*smartphone / tablet look*/
+@media only screen and (max-width: 600px) {
+  
+
+.profile img{
+width:200px;
+border-radius: 20px;
+box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
+  
+}
+
+
+tbody tr td {
+  width: 60px;
+  height: 160px;
+}
+
+  
 }
