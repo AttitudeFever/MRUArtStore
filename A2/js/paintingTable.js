@@ -1,17 +1,14 @@
 window.addEventListener('load' , ()=>{
 
-
-    var urlQuery = window.location.href;
-    var a_ID;
-    var gal_ID;
-    var gen_ID;
+    let urlQuery = window.location.href;
     
     if (urlQuery.includes("artistID")){
        
-        a_ID = document.getElementById('atristID').textContent; 
+       let a_ID = getID(urlQuery);
+
         var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?artistID="+a_ID;
         
-        let storageName = "paintingArtist_Local_Data";
+        let storageName = "paintingArtist_Local_Data"+a_ID;
         
         //this array will return an ampty array for the first time, next time data from local storage
         let temp_local_data_array = retrieveStorage_paintings(storageName); 
@@ -20,10 +17,11 @@ window.addEventListener('load' , ()=>{
     }
     else if (urlQuery.includes("galleryID")){
         
-        gal_ID = document.getElementById('galleryID').textContent;
+        let gal_ID = getID(urlQuery);
+        
         var paintingsGalleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?galleryID="+gal_ID;
         
-        let storageName = "paintingGallery_Local_Data";
+        let storageName = "paintingGallery_Local_Data"+gal_ID;
         
         //this array will return an ampty array for the first time, next time data from local storage
         let temp_local_data_array = retrieveStorage_paintings(storageName); 
@@ -33,10 +31,11 @@ window.addEventListener('load' , ()=>{
     }
     else if (urlQuery.includes("genreID")){
         
-        gen_ID = document.getElementById('genreID').textContent; 
+       let gen_ID = getID(urlQuery);
+        
         var paintingsGenreAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?genreID="+gen_ID;
         
-        let storageName = "paintingGenre_Local_Data";
+        let storageName = "paintingGenre_Local_Data"+gen_ID;
         
         //this array will return an ampty array for the first time, next time data from local storage
         let temp_local_data_array = retrieveStorage_paintings(storageName);
@@ -46,6 +45,18 @@ window.addEventListener('load' , ()=>{
     }
 
 
+    function getID(urlQuery){
+    
+        let ID = urlQuery.split("=");
+        return ID[1];
+    }
+    
+    // retrieve from storage or return empty array if doesn't exist
+    function retrieveStorage_paintings(storageName) {        
+        return JSON.parse(localStorage.getItem(storageName)) || [];
+    } 
+
+    
     //fetch and create local storage for paintings of that particular gallery
     function fetching(api, temp_local_data_array, storageName){
         
@@ -77,10 +88,6 @@ window.addEventListener('load' , ()=>{
         }
     }
    
-    // retrieve from storage or return empty array if doesn't exist
-    function retrieveStorage_paintings(storageName) {        
-        return JSON.parse(localStorage.getItem(storageName)) || [];
-    } 
 
 
     //local storage creation method

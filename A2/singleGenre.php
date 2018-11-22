@@ -41,7 +41,6 @@ include('includes/nav-bar.inc.php');
                 <img src='$img' alt='$key->GenreName'/>
                 <p>$key->Description</p>
                 <a href='$key->Link'>Link to Wikipedia</a>
-                <p id='genreID' style='display:none'>$key->GenreID</p>
                 </div>";
             }
             

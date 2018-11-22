@@ -42,7 +42,6 @@
                         <p>GalleryCity: $key->GalleryCity </p>
                         <p>GalleryAddress: $key->GalleryAddress </p>
                         <p>GalleryCountry: $key->GalleryCountry </p>
-                        <p id='galleryID' style='display:none'>$key->GalleryID </p>
                      </div> 
                       <div id='galleryMap'>
                         

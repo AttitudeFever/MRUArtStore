@@ -45,7 +45,6 @@ include('includes/nav-bar.inc.php');
             <p>Year of Death: $key->YearOfDeath</p>
             <p><a href='$key->ArtistLink' target='_blank'>Wiki Link </a></p>
             <p>Details: $key->Details</p>
-            <p id='atristID' style='display:none'>$key->ArtistID </p>
             </div>";
         }
         
