@@ -129,7 +129,8 @@ include('includes/nav-bar.inc.php');
                 $paintingRatingsAPIData = fetch($paintingRatingsAPI);
                 
                 foreach($paintingRatingsAPIData as $key){
-                    $ratings[] +=$key->Rating;
+                    
+                    $ratings[] =$key->Rating;
                     
                     if ($key->Comment !=null){
                         echo "<p>Reviews: $key->Comment</p>";
@@ -140,10 +141,8 @@ include('includes/nav-bar.inc.php');
             }
             
             function AverageRating($ratings){
-                for ($i=0; i<count($ratings); $i++){
-                    $total += $ratings[i]; 
-                }
-                echo $averageRating = $total/count($ratings);
+
+                echo "<p>Average Ratings: ".$averageRating = array_sum($ratings)/count($ratings)."</p>";
             }
             
         ?>
