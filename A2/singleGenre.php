@@ -34,9 +34,9 @@ include('includes/nav-bar.inc.php');
             
             foreach($data as $key){
                 
-                $img = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=genre/full/". $key ->GenreID;
+                $img = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=genres/". $key ->GenreID . "&width=400";
                
-                echo "<div>
+                echo "<div class ='profile'>
                 <h1 id = 'genreName'>$key->GenreName</h1>
                 <img src='$img' alt='$key->GenreName'/>
                 <p>$key->Description</p>
@@ -48,8 +48,10 @@ include('includes/nav-bar.inc.php');
             
         </div>
         <div id="painting_panel">
-            
-             
+             <h2 id="paint_head">Paintings from this Genre</h2>  
+             <table id="painting_table">
+                <tbody id ="table_body"></tbody>
+             </table>
         </div>
     </body>
     

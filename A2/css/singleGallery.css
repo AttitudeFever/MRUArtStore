@@ -1,13 +1,23 @@
-.container{
-    grid-template-areas: "top top top top"
-    "middle middle middle ."
-    "bottom bottom bottom . ";
-    grid-gap: 40px; 
+#galleryBody #navigation a:hover:not(#index){
+    background-color: rgb(80, 156, 133);
 }
 
+#galleryBody #navigation ul li:nth-child(2) { 
+    background-color: rgb(255, 0, 0);
+}
 
+#navigation{grid-area: top;}
+#navigation_mobile{grid-area: top;}
+#galler_panel {grid-area: left; }
+#painting_panel{grid-area: right;}
 
-html{
-    background-color: black;
-    
+#galleryBody {
+  display: grid;
+  grid-template-areas:
+    'top top top top'
+    'left left right right';
+  grid-gap: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px;
 }

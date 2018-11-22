@@ -1,8 +1,9 @@
 window.addEventListener('load' , ()=>{
 
 var a_ID = document.getElementById('atristID').textContent;
+
 var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?artistID="+a_ID;
-    //fetch and create local storage for paintings of that particular gallery
+
 
 
 //fetch and create local storage for paintings of that particular gallery

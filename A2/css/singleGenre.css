@@ -8,7 +8,7 @@
 
 #navigation{grid-area: top;}
 #navigation_mobile{grid-area: top;}
-#artist_panel {grid-area: left; }
+#genre_panel {grid-area: left; }
 #painting_panel{grid-area: right;}
 
 #genreBody {
@@ -20,4 +20,33 @@
   background-color: black;
   color: white;
   padding: 10px;
+}
+
+.profile{
+  position: relative;
+  text-align: center;
+  
+}
+
+#genre_panel{
+    
+    width: 80%;
+    height: 100%;
+    float: left;
+}
+
+.profile img{
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
+ 
+}
+
+a{
+    text-decoration: none;
+    color: rgb(80, 156, 133);
+}
+
+a:hover{
+    cursor: pointer;
+    color: white;
 }

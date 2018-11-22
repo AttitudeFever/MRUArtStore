@@ -42,6 +42,24 @@ if (isset($_GET['paintingID'] ) and $_GET['paintingID'] != ""){
     //get particular sql querry from the sql collection
     $sql = getPaintingGenreSQL($genreID);
     
+}elseif(isset($_GET['ratingPID'] ) and $_GET['ratingPID'] != ""){
+    
+    //get id from query string
+    $ratingPID = $_GET['ratingPID'];
+    
+    //get particular sql querry from the sql collection
+    $sql = getRatingSQL($ratingPID);
+    
+    
+}elseif(isset($_GET['pgID'] ) and $_GET['pgID'] != "") {    
+    
+    //get id from query string (pgID is paintingID in paintingGenres Table)
+    $pgID = $_GET['pgID'];
+    
+    //get particular sql querry from the sql collection
+    $sql = getGenreIDFromPaintingGenreSQL($pgID);
+    
+    
 }else{
     
     //get particular sql querry from the sql collection
