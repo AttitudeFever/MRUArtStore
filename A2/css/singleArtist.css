@@ -41,8 +41,21 @@
 .profile img{
 border-radius: 20px;
 box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+
   
 }
+
+.profile img:hover{
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+	filter:opacity(60%);
+}
+
+
 
 a{
     text-decoration: none;

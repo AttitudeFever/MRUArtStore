@@ -21,7 +21,7 @@ function getArtistSQL($artistID){
 //single view All gallery
 function getAllGallerySQL(){
     
-    $sql = 'SELECT GalleryID, GalleryName, GalleryNativeName, GalleryCity, GalleryCountry, Latitude, Longitude, GalleryWebSite FROM Galleries';
+    $sql = 'SELECT GalleryID, GalleryName, GalleryAddress, GalleryNativeName, GalleryCity, GalleryCountry, Latitude, Longitude, GalleryWebSite FROM Galleries';
     $sql .= " ORDER BY GalleryName";
     
     return $sql;
@@ -31,7 +31,7 @@ function getAllGallerySQL(){
 //single view particular gallery
 function getGallerySQL($galleryID){
     
-    $sql = 'SELECT GalleryID, GalleryName, GalleryNativeName, GalleryCity, GalleryCountry, Latitude, Longitude, GalleryWebSite FROM Galleries';
+    $sql = 'SELECT GalleryID, GalleryName, GalleryAddress, GalleryNativeName, GalleryCity, GalleryCountry, Latitude, Longitude, GalleryWebSite FROM Galleries';
     $sql .=" WHERE GalleryID = $galleryID";
     
     return $sql;
@@ -98,7 +98,7 @@ function getGenreIDFromPaintingGenreSQL($paintingID){
 // //table view paintings belongs to an artist
 function getPaintingArtistSQL($artistID){
     
-    $sql = 'SELECT PaintingID, ImageFileName, GalleryID, Title, Artists.ArtistID, YearOfWork, FirstName, LastName';
+    $sql = 'SELECT PaintingID, ImageFileName, GalleryID, Title, ShapeID, MuseumLink, AccessionNumber, CopyrightText, Description, Excerpt, Width, Height, Medium, Cost, MSRP, GoogleLink, GoogleDescription, WikiLink, Artists.ArtistID, YearOfWork, FirstName, LastName, Nationality, Gender, YearOfBirth, YearOfDeath, Details, ArtistLink';
     $sql .= ' FROM Paintings INNER JOIN Artists ON Paintings.ArtistID = Artists.ArtistID';
     $sql .=" WHERE Artists.ArtistID = $artistID";
     $sql .= " ORDER BY Title";
@@ -110,9 +110,12 @@ function getPaintingArtistSQL($artistID){
 //table view paintings belongs to a gallery
 function getPaintingGallerySQL($galleryID){
     
-    $sql = 'SELECT PaintingID, ImageFileName, GalleryID, Title, Artists.ArtistID, YearOfWork, FirstName, LastName';
+    $sql = 'SELECT PaintingID, ImageFileName, Title, ShapeID, MuseumLink, AccessionNumber, CopyrightText, Description, Excerpt, Width, Height, Medium, Cost, MSRP, GoogleLink, GoogleDescription, WikiLink, YearOfWork,
+            Artists.ArtistID, FirstName, LastName Nationality, Gender, YearOfBirth, YearOfDeath, Details, ArtistLink, 
+            Galleries.GalleryID, GalleryName, GalleryAddress, GalleryNativeName, GalleryCity, GalleryCountry, Latitude, Longitude, GalleryWebSite';
     $sql .= ' FROM Paintings INNER JOIN Artists ON Paintings.ArtistID = Artists.ArtistID';
-    $sql .=" WHERE GalleryID = $galleryID";
+    $sql .= " INNER JOIN Galleries ON Paintings.GalleryID = Galleries.GalleryID";
+    $sql .=" WHERE Paintings.GalleryID = $galleryID";
     $sql .= " ORDER BY Title";
     
     return $sql;
@@ -121,11 +124,15 @@ function getPaintingGallerySQL($galleryID){
 //table view paintings belongs to genres
 function getPaintingGenreSQL($genreID){
     
-    $sql = 'SELECT P.PaintingID, ImageFileName, Title, YearOfWork, PG.GenreID, G.GenreName, A.ArtistID, FirstName, LastName';
+    $sql = 'SELECT P.PaintingID, ImageFileName, Title, ShapeID, MuseumLink, AccessionNumber, CopyrightText, P.Description, Excerpt, Width, Height, Medium, Cost, MSRP, GoogleLink, GoogleDescription, WikiLink, YearOfWork, 
+            A.ArtistID, FirstName, LastName Nationality, Gender, YearOfBirth, YearOfDeath, Details, ArtistLink,
+            Gal.GalleryID, GalleryName, GalleryAddress, GalleryNativeName, GalleryCity, GalleryCountry, Latitude, Longitude, GalleryWebSite,
+            PG.GenreID, G.GenreName, G.Description, Link';
     $sql .= " FROM Paintings P";
     $sql .= " INNER JOIN PaintingGenres PG ON P.PaintingID = PG.PaintingID";
     $sql .= " INNER JOIN Genres G ON G.GenreID = PG.GenreID";
     $sql .= " INNER JOIN Artists A ON P.ArtistID = A.ArtistID";
+    $sql .= " INNER JOIN Galleries Gal ON P.GalleryID = Gal.GalleryID";
     $sql .= " WHERE G.GenreID = $genreID";
     $sql .= " ORDER BY Title";
     

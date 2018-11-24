@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="images/web/logo.png">
         <title>Single Gallery</title>
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="css/singleGallery.css">
         <link rel="stylesheet" href="css/navigation.css">
         <script src="js/hamburger-functionality.js"></script>
         <script src="js/paintingTable.js"></script>
@@ -28,12 +28,10 @@
             }
             $galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php?galleryID=$galleryID";
             $JSONdata = file_get_contents($galleryAPI);//file_get_contents converts the echo'd JSON into text
-            $data = json_decode($JSONdata);//converts from JSON to associative array.
+            $data = json_decode($JSONdata);//converts from JSON to object
             
             foreach($data as $key)
             {
-                
-               #echo "<script> alert($key->GalleryName)</script>"; //testing, not working, will need to look into 
                 $imgfile = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=paintings/full/" . $key->PaintingID;
                 
                 echo "<div id='galleryInfo'>
@@ -42,14 +40,16 @@
                         <p>GalleryCity: $key->GalleryCity </p>
                         <p>GalleryAddress: $key->GalleryAddress </p>
                         <p>GalleryCountry: $key->GalleryCountry </p>
-                     </div> 
-                      <div id='galleryMap'>
-                        
-                      </div>
-                      <div id='paintingList'>
-                      </div> ";
+                        <p id='lati'> $key->Latitude </p>
+                        <p id='long'> $key->Longitude </p> 
+                     </div>
+                     <div id='galleryMap'> 
+                      
+                     </div>
+                     
+                     ";  //outputting values into php and then calling it into js as a means of outputting map, will test for now and delete later
+                      
             }
-        
         ?>
         
         </div>
@@ -64,4 +64,10 @@
     </div>
     </body>
     
+    <script src='js/test.js'> 
+        let latitudePhp = <?php foreach($data as $key){echo json_encode("$key->Latitude")}; ?>
+        let longitudePhp = <?php foreach($data as $key){echo json_encode("$key->Longitude")};?> 
+    </script>
+        <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCa5xDa-xIo3amiC2dSpUhz_5DpsVU0gOc&callback=initMap' async defer> </script>
+    </script>
 </html>

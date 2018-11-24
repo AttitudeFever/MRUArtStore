@@ -11,11 +11,11 @@ include('includes/nav-bar.inc.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="images/web/logo.png">
         <title>Single Painting</title>   
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="css/singlePainting.css">
         <link rel="stylesheet" href="css/navigation.css">
         <script src="js/hamburger-functionality.js"></script>
     </head>
-    <body id = "artistBody">
+    <body id = "paintingBody">
          <?php createNavBar(); ?>
             
     <div id="painting_panel">
@@ -49,8 +49,11 @@ include('includes/nav-bar.inc.php');
                 
                     echo "<div class='profile'>";
                     echo "<h1>$key->Title</h1>";
-                    echo "<img src='$img_file' alt='' />";
+                    echo "<a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=paintings/full/$key->ImageFileName'><img src='$img_file' alt='$key->Title' /></a>";
                     echo "<p><a href='$key->MuseumLink'>Museum Link</a></p>";
+                    if ($key->WikiLink != null){ 
+                        echo "<p><a href='$key->WikiLink'>Wiki Link</a></p>";
+                    }
                     if ($key->AccessionNumber != null){
                         echo "<p>Accession Number: $key->AccessionNumber</p>";
                     }
@@ -74,9 +77,7 @@ include('includes/nav-bar.inc.php');
                     if ($key->GoogleDescription != null){  
                     echo "<p>Google Description: $key->GoogleDescription</p>";
                     }
-                    if ($key->WikiLink != null){ 
-                    echo "<p><a href='$key->WikiLink'>Wiki Link</a></p>";
-                    }
+
                 }
                 
                     populateArtist($artistID);

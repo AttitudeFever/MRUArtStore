@@ -17,48 +17,55 @@ include('includes/nav-bar.inc.php');
         <script src="js/paintingTable.js"></script>
     </head>
     <body id = "artistBody">
-         <?php createNavBar(); ?>
-            
-    <div id="artist_panel">
         <?php 
+         
+         createNavBar();
+            
+        echo "<div id='artist_panel'>";
+
         
         if (isset($_GET['artistID'] ) and $_GET['artistID'] != ""){
             
             $artistID = $_GET['artistID'];
+            
+            $artistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/artist.php?artistID=$artistID";
+            $JSONdata = file_get_contents($artistAPI);
+            $data = json_decode($JSONdata);
+            
+           
+            foreach($data as $key){
+                
+                $img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=artists/full/" . $key->ArtistID;
+                
+                echo "<div class='profile'>
+                <h1 id='artistName'>$key->FirstName $key->LastName</h1>
+                <a href=$img_file><img src='$img_file' alt='$key->LastName' /></a>
+                <p>Nationality: $key->Nationality</p>
+                <p>Gender: $key->Gender</p>
+                <p>Year of Birth: $key->YearOfBirth</p>
+                <p>Year of Death: $key->YearOfDeath</p>
+                <p><a href='$key->ArtistLink' target='_blank'>Wiki Link </a></p>
+                <p>Details: $key->Details</p>
+                </div>";
+            }
+        
+        echo "</div>
+        <div id='painting_panel'>
+                <section>
+              <h2 id='p_heading'>Paintings of This Artist</h2>  
+              <table id='painting_table'>
+                <tbody id='table_body'></tbody>
+              </table>
+            </section>     
+            
+        </div>";
+        }
+        else{
+            
+            echo "<p>Opps! Page Requires Artist ID</p>";
         }
          
-        $artistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/artist.php?artistID=$artistID";
-        $JSONdata = file_get_contents($artistAPI);
-        $data = json_decode($JSONdata);
-        
-       
-        foreach($data as $key){
-            
-            $img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=artists/full/" . $key->ArtistID;
-            
-            echo "<div class='profile'>
-            <h1 id='artistName'>$key->FirstName $key->LastName</h1>
-            <img src='$img_file' alt='$key->LastName' />
-            <p>Nationality: $key->Nationality</p>
-            <p>Gender: $key->Gender</p>
-            <p>Year of Birth: $key->YearOfBirth</p>
-            <p>Year of Death: $key->YearOfDeath</p>
-            <p><a href='$key->ArtistLink' target='_blank'>Wiki Link </a></p>
-            <p>Details: $key->Details</p>
-            </div>";
-        }
-        
-        ?>
-    </div>
-    <div id="painting_panel">
-            <section>
-          <h2 id="p_heading">Paintings of This Artist</h2>  
-          <table id="painting_table">
-            <tbody id="table_body"></tbody>
-          </table>
-        </section>     
-        
-    </div>
-            
+         ?>   
     </body>
+    </html>
         

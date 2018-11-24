@@ -64,6 +64,7 @@ window.addEventListener('load', function() {
             
             galleryList.innerHTML += "<a href="+galleryLink+"><li>" + g_list.GalleryName + "</li></a>";
         }
+           
 
     }
     
@@ -187,7 +188,7 @@ window.addEventListener('load', function() {
                                                 "</a>"+
                                             "</div>";
         }
-               
+              
     }
     
     
@@ -263,7 +264,14 @@ window.addEventListener('load', function() {
        
 
         }
+     
     }
     
+    
+
+
+    window.setTimeout( ()=> {
+        document.getElementById('loading').style="display:none"; 
+    }, 7000);
 
 });

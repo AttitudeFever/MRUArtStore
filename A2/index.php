@@ -17,12 +17,12 @@ include('includes/nav-bar.inc.php');
         <script src="js/index.js"></script>
     </head>
     <body id = "homebody">
+        
             <?php createNavBar(); ?>
             
 <div id="galleryList_panel">
             <h3>Gallery List</h3>
             <ul id="galleryList">
-
             </ul>
         </div>
 
@@ -32,6 +32,8 @@ include('includes/nav-bar.inc.php');
 
         <div id="genre_panel">
             <h3>Genres</h3>
-
+        </div>
+    <div id="loading">
+        <p>Loading Please Wait....</p><img src='images/web/Spinner.gif'/>
         </div>
     </body>
