@@ -269,7 +269,6 @@ window.addEventListener('load', function() {
     
     
 
-
     window.setTimeout( ()=> {
         document.getElementById('loading').style="display:none"; 
     }, 7000);

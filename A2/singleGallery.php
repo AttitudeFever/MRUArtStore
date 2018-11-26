@@ -1,6 +1,7 @@
 
 <?php
     include('includes/nav-bar.inc.php');
+    include('includes/phpFetch.php');
     
 ?>
 
@@ -27,21 +28,21 @@
                 $galleryID = $_GET['galleryID'];    
             }
             $galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php?galleryID=$galleryID";
-            $JSONdata = file_get_contents($galleryAPI);//file_get_contents converts the echo'd JSON into text
-            $data = json_decode($JSONdata);//converts from JSON to object
+            $data =  fetch($galleryAPI);
             
             foreach($data as $key)
             {
                 $imgfile = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=paintings/full/" . $key->PaintingID;
-                
+                $latitude = "";
+                $longitude = "";
                 echo "<div id='galleryInfo'>
                         <p>GalleryName: $key->GalleryName</p>
                         <p>GalleryNativeName: $key->GalleryNativeName </p>
                         <p>GalleryCity: $key->GalleryCity </p>
                         <p>GalleryAddress: $key->GalleryAddress </p>
                         <p>GalleryCountry: $key->GalleryCountry </p>
-                        <p id='lati'> $key->Latitude </p>
-                        <p id='long'> $key->Longitude </p> 
+                        $latitude = $key->Latitude 
+                        $longitude = $key->Longitude  
                      </div>
                      <div id='galleryMap'> 
                       
@@ -64,10 +65,12 @@
     </div>
     </body>
     
+    <!--https://stackoverflow.com/questions/24855186/most-efficient-way-to-pass-php-variables-to-external-javascript-or-jquery-file may not work when passing to js, need to test-->
     <script src='js/test.js'> 
-        let latitudePhp = <?php foreach($data as $key){echo json_encode("$key->Latitude")}; ?>
-        let longitudePhp = <?php foreach($data as $key){echo json_encode("$key->Longitude")};?> 
+        let latitudePhp =  <?php echo json_encode($latitude); ?>;
+        let longitudePhp = <?php echo json_encode($longitude); ?>; 
     </script>
-        <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCa5xDa-xIo3amiC2dSpUhz_5DpsVU0gOc&callback=initMap' async defer> </script>
-    </script>
+        <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCa5xDa-xIo3amiC2dSpUhz_5DpsVU0gOc&callback=initMap' async defer> 
+        </script>
+    
 </html>

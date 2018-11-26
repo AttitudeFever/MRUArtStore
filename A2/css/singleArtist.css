@@ -75,6 +75,7 @@ a:hover{
   text-align: center;
     float: right;
 
+
 }
 
 #p_heading{
@@ -88,10 +89,13 @@ a:hover{
   /*position: relative;*/
   /*left:60%;*/
 
+
 }
 
 #table_body{
   /*background-color: rgba(80, 156, 133,0.1);*/
+  
+
   }
   
 
@@ -111,6 +115,7 @@ background-color: rgb(80, 156, 133);
 tbody tr td {
   width: 250px;
   height: 160px;
+
 }
 
 .table_data td img{
@@ -119,6 +124,7 @@ position: relative;
 /*background-color: white;*/
 border-radius: 10px;
 box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
+
 }
 
 /*smartphone / tablet look*/

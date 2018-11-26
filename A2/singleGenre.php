@@ -1,7 +1,7 @@
 <?php 
 
 include('includes/nav-bar.inc.php');
-
+include('includes/phpFetch.php');
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +29,7 @@ include('includes/nav-bar.inc.php');
             }
             
             $genreAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/genre.php?genreID=$genreID";
-            $JSONdata = file_get_contents($genreAPI);
-            $data = json_decode($JSONdata);
+            $data = fetch($genreAPI);
             
             foreach($data as $key){
                 
@@ -38,7 +37,7 @@ include('includes/nav-bar.inc.php');
                
                 echo "<div class ='profile'>
                 <h1 id = 'genreName'>$key->GenreName</h1>
-                <img src='$img' alt='$key->GenreName'/>
+                <a href='$img'><img src='$img' alt='$key->GenreName'/></a>
                 <p>$key->Description</p>
                 <a href='$key->Link'>Link to Wikipedia</a>
                 </div>";

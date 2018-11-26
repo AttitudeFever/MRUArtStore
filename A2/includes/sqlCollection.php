@@ -125,7 +125,7 @@ function getPaintingGallerySQL($galleryID){
 function getPaintingGenreSQL($genreID){
     
     $sql = 'SELECT P.PaintingID, ImageFileName, Title, ShapeID, MuseumLink, AccessionNumber, CopyrightText, P.Description, Excerpt, Width, Height, Medium, Cost, MSRP, GoogleLink, GoogleDescription, WikiLink, YearOfWork, 
-            A.ArtistID, FirstName, LastName Nationality, Gender, YearOfBirth, YearOfDeath, Details, ArtistLink,
+            A.ArtistID, FirstName, LastName, Nationality, Gender, YearOfBirth, YearOfDeath, Details, ArtistLink,
             Gal.GalleryID, GalleryName, GalleryAddress, GalleryNativeName, GalleryCity, GalleryCountry, Latitude, Longitude, GalleryWebSite,
             PG.GenreID, G.GenreName, G.Description, Link';
     $sql .= " FROM Paintings P";

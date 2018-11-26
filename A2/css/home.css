@@ -26,12 +26,6 @@
 }
 
 
-/*#navigation, #navigation_mobile, #galleryList_panel, #artist_panel, #genre_panel {*/
-        
-/*    filter: blur(5px);*/
-/*}*/
-
-
 /* width */
 ::-webkit-scrollbar {
     width: 15px;

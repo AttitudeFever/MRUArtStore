@@ -20,12 +20,9 @@ window.addEventListener('load', function(){
 
 function initMap() {
         
-            let lati = document.querySelector('#lati').value;
-            let long = document.querySelector('#long').value;
-
             let map;
             map = new google.maps.Map(document.querySelector("#galleryMap"), {
-                center: { lat: lati, lng: long },
+                center: { lat: latitudePhp, lng: longitudePhp },
                 zoom: 18
             });
     }

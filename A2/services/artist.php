@@ -27,5 +27,4 @@ if (isset($_GET['artistID'] ) and $_GET['artistID'] != ""){
 //output json object using that particular sql
 echo $JSON = generate_JSON_DATA($sql);
 
-
 ?>

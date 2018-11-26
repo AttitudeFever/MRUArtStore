@@ -1,6 +1,7 @@
 <?php 
 
 include('includes/nav-bar.inc.php');
+include('includes/phpFetch.php');
 
 ?>
 
@@ -29,8 +30,7 @@ include('includes/nav-bar.inc.php');
             $artistID = $_GET['artistID'];
             
             $artistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/artist.php?artistID=$artistID";
-            $JSONdata = file_get_contents($artistAPI);
-            $data = json_decode($JSONdata);
+            $data = fetch($artistAPI);
             
            
             foreach($data as $key){

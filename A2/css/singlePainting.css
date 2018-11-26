@@ -1,28 +1,231 @@
+#paintingBody #navigation a:hover:not(#index){
+    background-color: rgb(80, 156, 133);
+}
 
-#paintingBody{
+#paintingBody #navigation ul li:nth-child(2) { 
+    background-color: rgb(255, 0, 0);
+}
+
+#paintingBody #navigation_mobile a:hover:not(#index_mobile){
+    background-color: rgb(80, 156, 133);
+}
+
+#paintingBody #navigation_mobile ul li:nth-child(2) { 
+    background-color: rgb(255, 0, 0);
+}
+
+
+#navigation{grid-area: top;}
+#navigation_mobile{grid-area: top;}
+.profile {grid-area: left; }
+.description { grid-area: bottom-left; }
+.details{grid-area: right;}
+.color_panel { grid-area: bottom-right; }
+
+#paintingBody {
+  display: grid;
+  grid-template-areas:
+    'top top top top'
+    'left left right right'
+    'bottom-left bottom-left bottom-right bottom-right';
+  grid-gap: 20px;
   background-color: black;
   color: white;
+  padding: 10px;
+  /*position: fixed;*/
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+}
+
 .profile {
   position: relative;
-  width: 45%;
+  width: 100%;
+  height:600px;
 }
  
 .profile img {
-  border: 20px solid #fff;
-  border-top: 40px solid #fff;
-  border-bottom: 40px solid #fff;
+  border-radius: 20px;
+  border: 20px solid black;
+  border-top: 40px solid black;
+  border-bottom: 40px solid black;
   -webkit-box-shadow: 3px 3px 3px #777;
      -moz-box-shadow: 3px 3px 3px #777;
           box-shadow: 3px 3px 3px #777;
+  box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
+  	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
 }
- 
+
+.profile img:hover{
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+	filter:opacity(60%);
+}
+
 .profile h1 {
+  z-index: 1; 
   position: absolute;
-  text-align: center;
   width: 100%;
-  top: -20px;
-  right: 155px;
+  top: 0px;
+  left: 25px;
   float: left;
-  color: #888;
+  color: white;
+  font-size: 16pt;
+}
+
+.profile #medium {
+  z-index: 1; 
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  left: 25px;
+  float: left;
+  color: white;
+  font-size: 12pt;
+}
+
+.profile #size {
+  z-index: 1; 
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  left: 225px;
+  float: left;
+  color: white;
+  font-size: 12pt;
+}
+
+.profile #cost {
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  left: 410px;
+  float: left;
+  color: white;
+  font-size: 12pt;
+}
+
+.description{
+  width:520px;
+  position:relative;
+  bottom:0px;
+  left: 20px;
+  padding:10px;
+}
+
+
+
+#description:hover, #excerpt:hover, #google:hover{
+  cursor: pointer;
+  color: rgb(80, 156, 133);
+}
+
+.details{
+  text-align:center;
+}
+
+
+
+.details h1{
+    text-align: center;
+}
+
+.details a{
+    text-decoration: none;
+    color: white;
+}
+
+.details a:hover{
+cursor: pointer;
+color: rgb(80, 156, 133);
+}
+
+
+#artist{
+  border-radius: 20px;
+  background-color: rgba(208, 202,202,0.1);
+  width: 140px;
+  z-index: -1;
+  font-size: 15pt;
+  text-align: center;
+  display: inline-block;
+}
+
+#artist img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+#artist img:hover{
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+	filter:opacity(60%);
+}
+
+.caption{
+  border-radius: 20px;
+  background-color: rgba(0, 204,204, 0.1);
+  font-size: 10pt;
+}
+
+
+#genres{
+  border-radius: 20px;
+  background-color: rgba(208, 202,202,0.1);
+  width: 100%;
+  z-index: -1;
+  font-size: 15pt;
+  text-align: center;
+height:100%;
+}
+
+#genres img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+    	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+#genres img:hover{
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+	filter:opacity(60%);
+}
+
+.genre_box{
+padding-left:10px;
+  display: inline-block;
+}
+
+#links p{
+display: inline-block;
+padding-left:10px;
 }

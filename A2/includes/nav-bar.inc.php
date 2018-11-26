@@ -28,7 +28,7 @@
                                 <li>
                                     <img id= 'logo' src='images/web/logo.png' alt = 'home'/>
                                 </li>
-                                <li><a id='index' href='index.php'>
+                                <li><a id='index_mobile' href='index.php'>
                                     Home</a>
                                 </li>
                                 <li><a id='aboutus' href='aboutus.php'>
