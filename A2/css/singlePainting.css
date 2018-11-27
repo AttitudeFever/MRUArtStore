@@ -31,7 +31,7 @@
   grid-gap: 20px;
   background-color: black;
   color: white;
-  padding: 10px;
+  /*padding:10px;*/
   /*position: fixed;*/
 }
 
@@ -61,6 +61,7 @@
   position: relative;
   width: 100%;
   height:600px;
+  padding-left:40px;
 }
  
 .profile img {
@@ -89,10 +90,10 @@
   position: absolute;
   width: 100%;
   top: 0px;
-  left: 25px;
+  left: 60px;
   float: left;
   color: white;
-  font-size: 16pt;
+  font-size: 13pt;
 }
 
 .profile #medium {
@@ -100,7 +101,7 @@
   position: absolute;
   width: 100%;
   bottom: 10px;
-  left: 25px;
+  left: 60px;
   float: left;
   color: white;
   font-size: 12pt;
@@ -111,7 +112,7 @@
   position: absolute;
   width: 100%;
   bottom: 10px;
-  left: 225px;
+  left: 260px;
   float: left;
   color: white;
   font-size: 12pt;
@@ -121,7 +122,7 @@
   position: absolute;
   width: 100%;
   bottom: 10px;
-  left: 410px;
+  left: 445px;
   float: left;
   color: white;
   font-size: 12pt;
@@ -129,21 +130,22 @@
 
 .description{
   width:520px;
-  position:relative;
-  bottom:0px;
+  position:absolute;
+  top:720px;
   left: 20px;
-  padding:10px;
+  padding-left:40px;
 }
 
 
 
-#description:hover, #excerpt:hover, #google:hover{
+#description:hover, #excerpt:hover, #google:hover, #reviews:hover{
   cursor: pointer;
   color: rgb(80, 156, 133);
 }
 
 .details{
   text-align:center;
+  padding-right:40px;
 }
 
 
@@ -165,7 +167,7 @@ color: rgb(80, 156, 133);
 
 #artist{
   border-radius: 20px;
-  background-color: rgba(208, 202,202,0.1);
+  /*background-color: rgba(208, 202,202,0.1);*/
   width: 140px;
   z-index: -1;
   font-size: 15pt;
@@ -197,7 +199,7 @@ color: rgb(80, 156, 133);
 
 #genres{
   border-radius: 20px;
-  background-color: rgba(208, 202,202,0.1);
+  /*background-color: rgba(208, 202,202,0.1);*/
   width: 100%;
   z-index: -1;
   font-size: 15pt;
@@ -229,3 +231,73 @@ padding-left:10px;
 display: inline-block;
 padding-left:10px;
 }
+
+
+.reviewBody{
+  width:100%;
+  text-align:center;
+}
+
+.color_panel{
+  border-radius: 20px;
+  background-color: rgba(208, 202,202,0.1);
+  width: 93%;
+  z-index: -1;
+  text-align: center;
+  height:100%;
+}
+
+.color_visual{
+  border:1px solid black;
+  box-sizing: border-box;
+  padding: 2px;
+  width:100%;
+  height: 100%;
+  font-size: 8pt;
+}
+
+/*smartphone / tablet look*/
+@media only screen and (max-width: 600px) {
+  
+  .profile img {
+  width:200px;
+  height:200px;
+  }
+  
+  .profile h1 {
+  font-size: 8pt;
+  top:10px;
+  width:200px;
+}
+
+.profile #medium {
+
+  top: 250px;
+  left: 60px;
+  font-size: 6pt;
+}
+
+.profile #size {
+  top: 250px;
+  left: 150px;
+  font-size: 6pt;
+}
+
+.profile #cost {
+  top: 250px;
+  left: 220px;
+  font-size: 6pt;
+}
+
+.description{
+  width:220px;
+  position:absolute;
+  top:390px;
+  left: 20px;
+  padding-left:40px;
+}
+  
+}
+
+
+

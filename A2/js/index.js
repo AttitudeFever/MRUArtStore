@@ -1,5 +1,6 @@
 
 window.addEventListener('load', function() {
+    localStorage.clear();
 
     var galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php";
     
@@ -188,7 +189,14 @@ window.addEventListener('load', function() {
                                                 "</a>"+
                                             "</div>";
         }
-              
+           horizontalScroll();   
+    }
+    
+    function horizontalScroll(){
+        var artist_panel = document.getElementById('artist_panel');
+        artist_panel.scrollLeft=10;
+
+        
     }
     
     
@@ -269,8 +277,8 @@ window.addEventListener('load', function() {
     
     
 
-    window.setTimeout( ()=> {
-        document.getElementById('loading').style="display:none"; 
-    }, 7000);
+    // window.setTimeout( ()=> {
+    //     document.getElementById('loading').style="display:none"; 
+    // }, 7000);
 
 });

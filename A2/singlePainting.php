@@ -51,19 +51,19 @@ include('includes/phpFetch.php');
                     echo "<div class='description'>";
                         if ($key->Description != null){ 
                             echo "<details>";
-                            echo "<summary id='description'>Description</summary>";
+                            echo "<summary class='caption' id='description'>Description</summary>";
                             echo "<p>$key->Description</p>";
                             echo "</details>";
                         }
                         if ($key->Excerpt != null){ 
                             echo"<details>";
-                            echo "<summary id='excerpt'>Excerpt</summary>";
+                            echo "<summary class='caption' id='excerpt'>Excerpt</summary>";
                             echo "<p>$key->Excerpt</p>";
                             echo "</details>";
                         }
                         if ($key->GoogleDescription != null){  
                             echo"<details>";
-                            echo "<summary id='google'>Google Description</summary>";
+                            echo "<summary class='caption' id='google'>Google Description</summary>";
                             echo "<p>$key->GoogleDescription</p>";
                             echo "</details>";
                         }
@@ -80,7 +80,7 @@ include('includes/phpFetch.php');
                         if ($key->AccessionNumber != null){
                             echo "<p class='caption'>Accession Number: $key->AccessionNumber</p>";
                         }
-                        echo "<div id='genres'><p>Genre(s)</p>";
+                        echo "<div id='genres'><p class='caption'>Genre(s)</p>";
                                 populateGenres($paintingID);
                         echo "</div>";
                         populateGallery($galleryID);
@@ -96,37 +96,32 @@ include('includes/phpFetch.php');
                         }
                         echo "</div>";
                         
-                        // populateRatingsReviews($paintingID);
+                        populateRatingsReviews($paintingID);
+                        
                     echo "</div>";
                 }
-                    echo "<div class='color_panel'>
-                            <aside>
-                                <h2>Enter Color</h2>
-                                    <form class='colorEntry'>
-                                        <fieldset>
-                                            <legend>Define a color scheme</legend>
-                                            <div>
-                                                <input type=color id='color1' name='color'/><span>#000000</span> <label for='color1'>Color #1</label>
-                                            </div>
-                                            <div>
-                                                <input type=color id='color1' name='color'/><span>#000000</span> <label for='color1'>Color #1</label>
-                                            </div>
-                                            <div>
-                                                <input type=color id='color1' name='color'/><span>#000000</span> <label for='color1'>Color #1</label>
-                                            </div>
-                                            <div>
-                                                <input type=color id='color1' name='color'/><span>#000000</span> <label for='color1'>Color #1</label>
-                                            </div>
-                                            <div>
-                                                <input type=color id='color1' name='color'/><span>#000000</span> <label for='color1'>Color #1</label>
-                                            </div>  
-                                            <hr>
-                                            <button type=submit>Add to Scheme Collection</button>
-			                                <button type='reset'>Reset Scheme</button>
-                                        </fieldset>
-                                    </form>
-                                </aside>
-                          </div>";
+                    color_plete($paintingID);
+            }
+            
+            function color_plete($paintingID){
+                $paintingAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?paintingID=$paintingID";
+                $paintingAPIData = fetch($paintingAPI);
+                foreach($paintingAPIData as $key){
+                    $JsonAnnotations = json_decode( $key->JsonAnnotations);
+                    echo "<div class='color_panel'>";
+                        echo "<h1 class='caption'>Dominent Colour Theme<h1>";
+                        for ($i=0; $i < count($JsonAnnotations->dominantColors); $i++){
+                        
+                            $r = $JsonAnnotations->dominantColors[$i]->color->red;
+                            $g = $JsonAnnotations->dominantColors[$i]->color->green;
+                            $b = $JsonAnnotations->dominantColors[$i]->color->blue;
+                        
+                            echo "<div class='color_visual' style='background-color:rgb($r, $g, $b)';>
+                                    <p class='color_name'>".$JsonAnnotations->dominantColors[$i]->name.
+                                    "</p></div>";
+                        }
+                    echo "</div>";
+                }
             }
             
             function populateArtist($artistID){
@@ -136,7 +131,7 @@ include('includes/phpFetch.php');
                 
                 foreach($artistAPIData as $key){
                     $a_img = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=artists/square/$artistID"."&width=100";
-                    echo "<div id='artist'><p>Artist</p>
+                    echo "<div id='artist'><p class='caption'>Artist</p>
                         <a href='https://comp3512-assignment-hamid786.c9users.io/A2/singleArtist.php?artistID=$artistID'>
                         <img src='$a_img' alt='$key->LastName'/>
                         <div class='caption'>$key->FirstName $key->LastName</div>
@@ -182,17 +177,34 @@ include('includes/phpFetch.php');
             function populateRatingsReviews($paintingID){
                 $paintingRatingsAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?ratingPID=$paintingID";
                 $paintingRatingsAPIData = fetch($paintingRatingsAPI);
-                
+
                 foreach($paintingRatingsAPIData as $key){
                     
                     $ratings[] =$key->Rating;
                     
                     if ($key->Comment !=null){
-                        echo "<p>Reviews: $key->Comment</p>";
+                        $reviews[] =  $key->Comment;
+                        $reviewDate[] = $key->ReviewDate;
+                        
                     }
                 }
-                
+
                 AverageRating($ratings);
+
+                echo"<details>";
+                    echo "<summary class = 'caption' id='reviews'>Reviews</summary>";
+                        reviews($reviews, $reviewDate);
+                echo "</details>";
+                
+
+            }
+            
+            function reviews($reviews, $reviewDate){
+                if (count($reviews) > 0){
+                    for ($i=0; $i<count($reviews); $i++){
+                        echo "<p>Date & Time: $reviewDate[$i]</p><p class='reviewBody'>$reviews[$i]</p>";
+                    }
+                }
             }
             
             function AverageRating($ratings){
@@ -201,32 +213,32 @@ include('includes/phpFetch.php');
                 
                 if (!is_nan ($averageRating)){
                     
-                echo "<p>Average Ratings: ".$averageRating."</p>";
+                echo "<p class='caption'>Average Rating(s): ".$averageRating."</p>";
                     if ($averageRating < 0.5){
-                echo "<img src='images/web/RatingStars/0.png' alt='' width='100'/>";
+                echo "<img src='images/web/RatingStars/0.png' alt='0' width='100'/>";
                     }else if ($averageRating >= 0.5 and $averageRating < 1){
-                        echo "<img src='images/web/RatingStars/0.5.png' alt='' width='100'/>";
+                        echo "<img src='images/web/RatingStars/0.5.png' alt='0.5' width='100'/>";
                     }else if ($averageRating >= 1 and $averageRating < 1.5 ){
-                echo "<img src='images/web/RatingStars/1.png' alt='' width='100'/>";
+                echo "<img src='images/web/RatingStars/1.png' alt='1' width='100'/>";
                     }else if ($averageRating >= 1.5 and $averageRating < 2){
-                        echo "<img src='images/web/RatingStars/1.5.png' alt='' width='100'/>";
+                        echo "<img src='images/web/RatingStars/1.5.png' alt='1.5' width='100'/>";
                     }else if ($averageRating >=2 and $averageRating < 2.5){
-                echo "<img src='images/web/RatingStars/2.png' alt='' width='100'/>";
+                echo "<img src='images/web/RatingStars/2.png' alt='2' width='100'/>";
                     }else if ($averageRating >= 2.5 and $averageRating < 3){
-                        echo "<img src='images/web/RatingStars/2.5.png' alt='' width='100'/>";
+                        echo "<img src='images/web/RatingStars/2.5.png' alt='2.5' width='100'/>";
                     }if ($averageRating >= 3 and $averageRating < 3.5){
-                echo "<img src='images/web/RatingStars/3.png' alt='' width='100'/>";
+                echo "<img src='images/web/RatingStars/3.png' alt='3' width='100'/>";
                     }else if ($averageRating >=3.5 and $averageRating < 4){
-                        echo "<img src='images/web/RatingStars/3.5.png' alt='' width='100'/>";
+                        echo "<img src='images/web/RatingStars/3.5.png' alt='3.5' width='100'/>";
                     }else if ($averageRating >= 4 and $averageRating < 4.5){
-                echo "<img src='images/web/RatingStars/4.png' alt='' width='100'/>";
+                echo "<img src='images/web/RatingStars/4.png' alt='4' width='100'/>";
                     }else if ($averageRating >=4.5 and $averageRating < 5){
-                        echo "<img src='images/web/RatingStars/4.5.png' alt='' width='100'/>";
+                        echo "<img src='images/web/RatingStars/4.5.png' alt='4.5' width='100'/>";
                     }else if ($averageRating >=5){
-                echo "<img src='images/web/RatingStars/5.png' alt='' width='100'/>";
+                echo "<img src='images/web/RatingStars/5.png' alt='5' width='100'/>";
                     }
                 }else {
-                    echo "<p>Average Ratings: N/A</p>";
+                    echo "<p>Average Rating(s): no ratings yet!</p>";
                 }
             }
             
