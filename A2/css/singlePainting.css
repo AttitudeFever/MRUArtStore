@@ -64,7 +64,7 @@
   padding-left:40px;
 }
  
-.profile img {
+#painting_img {
   border-radius: 20px;
   border: 20px solid black;
   border-top: 40px solid black;
@@ -79,7 +79,7 @@
 	transition: .3s ease-in-out;
 }
 
-.profile img:hover{
+#painting_img:hover{
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
 	filter:opacity(60%);
@@ -118,14 +118,30 @@
   font-size: 12pt;
 }
 
-.profile #cost {
+#heart {
   position: absolute;
-  width: 100%;
-  bottom: 10px;
-  left: 445px;
+  bottom: 15px;
+  left: 480px;
   float: left;
   color: white;
   font-size: 12pt;
+  z-index: 1;
+
+}
+
+#heart_filled {
+  position: absolute;
+  bottom: 15px;
+  left: 480px;
+  float: left;
+  color: white;
+  font-size: 12pt;
+  z-index: 1;
+
+}
+
+#heart:hover {
+cursor:pointer;
 }
 
 .description{
@@ -259,7 +275,7 @@ padding-left:10px;
 /*smartphone / tablet look*/
 @media only screen and (max-width: 600px) {
   
-  .profile img {
+  #painting_img  {
   width:200px;
   height:200px;
   }
@@ -283,8 +299,14 @@ padding-left:10px;
   font-size: 6pt;
 }
 
-.profile #cost {
-  top: 250px;
+#heart {
+  top: 240px;
+  left: 220px;
+  font-size: 6pt;
+}
+
+#heart_filled {
+  top: 240px;
   left: 220px;
   font-size: 6pt;
 }

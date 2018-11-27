@@ -34,6 +34,6 @@ include('includes/nav-bar.inc.php');
             <h3>Genres</h3>
         </div>
     <div id="loading">
-        <!--<p>Loading Please Wait....</p><img src='images/web/Spinner.gif'/>-->
+        <p>Loading Please Wait....</p><img src='images/web/Spinner.gif'/>
         </div>
     </body>

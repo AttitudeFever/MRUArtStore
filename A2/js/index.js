@@ -1,6 +1,6 @@
 
 window.addEventListener('load', function() {
-    localStorage.clear();
+    // localStorage.clear();
 
     var galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php";
     
@@ -66,7 +66,10 @@ window.addEventListener('load', function() {
             galleryList.innerHTML += "<a href="+galleryLink+"><li>" + g_list.GalleryName + "</li></a>";
         }
            
-
+        var galleryList_panel_ul = document.querySelectorAll('#galleryList_panel ul');
+        for (let galleryList_panel of galleryList_panel_ul){
+            verticalScroll(galleryList_panel);
+        }
     }
     
 
@@ -189,14 +192,20 @@ window.addEventListener('load', function() {
                                                 "</a>"+
                                             "</div>";
         }
-           horizontalScroll();   
+           var artist_panel = document.getElementById('artist_panel');
+           horizontalScroll(artist_panel);   
     }
     
-    function horizontalScroll(){
-        var artist_panel = document.getElementById('artist_panel');
-        artist_panel.scrollLeft=10;
-
+    function horizontalScroll(panel){
         
+        panel.style.overflowY="hidden";
+        panel.style.overflowX="auto";
+        panel.style.whiteSpace="nowrap";
+    }
+    
+    function verticalScroll(panel){
+        panel.style.overflowY="auto";
+        panel.style.overflowX="hidden";
     }
     
     
@@ -272,13 +281,14 @@ window.addEventListener('load', function() {
        
 
         }
-     
+            var genre_panel = document.getElementById('genre_panel');
+           horizontalScroll(genre_panel); 
     }
     
     
 
-    // window.setTimeout( ()=> {
-    //     document.getElementById('loading').style="display:none"; 
-    // }, 7000);
+    window.setTimeout( ()=> {
+        document.getElementById('loading').style="display:none"; 
+    }, 7000);
 
 });

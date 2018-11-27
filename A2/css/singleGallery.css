@@ -30,45 +30,53 @@
 
 #navigation{grid-area: top;}
 #navigation_mobile{grid-area: top;}
-#gallery_panel { grid-area: left; }
+#galleryMap {grid-area: left-top; }
+#gallery_panel {grid-area: left-bottom;}
 #painting_panel{grid-area: right;}
 
 #galleryBody {
   display: grid;
   grid-template-areas:
     'top top top top'
-    'left left right right';
+    'left-top left-top right right'
+    'left-bottom left-bottom right right';
   grid-gap: 20px;
   background-color: black;
   color: white;
   padding: 10px;
 }
 
-#galleryMap{
-  height: auto;
-  width: auto;
+#mapHeading{
+  position: absolute;
+  top:130px;
+  left:170px;
+  text-align: center;
 }
-/*} testing, delete in a bit*/
+
+#galleryMap{
+  width:500px;
+  height:500px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
+  margin-left: 10px;
+  margin-top: 50px;
+
+}
+
 
 #gallery_panel{
     
     width: 80%;
     height: 100%;
     float: left;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
+      margin-left: 50px;
+      text-align: center;
+
 }
 
 
-.profile{
-  position: relative;
-  text-align: center;
-  
-}
-
-.profile img{
-border-radius: 20px;
-box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
-  
-}
 
 a{
     text-decoration: none;
@@ -85,9 +93,8 @@ a:hover{
   
     width: auto;
     height: auto;
-  text-align: center;
+    text-align: center;
     float: right;
-
 }
 
 #p_heading{
@@ -124,6 +131,7 @@ background-color: rgb(80, 156, 133);
 tbody tr td {
   width: 250px;
   height: 160px;
+  text-align:center; 
 }
 
 .table_data td img{
@@ -137,14 +145,6 @@ box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
 /*smartphone / tablet look*/
 @media only screen and (max-width: 600px) {
   
-
-.profile img{
-width:200px;
-border-radius: 20px;
-box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
-  
-}
-
 
 tbody tr td {
   width: 60px;

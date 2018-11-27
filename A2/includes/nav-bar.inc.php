@@ -13,7 +13,7 @@
                             <img src='icons/us.png' alt = 'about us'/>
                             About us</a>
                         </li>
-                        <li><a id='fav' href=''>
+                        <li><a id='fav' href='favourites.php'>
                             <img src='icons/fav.png' alt = 'Favourites'/>
                             Favourites</a>
                         </li>
@@ -34,7 +34,7 @@
                                 <li><a id='aboutus' href='aboutus.php'>
                                     About us</a>
                                 </li>
-                                <li><a id='fav' href=''>
+                                <li><a id='fav' href='favourites.php'>
                                     Favourites</a>
                                 </li>
                                 <li><a href='login.php'>

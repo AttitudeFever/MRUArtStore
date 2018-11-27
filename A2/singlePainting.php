@@ -42,10 +42,11 @@ include('includes/phpFetch.php');
                 
                     echo "<div class='profile'>
                             <h1>$key->Title</h1>
-                            <a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=paintings/full/$key->ImageFileName'><img src='$img_file' alt='$key->Title' /></a>
+                            <a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=paintings/full/$key->ImageFileName'><img id='painting_img' src='$img_file' alt='$key->Title' /></a>
                             <p id='medium'>Medium: $key->Medium</p>
                             <p id='size'>Size: $key->Width X $key->Height</p>
-                            <p id='cost'>Cost: $$key->Cost</p>
+                            <div id='heart' style='display:block'><img src='icons/fav.png' alt='fav' width='40'/></div>
+                            <div id='heart_filled' style='display:none'><img src='icons/heart_filled.png' alt='fav'width='40'/></div>
                         </div>";
                     
                     echo "<div class='description'>";
@@ -73,6 +74,7 @@ include('includes/phpFetch.php');
                         echo "<h1>Details</h1>";
                         populateArtist($artistID);
                         echo "<p class='caption'>Year of Work: $key->YearOfWork</p>";
+                        echo "<p class='caption'>Cost: $$key->Cost</p>";
                         echo "<p class='caption'>MSRP: $key->MSRP</p>";
                         if ($key->CopyrightText != null){
                             echo "<p class='caption'>Copyright: $key->CopyrightText</p>";
