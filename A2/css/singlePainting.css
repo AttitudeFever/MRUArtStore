@@ -129,18 +129,8 @@
 
 }
 
-#heart_filled {
-  position: absolute;
-  bottom: 15px;
-  left: 480px;
-  float: left;
-  color: white;
-  font-size: 12pt;
-  z-index: 1;
 
-}
-
-#heart:hover {
+#heart:hover{
 cursor:pointer;
 }
 

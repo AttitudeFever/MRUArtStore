@@ -2,6 +2,7 @@
 
 include('includes/nav-bar.inc.php');
 include('includes/phpFetch.php');
+include('includes/displayHeart.php');
 
 ?>
 
@@ -15,6 +16,29 @@ include('includes/phpFetch.php');
         <link rel="stylesheet" href="css/singlePainting.css">
         <link rel="stylesheet" href="css/navigation.css">
         <script src="js/hamburger-functionality.js"></script>
+        <script>
+            window.addEventListener('load', ()=>{
+               
+              var quryHeart = document.querySelector('#heart a img');
+              var quryHeart_result = quryHeart.getAttribute('src');
+              
+              if (quryHeart_result.includes("fav.png")){
+                    quryHeart.addEventListener('mouseenter', ()=>{
+                        quryHeart.setAttribute('src', 'icons/heart_filled.png');
+                    });
+                    quryHeart.addEventListener('mouseleave', ()=>{
+                        quryHeart.setAttribute('src', 'icons/fav.png');
+                    }); 
+              }else if(quryHeart_result.includes("heart_filled.png")){
+                    quryHeart.addEventListener('mouseenter', ()=>{
+                        quryHeart.setAttribute('src', 'icons/fav.png');
+                    });
+                    quryHeart.addEventListener('mouseleave', ()=>{
+                        quryHeart.setAttribute('src', 'icons/heart_filled.png');
+                    }); 
+              }
+            });
+        </script>
     </head>
     <body id = "paintingBody">
          <?php createNavBar(); ?>
@@ -44,10 +68,9 @@ include('includes/phpFetch.php');
                             <h1>$key->Title</h1>
                             <a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=paintings/full/$key->ImageFileName'><img id='painting_img' src='$img_file' alt='$key->Title' /></a>
                             <p id='medium'>Medium: $key->Medium</p>
-                            <p id='size'>Size: $key->Width X $key->Height</p>
-                            <div id='heart' style='display:block'><img src='icons/fav.png' alt='fav' width='40'/></div>
-                            <div id='heart_filled' style='display:none'><img src='icons/heart_filled.png' alt='fav'width='40'/></div>
-                        </div>";
+                            <p id='size'>Size: $key->Width X $key->Height</p>";
+                            projectHeart($paintingID);
+                    echo "</div>";
                     
                     echo "<div class='description'>";
                         if ($key->Description != null){ 
