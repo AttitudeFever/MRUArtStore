@@ -1,5 +1,9 @@
 <?php
+session_start();
         function createNavBar() {
+            $favourites = $_SESSION['favPaintingID'];
+            $items = count($favourites);
+            
             echo "<nav id='navigation'>
                 <ul>
                         <li>
@@ -15,7 +19,9 @@
                         </li>
                         <li><a id='fav' href='favourites.php'>
                             <img src='icons/fav.png' alt = 'Favourites'/>
-                            Favourites</a>
+                            Favourites
+                            <div id='favNumbers'>$items</div>
+                            </a>
                         </li>
                         <li><a href='login.php'>
                             <img src='icons/signin.png' alt = 'sign in'/>
