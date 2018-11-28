@@ -14,12 +14,13 @@
                 <div class = "RegisterFormBody" >
                     <form method = "GET" action="" id="registrationForm">
 
-                            <label>First Name:</label> <input type= "text" name="firstName" id="firstName"> <br>
-                            <label>Last Name: </label><input type= "text" name="lastName" id="lastName"> <br>
-                            <label>City: </label><input type= "text" name="city" id="city" id=city> <br>
-                            <label>Country: </label><input type="text" name="country" id="country"> <br>
+                            <label>First Name:</label> <input type= "text" name="firstName" id="firstName" required> <br>
+                            <label>Last Name: </label><input type= "text" name="lastName" id="lastName" required> <br>
+                            <label>City: </label><input type= "text" name="city" id="city" id=city required> <br>
+                            <label>Country: </label><input type="text" name="country" id="country" required> <br>
                             <label> E-mail:</label> <input type="text" name="e-mail" id=email> <br>
                             <label> Password: </label><input type="text" name="password" id=password><br>
+                            <label> ReEnter Password: </label> <input type="text" name="secondPassword" id="secondPassword"> <br>
                             <input type="submit" value="Sign up">
                             <button id="cancel" type="button">Cancel</button>
 

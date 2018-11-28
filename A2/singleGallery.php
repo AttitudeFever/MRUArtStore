@@ -44,7 +44,7 @@
                         <p>Name: $key->GalleryName</p>
                         <p>Native Name: $key->GalleryNativeName </p>
                         <p>Complete Address: $key->GalleryAddress, $key->GalleryCity,  $key->GalleryCountry </p>
-                     </div>";  //outputting values into php and then calling it into js as a means of outputting map, will test for now and delete later
+                     </div>";  
                       
             }
         ?>

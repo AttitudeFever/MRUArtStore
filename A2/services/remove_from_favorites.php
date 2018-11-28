@@ -18,9 +18,6 @@ if (isset($_GET['paintingID'] ) and $_GET['paintingID'] != ""){
                 }
             }
         }    
-    
-    // echo count($favourites);
-   
 }else{
     echo "ERROR";
 }
