@@ -11,8 +11,6 @@ function projectHeart($paintingID){
                     if ($value[$i] == $paintingID){
                         $found=true;
                         break;
-                    }else{
-                        $found=false;
                     }
                 }
             }
@@ -20,9 +18,9 @@ function projectHeart($paintingID){
     }else{
         emptyHeart($paintingID);
     }
-    if ($found == true){
+    if (isset($_SESSION['favPaintingID']) and $found == true){
         filledHeart($paintingID);
-    }else{
+    }elseif (isset($_SESSION['favPaintingID']) and $found == false){
         emptyHeart($paintingID);
     }
 }
