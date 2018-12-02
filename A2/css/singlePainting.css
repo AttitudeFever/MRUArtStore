@@ -118,6 +118,24 @@
   font-size: 12pt;
 }
 
+#notLogin{
+  position: absolute;
+  bottom: 25px;
+  left: 450px;
+  float: left;
+  font-size: 12pt;
+  z-index: 1;
+}
+
+#notLogin a{
+text-decoration: none;
+color: white;
+}
+
+#notLogin a:hover{
+color:rgb(80, 156, 133);
+}
+
 #heart {
   position: absolute;
   bottom: 15px;
@@ -128,7 +146,6 @@
   z-index: 1;
 
 }
-
 
 #heart:hover{
 cursor:pointer;
@@ -236,6 +253,27 @@ padding-left:10px;
 #links p{
 display: inline-block;
 padding-left:10px;
+}
+
+#ratingAsk{
+  display: inline-block;
+  font-size: 10pt;
+  position: relative;
+  top:-5px;
+  left: 5px;
+}
+
+#ratingAsk a{
+text-decoration: none;
+color: white;
+}
+
+#ratingAsk a:hover{
+color:rgb(80, 156, 133);
+}
+
+#allow:hover{
+  cursor: pointer;
 }
 
 

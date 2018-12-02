@@ -2,18 +2,29 @@
 session_start();
 
 function projectHeart($paintingID){
-    
+    $customerID = $_SESSION['sessionID'];
     if (isset($_SESSION['favPaintingID'] )){
-        $favourites = $_SESSION['favPaintingID'];
-        if (in_array($paintingID, $favourites)==true) {
-            filledHeart($paintingID);
-        }else{
-            emptyHeart($paintingID);
+        $found = false;
+        foreach ($_SESSION['favPaintingID'] as $key=>$value){
+            if ($key == $customerID){
+                for ($i=0; $i< count($value); $i++){
+                    if ($value[$i] == $paintingID){
+                        $found=true;
+                        break;
+                    }else{
+                        $found=false;
+                    }
+                }
+            }
         }
     }else{
-         emptyHeart($paintingID);
+        emptyHeart($paintingID);
     }
-
+    if ($found == true){
+        filledHeart($paintingID);
+    }else{
+        emptyHeart($paintingID);
+    }
 }
 
 

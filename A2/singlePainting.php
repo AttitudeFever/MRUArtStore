@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 include('includes/nav-bar.inc.php');
 include('includes/phpFetch.php');
 include('includes/displayHeart.php');
@@ -69,7 +69,11 @@ include('includes/displayHeart.php');
                             <a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=paintings/full/$key->ImageFileName'><img id='painting_img' src='$img_file' alt='$key->Title' /></a>
                             <p id='medium'>Medium: $key->Medium</p>
                             <p id='size'>Size: $key->Width X $key->Height</p>";
-                            projectHeart($paintingID);
+                            if (isset($_SESSION['sessionID'])){
+                                projectHeart($paintingID);
+                            }else{
+                                echo "<div id='notLogin'><a href='login.php'>Favourite?/Login</a></div>";
+                            }
                     echo "</div>";
                     
                     echo "<div class='description'>";
@@ -214,7 +218,12 @@ include('includes/displayHeart.php');
                     }
                 }
 
-                AverageRating($ratings);
+                
+                if (!isset($_SESSION['sessionID'])){
+                    echo "<div id='ratingAsk'>".AverageRating($ratings)."<a href='login.php'>Add Rating?/Login</a></div>";
+                }else{
+                    echo "<div id='ratingAsk'>".AverageRating($ratings)."<a href='#'>Add Rating</a></div>";
+                }
 
                 echo"<details>";
                     echo "<summary class = 'caption' id='reviews'>Reviews</summary>";

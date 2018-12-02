@@ -66,7 +66,7 @@ function getAllPaintingSQL(){
     return $sql;
 }
 
-//single view particular painiting
+//single view particular painting
 function getPaintingSQL($paintingID){
     
     $sql = 'SELECT PaintingID, ArtistID, GalleryID, ImageFileName, Title, ShapeID, MuseumLink, AccessionNumber, CopyrightText, Description, Excerpt, ';
@@ -138,5 +138,23 @@ function getPaintingGenreSQL($genreID){
     
     return $sql;
 }
+//get all users by customer id
+function getUsers($customerID){
+    $sql = "SELECT C.CustomerID, FirstName, LastName, Address, City, Country, Email";
+    $sql .= "FROM Customers C";
+    $sql .= "INNER JOIN CustomerLogon CL ON C.CustomerID = CL.CustomerID";
+    $sql .= "WHERE C.CustomerID = $customerID";
+    
+    return $sql;
+}
+
+// //login check database for user
+// function checkLoginUsers($customerID,$userName,$password){
+//     $sql = "SELECT CustomerID, UserName, Pass, Salt, State";
+//     $sql .= "FROM Customers";
+//     $sql .= "WHERE CustomerID = $customerID" AND UserName = $userName AND Pass = $password;
+    
+//     return $sql;
+// }
 
 ?>

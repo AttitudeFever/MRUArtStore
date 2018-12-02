@@ -1,4 +1,9 @@
-
+<?php
+session_start();
+if (isset($_SESSION['sessionID'])){
+   header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang = "eng">
     <head>
@@ -14,14 +19,13 @@
         <h2>Futureproof Premium Members Login <img id="logo" src="images/web/logo.png"/></h2>
         <div class = "formBody" >
             <img src="images/web/login-avtar.png" alt="Avatar" class="avatar" height="200" width="200"><br>
-            <form method = "GET" action = "php/form-functionality.inc.php" id="loginForm">
+            <form method = "post" action = "services/login-functionality.php" id="loginForm">
                 <div class="upperForm">
                     <label><b>Username</b></label><br>
-                    <input type="text" placeholder = "Enter Username" name ="username" required><br>
+                    <input type="text" placeholder = "Enter Email" name ="username" required><br>
                     <label><b>Password</b></label><br>
                     <input type= "password" placeholder = "Enter Password" name="password" required><br>
-                    <button type="submit">Login</button><br>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me<br>
+                    <button type="submit" value="login" name="login">Login</button><br>
                 </div>
                 <div class = "bottomForm">
                     <button id="cancel" type="button">Cancel</button>

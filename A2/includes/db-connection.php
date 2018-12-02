@@ -7,31 +7,31 @@ define('DBPASS', '');
 define('DBCONNSTRING',"mysql:host=" . DBHOST . ";dbname=" . DBNAME . ";charset=utf8mb4;");
 
 
-function generate_JSON_DATA($sql) {
+// function generate_JSON_DATA($sql) {
     
-   $Data_List = array();
+//   $Data_List = array();
 
-    try {
+//     try {
         
-        $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//         $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
+//         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        $result = $pdo->query($sql);
+//         $result = $pdo->query($sql);
         
-        while ($row = $result->fetch()) {  
+//         while ($row = $result->fetch()) {  
             
-            $Data_List [] = $row;
-        }
+//             $Data_List [] = $row;
+//         }
         
-        // close the database connection
-        $pdo = null;
+//         // close the database connection
+//         $pdo = null;
         
-    }catch (PDOException $e) {
+//     }catch (PDOException $e) {
         
-        die( $e->getMessage() );
-    }
+//         die( $e->getMessage() );
+//     }
      
-    return json_encode($Data_List);       
-}
+//     return json_encode($Data_List);       
+// }
 
 ?>

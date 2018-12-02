@@ -1,6 +1,6 @@
 window.addEventListener('load' , ()=>{
     
-    // localStorage.clear();
+    localStorage.clear();
 
     let urlQuery = window.location.href;
     

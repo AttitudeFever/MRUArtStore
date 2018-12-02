@@ -20,8 +20,8 @@
                             <label>Country: </label><input type="text" name="country" id="country" required> <br>
                             <label> E-mail:</label> <input type="text" name="e-mail" id=email> <br>
                             <label> Password: </label><input type="text" name="password" id=password><br>
-                            <label> ReEnter Password: </label> <input type="text" name="secondPassword" id="secondPassword"> <br>
-                            <input type="submit" value="Sign up">
+                            <label> ReEnter Password: </label> <input type="text" name="verifyPassword" id="verifyPassword"> <br>
+                            <input type="submit" value="Sign up" id="signUp">
                             <button id="cancel" type="button">Cancel</button>
 
                     </form>

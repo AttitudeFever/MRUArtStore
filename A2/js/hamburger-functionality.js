@@ -9,7 +9,7 @@ window.addEventListener('load' , ()=>{
 
             document.getElementById("hamburger").src="icons/menu_cancel.png";
 
-            document.querySelector('#navigation_mobile ul').style = "height:250px";
+            document.querySelector('#navigation_mobile ul').style = "height:230px";
                     
             var list =  document.querySelectorAll('#navigation_mobile ul li');
             for (let i=1; i<6; i++){

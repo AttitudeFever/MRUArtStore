@@ -15,6 +15,10 @@
 
 #navigation ul li {
     float: left;
+    /*border-right: 1px solid #bbb;*/
+}
+
+#navigation ul li:not(#clientName) {
     border-right: 1px solid #bbb;
 }
 
@@ -22,6 +26,14 @@
     border-right: none;
     float:right;
 }
+
+#clientName{
+    font-size: 15pt;
+    position: relative;
+    top:40%;
+    left: 20%;
+}
+
 
 #navigation ul li a {
     display: block;
@@ -99,7 +111,7 @@
 
     #navigation_mobile ul li a  {
         color: white;
-        padding: 14px 16px;
+        padding: 10px 16px;
         text-decoration: none;
         font-size: 17px;
         display: block;
@@ -108,6 +120,23 @@
     #navigation_mobile ul li a:hover  {
         background-color: rgb(80, 156, 133);
     }
+    
+    #fav{
+        height:15px;
+    }
+    #favNumbers{
+    position: relative;
+    top:-30px;
+    left:75px;
+    }
+    
+    #clientName{
+        z-index: 1;
+    font-size: 15pt;
+    position: absolute;
+    top:20px;
+    left: 200px;
+}
 
     #hamburger:hover{
         cursor: pointer;

@@ -1,7 +1,7 @@
 <?php
 
 require_once ('../includes/sqlCollection.php'); //sql collection package
-require_once ('../includes/db-connection.php'); // db connection and JSON making package
+require_once ('../includes/JSON-maker.php'); 
 
 
 //To allow Cross-Origin Request, so that I can fetch php-api into any other IDE other than cloud9

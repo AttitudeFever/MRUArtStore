@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$favourites = $_SESSION['favPaintingID'];
+
 
 include('includes/nav-bar.inc.php');
 include('includes/phpFetch.php');
@@ -20,28 +20,34 @@ include('includes/phpFetch.php');
     </head>
     <body id = "favBody">
     <?php createNavBar();
-    echo "<div id='favs_panel'>";
-    echo "<h2 id='fav_heading'>Favourite Paintings</h2>";  
-    foreach($favourites as $paintingID){
-        $paintingAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?paintingID=$paintingID";
-        $paintingAPIData = fetch($paintingAPI);
-        foreach($paintingAPIData as $key){
-            $paintingURL = "https://comp3512-assignment-hamid786.c9users.io/A2/singlePainting.php?paintingID=$paintingID";
-            $artistURL = "https://comp3512-assignment-hamid786.c9users.io/A2/singleArtist.php?artistID=$key->ArtistID";
-            
-            $artistID = $key->ArtistID;
-            $artistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/artist.php?artistID=$artistID";
-                      
-             makeImage($key, $paintingURL);
-             makeTitle($paintingURL, $key);
-             makeArtist($artistAPI);
-             makeYear($key);
-             remove($paintingID);
+    if (isset($_SESSION['sessionID'])){
+        $favourites = $_SESSION['favPaintingID'];
+        $customerID = $_SESSION['sessionID'];
+        echo "<div id='favs_panel'>";
+        echo "<h2 id='fav_heading'>Favourite Paintings</h2>";  
+        foreach($favourites[$customerID] as $paintingID){
+            $paintingAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?paintingID=$paintingID";
+            $paintingAPIData = fetch($paintingAPI);
+            foreach($paintingAPIData as $key){
+                $paintingURL = "https://comp3512-assignment-hamid786.c9users.io/A2/singlePainting.php?paintingID=$paintingID";
+                $artistURL = "https://comp3512-assignment-hamid786.c9users.io/A2/singleArtist.php?artistID=$key->ArtistID";
+                
+                $artistID = $key->ArtistID;
+                $artistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/artist.php?artistID=$artistID";
+                
+                 makeImage($key, $paintingURL);
+                 makeTitle($paintingURL, $key);
+                 makeArtist($artistAPI);
+                 makeYear($key);
+                 remove($paintingID);
+            }
+            echo "<br>";
         }
-        echo "<br>";
+        removeAll();
+        echo "</div>";
+    }else {
+        header('Location: index.php');
     }
-    removeAll();
-    echo "</div>";
             
     function makeImage($key, $paintingURL){
         $img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=paintings/full/" . $key->ImageFileName."&width=100";
@@ -80,11 +86,10 @@ include('includes/phpFetch.php');
     
     function removeAll(){
         echo "<div id='removeAll'>
-            <a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/remove_all_sessions.php'><img src='icons/remove_all.png' alt='remove All' width='30'/></a>
+            <a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/remove_all_paintings.php'><img src='icons/remove_all.png' alt='remove All' width='30'/></a>
             <p>Remove All</p>
         </div>";
     }
-    
     ?>
     </body>
     

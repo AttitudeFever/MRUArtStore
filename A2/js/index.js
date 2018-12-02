@@ -1,6 +1,6 @@
 
 window.addEventListener('load', function() {
-    // localStorage.clear();
+    localStorage.clear();
 
     var galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php";
     
