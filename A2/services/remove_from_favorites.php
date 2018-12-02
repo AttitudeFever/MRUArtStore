@@ -15,12 +15,13 @@ if (isset($_GET['paintingID'] ) and $_GET['paintingID'] != ""){
                         if ($value[$i] == $paintingID){
                             continue;
                         }
-                        $newFav[$customerID][] = $value[$i];
+                        //$newFav[$customerID][] = $value[$i];
+                        $newFav[] = $value[$i];
                     }
 
                 }
             }
-        $favourites = $newFav;
+        $favourites[$customerID] = $newFav;
         $_SESSION['favPaintingID']= $favourites;
         }    
 }else{
