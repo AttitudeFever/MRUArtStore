@@ -15,6 +15,8 @@ include('includes/nav-bar.inc.php');
         <link rel="stylesheet" href="css/navigation.css">
         <script src="js/hamburger-functionality.js"></script>
         <script src="js/index.js"></script>
+
+
     </head>
     <body id = "homebody">
         
@@ -26,9 +28,12 @@ include('includes/nav-bar.inc.php');
             </ul>
         </div>
 
+
         <div id="artist_panel">
-            <h3>Artists</h3>
+            <h3><button id='previous'></button>Artists <button id='next'></button></h3>
+            <div class = 'numbers'></div>
         </div>
+
 
         <div id="genre_panel">
             <h3>Genres</h3>

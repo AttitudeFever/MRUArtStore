@@ -88,27 +88,24 @@
 }
 
 
-
-
-
 #artist_panel{
     width: auto;
     height: auto;
-    /*overflow-y: hidden;*/
-    /*overflow-x: auto;*/
-    /*white-space: nowrap;*/
-     
 }
 
 
 
 #artist_panel h3{
-position: absolute;
+/*position: absolute;*/
 margin-top:10px;
-left: 55%;
+/*left: 45%;*/
 font-size: 25pt;
+text-align: center;
 }
 
+.slides{
+    display: none;
+}
 
 .artist_box {
     display: inline-block;
@@ -118,7 +115,71 @@ font-size: 25pt;
     text-align: center;
     position: relative;
     top:60px;
+
 }
+#next:after{
+    content: "Next >";
+}
+
+#previous:after{
+    content: "< Previous";
+}
+
+
+
+#next, #previous{
+display:inline-block;
+padding:0.3em 1.2em;
+margin:0 0.3em 0.3em 0;
+border-radius:2em;
+box-sizing: border-box;
+text-decoration:none;
+font-family:'Roboto',sans-serif;
+font-weight:300;
+color:#FFFFFF;
+background-color:black;
+text-align:center;
+transition: all 0.2s;
+}
+#next:hover, #previous:hover{
+background-color:rgb(80, 156, 133);
+}
+
+
+.numbers{
+
+    text-align: center;
+}
+
+.num{
+    display: inline-block;
+    font-size:8pt;
+    width: 15px;
+    line-height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    border: 1px solid white;
+}
+
+
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: .2s;
+  animation-name: fade;
+  animation-duration: .2s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .2} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .2} 
+  to {opacity: 1}
+}
+
 
 .artist_box img {
     filter: sepia(1);
@@ -150,9 +211,6 @@ font-size: 25pt;
 #genre_panel{
     width: auto;
     height: auto;
-    /*overflow-y: hidden;*/
-    /*overflow-x: auto;*/
-    /*white-space: nowrap;*/
       
 }
 
@@ -171,6 +229,7 @@ font-size: 25pt;
     text-align: center;
     position: relative;
     top:60px;
+
 
 }
 
@@ -247,14 +306,22 @@ font-size: 25pt;
 
     #artist_panel h3{
         position: absolute;
-        left: 60%;
-        font-size: 20pt;
+        left: 40%;
+        font-size: 10pt;
     }
 
     #genre_panel h3{
         position: absolute;
         left: 60%;
         font-size: 20pt;
+    }
+    
+    #next:after{
+        content: '>';
+    }
+    
+    #previous:after{
+        content: '<';
     }
 }
 

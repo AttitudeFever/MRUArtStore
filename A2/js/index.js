@@ -161,12 +161,24 @@ window.addEventListener('load', function() {
 
     //popluate gallery list method, creating gallery list from local storage
     function populate_Artist(){
-
+       
         var Artist_Local_Data_Parsed = JSON.parse(localStorage.getItem('Artist_Local_Data'));
 
-        var artist_imgs_box = document.querySelector('#artist_panel');
+        var artist_panel = document.querySelector('#artist_panel');
         
+         let count=1;
+        for (let a_list of Artist_Local_Data_Parsed){
+            
+            if(count ==5){count=1;}
+            if (count ==1){
+                artist_panel.innerHTML +="<div class='slides fade'></div>";
+                }
+            count++;
+        }
         
+        count=1;
+        let i=0;
+        let slides = document.querySelectorAll('.slides');
         for (let a_list of Artist_Local_Data_Parsed){
             
             let img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=artists/square/" + a_list.ArtistID + "&width=100";
@@ -183,25 +195,81 @@ window.addEventListener('load', function() {
                 
                 artistName = "<br>" + a_list.LastName;
             }
-                    
-                    
-                    artist_imgs_box.innerHTML += "<div class= 'artist_box' >" + 
-                                                "<a href="+ artistLink + ">" +
-                                                    "<img src=" + img_file + "alt=" + a_list.LastName + "/>" +
-                                                    "<div class='caption_artist'>" + artistName + "</div>" +
-                                                "</a>"+
-                                            "</div>";
+            
+            if (count<5){
+                slides[i].innerHTML += "<div class='artist_box'>" + 
+                                            "<a href="+ artistLink + ">" +
+                                                "<img src=" + img_file + "alt=" + a_list.LastName + "/>" +
+                                                "<div class='caption_artist'>" + artistName + "</div>" +
+                                            "</a>"+
+                                        "</div>";
+            }
+            count++;
+            if (count==5){count=1; i++;}
         }
-           var artist_panel = document.getElementById('artist_panel');
-           horizontalScroll(artist_panel);   
+
+        nunbering();
+        slideShow();
     }
     
+    var currentIndex;
+   var index;
+    function slideShow(){
+        var numbers = document.querySelectorAll('.num');
+        
+        var next = document.getElementById('next');
+        var previous = document.getElementById('previous');
+        let slides = document.querySelectorAll('.slides');
+        if (currentIndex > 0) { index = currentIndex; } else {index=0;}
+        previous.disabled=true;
+        previous.style.visibility="hidden";
+        slides[index].style.display="block";
+        numbers[index].style.backgroundColor="rgb(80, 156, 133)";
+        next.addEventListener('click', ()=>{
+            previous.disabled=false;
+            previous.style.visibility="visible";
+            slides[index].style.display="none";
+            numbers[index].style.backgroundColor="black";
+            slides[index+1].style.display="block";
+            numbers[index+1].style.backgroundColor="rgb(80, 156, 133)";
+
+            if (index == (slides.length-2)){
+                ++index;
+                next.disabled = true;
+                next.style.visibility="hidden";
+            }else{index++;}
+        });
+
+        previous.addEventListener('click', ()=>{
+            next.disabled = false;
+            next.style.visibility="visible";
+            slides[index].style.display="none";
+            numbers[index].style.backgroundColor="black";
+            slides[index-1].style.display="block";
+            numbers[index-1].style.backgroundColor="rgb(80, 156, 133)";
+            if (index == 1){
+                index--;
+                previous.disabled = true;
+                previous.style.visibility="hidden";
+            }else{index--;}
+        });
+    }
+
+function nunbering(){
+    let slides = document.querySelectorAll('.slides');
+    var artist_panel = document.querySelector('#artist_panel .numbers');
+    for (let i=1; i<=slides.length; i++){
+        artist_panel.innerHTML += "<div class='num'>"+i+"</div>";
+    }
+}
+
     function horizontalScroll(panel){
         
         panel.style.overflowY="hidden";
         panel.style.overflowX="auto";
         panel.style.whiteSpace="nowrap";
     }
+    
     
     function verticalScroll(panel){
         panel.style.overflowY="auto";

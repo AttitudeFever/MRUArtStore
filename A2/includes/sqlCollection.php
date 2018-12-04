@@ -157,4 +157,36 @@ function getUsers($customerID){
 //     return $sql;
 // }
 
+// Registrations SQL 
+//SQL checks the database if the same email already exists. 
+
+//
+// function getEmail($customerEmail)
+// {
+//     $sql = "SELECT Email";
+//     $sql .= "FROM Customers";
+//     $sql .= "WHERE $customerEmail = Email";
+//     return $sql; //if blank string is returned, it means nothing in the database matches the customers email info.
+// }
+
+// //once validated, customer email will be added to the table of customerLogOn and customer 
+// //CustomerId should be generated somehow via javascript (retrieving largest ID and then adding 1), need to enquire about city and address
+// //assignment itself doesn't ask us to input for the other columns, will assume null for now until we can verify. 
+// function addToCustomer($customerID, $firstName, $lastName, $country, $customerEmail)
+// {
+//     $sql = "INSERT INTO Customers";
+//     $sql .= "VALUES ($customerID, $firstName, $lastName, null, null, null, $country, null, null, $customerEmail)";
+//     return $sql; 
+// }
+
+// function addToCustomerLogon($customerID, $customerEmail, $pass, $salt)
+// {
+//     $sql = "INSERT INTO CustomerLogon";
+//     $sql .= "VALUES ($customerID, $customerEmail, $pass, $salt, 1, date('Y-m-d H:i:s'), getlastmod())";
+    
+// }
+
+
+
+
 ?>
