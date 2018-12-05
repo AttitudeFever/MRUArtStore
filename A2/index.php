@@ -30,14 +30,16 @@ include('includes/nav-bar.inc.php');
 
 
         <div id="artist_panel">
-            <h3><button id='previous'></button>Artists <button id='next'></button></h3>
+            <h3><button id='previousA'></button>Artists <button id='nextA'></button></h3>
             <div class = 'numbers'></div>
         </div>
 
 
         <div id="genre_panel">
-            <h3>Genres</h3>
+            <h3><button id='previousG'></button>Genres <button id='nextG'></button></h3>
+            <div class = 'numbers'></div>
         </div>
+        
     <div id="loading">
         <p>Loading Please Wait....</p><img src='images/web/Spinner.gif'/>
         </div>

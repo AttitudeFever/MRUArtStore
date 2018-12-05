@@ -68,7 +68,7 @@ window.addEventListener('load', function() {
            
         var galleryList_panel_ul = document.querySelectorAll('#galleryList_panel ul');
         for (let galleryList_panel of galleryList_panel_ul){
-            verticalScroll(galleryList_panel);
+            //verticalScroll(galleryList_panel);
         }
     }
     
@@ -171,14 +171,14 @@ window.addEventListener('load', function() {
             
             if(count ==5){count=1;}
             if (count ==1){
-                artist_panel.innerHTML +="<div class='slides fade'></div>";
+                artist_panel.innerHTML +="<div class='slidesA fade'></div>";
                 }
             count++;
         }
         
         count=1;
         let i=0;
-        let slides = document.querySelectorAll('.slides');
+        let slides = document.querySelectorAll('.slidesA');
         for (let a_list of Artist_Local_Data_Parsed){
             
             let img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=artists/square/" + a_list.ArtistID + "&width=100";
@@ -208,69 +208,73 @@ window.addEventListener('load', function() {
             if (count==5){count=1; i++;}
         }
 
-        nunbering();
-        slideShow();
+
+        numberingA();
+        slideShowA();
     }
     
-    var currentIndex;
-   var index;
-    function slideShow(){
-        var numbers = document.querySelectorAll('.num');
-        
-        var next = document.getElementById('next');
-        var previous = document.getElementById('previous');
-        let slides = document.querySelectorAll('.slides');
-        if (currentIndex > 0) { index = currentIndex; } else {index=0;}
+    function minCondition(previous){
         previous.disabled=true;
         previous.style.visibility="hidden";
-        slides[index].style.display="block";
-        numbers[index].style.backgroundColor="rgb(80, 156, 133)";
-        next.addEventListener('click', ()=>{
-            previous.disabled=false;
-            previous.style.visibility="visible";
-            slides[index].style.display="none";
-            numbers[index].style.backgroundColor="black";
-            slides[index+1].style.display="block";
-            numbers[index+1].style.backgroundColor="rgb(80, 156, 133)";
+    }
+    
+    function maxCondition(next){
+        next.disabled=true;
+        next.style.visibility="hidden";
+    }
+    
+    function middleCondition(previous, next){
+        next.style.visibility="visible"
+        next.disabled=false;
+        previous.style.visibility="visible";
+        previous.disabled=false;
+    }
+    
 
-            if (index == (slides.length-2)){
-                ++index;
-                next.disabled = true;
-                next.style.visibility="hidden";
-            }else{index++;}
+    var indexA=0;
+    function slideShowA(){
+        var numbers = document.querySelectorAll('.numA');
+        var next = document.getElementById('nextA');
+        var previous = document.getElementById('previousA');
+        let slides = document.querySelectorAll('.slidesA');
+        minCondition(previous);
+        slides[indexA].style.display="block";
+        numbers[indexA].style.backgroundColor="rgb(80, 156, 133)";
+            next.addEventListener('click', ()=>{
+                middleCondition(previous, next);
+            slides[indexA].style.display="none";
+            numbers[indexA].style.backgroundColor="black";
+            slides[indexA+1].style.display="block";
+            numbers[indexA+1].style.backgroundColor="rgb(80, 156, 133)";
+
+            if (indexA == (slides.length-2)){
+                ++indexA;
+                maxCondition(next);
+            }else{indexA++;}
         });
 
         previous.addEventListener('click', ()=>{
-            next.disabled = false;
-            next.style.visibility="visible";
-            slides[index].style.display="none";
-            numbers[index].style.backgroundColor="black";
-            slides[index-1].style.display="block";
-            numbers[index-1].style.backgroundColor="rgb(80, 156, 133)";
-            if (index == 1){
-                index--;
-                previous.disabled = true;
-                previous.style.visibility="hidden";
-            }else{index--;}
+            middleCondition(previous, next);
+            slides[indexA].style.display="none";
+            numbers[indexA].style.backgroundColor="black";
+            slides[indexA-1].style.display="block";
+            numbers[indexA-1].style.backgroundColor="rgb(80, 156, 133)";
+            if (indexA == 1){
+                indexA--;
+                minCondition(previous);
+            }else{indexA--;}
         });
     }
 
-function nunbering(){
-    let slides = document.querySelectorAll('.slides');
-    var artist_panel = document.querySelector('#artist_panel .numbers');
-    for (let i=1; i<=slides.length; i++){
-        artist_panel.innerHTML += "<div class='num'>"+i+"</div>";
+function numberingA(){
+    let panel_slidesA = document.querySelectorAll('.slidesA');
+    let panelA = document.querySelector('#artist_panel .numbers');
+    for (let i=1; i<=panel_slidesA.length; i++){
+        panelA.innerHTML += "<div class='numA'>"+i+"</div>";
     }
 }
 
-    function horizontalScroll(panel){
-        
-        panel.style.overflowY="hidden";
-        panel.style.overflowX="auto";
-        panel.style.whiteSpace="nowrap";
-    }
-    
-    
+
     function verticalScroll(panel){
         panel.style.overflowY="auto";
         panel.style.overflowX="hidden";
@@ -331,29 +335,84 @@ function nunbering(){
 
         var Genre_Local_Data_Parsed = JSON.parse(localStorage.getItem('Genre_Local_Data'));
 
-        var genre_imgs_box = document.querySelector('#genre_panel');
+        var genre_panel = document.querySelector('#genre_panel');
         
-        
+        let count=1;
         for (let gen_list of Genre_Local_Data_Parsed){
-
+            if(count ==5){count=1;}
+            if (count ==1){
+                    genre_panel.innerHTML +="<div class='slidesG fade'></div>";
+                }
+            count++;
+        }
+            
+        
+        count=1;
+        let i=0;
+        let slides = document.querySelectorAll('.slidesG');
+        for (let gen_list of Genre_Local_Data_Parsed){
+        
             let img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=genres/" + gen_list.GenreID + "&width=100";
             
             let genreLink = "https://comp3512-assignment-hamid786.c9users.io/A2/singleGenre.php?genreID="+ gen_list.GenreID;
             
-                    genre_imgs_box.innerHTML += "<div class= 'genre_box' >" + 
+            if (count<5){
+            slides[i].innerHTML += "<div class= 'genre_box' >" + 
                                                 "<a href="+ genreLink + ">" +
                                                     "<img src=" + img_file + "alt=" + gen_list.GenreName + "/>" +
                                                     "<div class='caption_genre'>" + gen_list.GenreName + "</div>" +
                                                 "</a>"+
                                             "</div>";
-       
-
-        }
-            var genre_panel = document.getElementById('genre_panel');
-           horizontalScroll(genre_panel); 
+            }
+            count++;
+            if (count==5){count=1; i++}
     }
-    
-    
+        numberingG();
+        slideShowG();
+}
+
+    var indexG=0;
+    function slideShowG(){
+        var numbers = document.querySelectorAll('.numG');
+        var next = document.getElementById('nextG');
+        var previous = document.getElementById('previousG');
+        let slides = document.querySelectorAll('.slidesG');
+        minCondition(previous);
+        slides[indexG].style.display="block";
+        numbers[indexG].style.backgroundColor="rgb(80, 156, 133)";
+            next.addEventListener('click', ()=>{
+                middleCondition(previous, next);
+            slides[indexG].style.display="none";
+            numbers[indexG].style.backgroundColor="black";
+            slides[indexG+1].style.display="block";
+            numbers[indexG+1].style.backgroundColor="rgb(80, 156, 133)";
+
+            if (indexG == (slides.length-2)){
+                ++indexG;
+                maxCondition(next);
+            }else{indexG++;}
+        });
+
+        previous.addEventListener('click', ()=>{
+            middleCondition(previous, next);
+            slides[indexG].style.display="none";
+            numbers[indexG].style.backgroundColor="black";
+            slides[indexG-1].style.display="block";
+            numbers[indexG-1].style.backgroundColor="rgb(80, 156, 133)";
+            if (indexG == 1){
+                indexG--;
+                minCondition(previous);
+            }else{indexG--;}
+        });
+    }
+
+function numberingG(){
+    let panel_slidesG = document.querySelectorAll('.slidesG');
+    let panelG = document.querySelector('#genre_panel .numbers');
+    for (let i=1; i<=panel_slidesG.length; i++){
+        panelG.innerHTML += "<div class='numG'>"+i+"</div>";
+    }
+}
 
     window.setTimeout( ()=> {
         document.getElementById('loading').style="display:none"; 

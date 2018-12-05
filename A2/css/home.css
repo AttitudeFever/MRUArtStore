@@ -21,7 +21,7 @@
   grid-gap: 40px;
   background-color: black;
   color: white;
-  padding: 10px;
+  /*padding: 5px;*/
 }
 
 
@@ -103,7 +103,7 @@ font-size: 25pt;
 text-align: center;
 }
 
-.slides{
+.slidesA{
     display: none;
 }
 
@@ -117,17 +117,17 @@ text-align: center;
     top:60px;
 
 }
-#next:after{
+#nextA:after, #nextG:after{
     content: "Next >";
 }
 
-#previous:after{
+#previousA:after, #previousG:after{
     content: "< Previous";
 }
 
 
 
-#next, #previous{
+#nextA, #nextG, #previousA, #previousG{
 display:inline-block;
 padding:0.3em 1.2em;
 margin:0 0.3em 0.3em 0;
@@ -141,7 +141,7 @@ background-color:black;
 text-align:center;
 transition: all 0.2s;
 }
-#next:hover, #previous:hover{
+#nextA:hover, #nextG:hover, #previousA:hover, #previousG:hover{
 background-color:rgb(80, 156, 133);
 }
 
@@ -151,7 +151,7 @@ background-color:rgb(80, 156, 133);
     text-align: center;
 }
 
-.num{
+.numA{
     display: inline-block;
     font-size:8pt;
     width: 15px;
@@ -162,21 +162,20 @@ background-color:rgb(80, 156, 133);
 }
 
 
-
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: .2s;
+  -webkit-animation-duration: 1.5s;
   animation-name: fade;
-  animation-duration: .2s;
+  animation-duration: 1.5s;
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .2} 
+  from {opacity: .1} 
   to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: .2} 
+  from {opacity: .1} 
   to {opacity: 1}
 }
 
@@ -211,25 +210,39 @@ background-color:rgb(80, 156, 133);
 #genre_panel{
     width: auto;
     height: auto;
-      
+    margin-top: 50px;  
+}
+
+.slidesG{
+    display: none;
 }
 
 #genre_panel h3{
-    position: absolute;
-    margin-top:8px;
-    left: 55%;
-    font-size: 25pt;
+/*position: absolute;*/
+margin-top:10px;
+/*left: 45%;*/
+font-size: 25pt;
+text-align: center;
+}
+
+.numG{
+    display: inline-block;
+    font-size:8pt;
+    width: 15px;
+    line-height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    border: 1px solid white;
 }
 
 .genre_box {
     display: inline-block;
     width: 170px;
-    height: 120px;
+    height: 140px;
     padding: 2%;
     text-align: center;
     position: relative;
     top:60px;
-
 
 }
 
@@ -301,7 +314,7 @@ background-color:rgb(80, 156, 133);
         position: absolute;
         margin-top:10px;
         left: 8%;
-        font-size: 20pt;
+        font-size: 10pt;
     }
 
     #artist_panel h3{
@@ -312,16 +325,23 @@ background-color:rgb(80, 156, 133);
 
     #genre_panel h3{
         position: absolute;
-        left: 60%;
-        font-size: 20pt;
+        left: 40%;
+        font-size: 10pt;
     }
     
-    #next:after{
+    #nextA:after, #nextG:after{
         content: '>';
     }
     
-    #previous:after{
+    #previousA:after, #previousG:after{
         content: '<';
     }
+    
+    .numbers{
+
+    text-align: center;
+    position: relative;
+    top:50px;
+}
 }
 
