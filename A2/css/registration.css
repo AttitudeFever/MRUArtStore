@@ -57,7 +57,7 @@
 padding: 20px;
 }
 
-#registrationForm input[type=text]{
+#registrationForm input[type=text], #registrationForm input[type=password]{
     width: 100%;
     padding: 12px 20px;
     border: 1px solid #ccc;

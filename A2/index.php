@@ -2,6 +2,10 @@
     
 include('includes/nav-bar.inc.php');
 
+if (isset($_SESSION['message'])){
+    unset($_SESSION['message']);
+}
+
 ?>
 
 <!DOCTYPE html>

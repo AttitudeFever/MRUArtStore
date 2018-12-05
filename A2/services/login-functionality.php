@@ -18,8 +18,12 @@ require_once ('../includes/db-connection.php');
             $clientName = getClientName($customerID);
             $_SESSION['sessionID'] = $customerID;
             $_SESSION['customerName'] = $clientName;
+            if (isset($_SESSION['message'])){
+                unset($_SESSION['message']);
+            }
             header('Location: ../index.php');
         }else{
+            $_SESSION['message'] = "Invalid Username or Password, please try again !";
             header("Location: {$_SERVER['HTTP_REFERER']}");
         }
     }

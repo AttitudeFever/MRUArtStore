@@ -31,6 +31,12 @@ if (isset($_SESSION['sessionID'])){
                     <button id="cancel" type="button">Cancel</button>
                     <span><a href = "#">Forgot Password?</a></span><br>
                     <span><a href = "registration.php">Register</a></span>
+                    <?php 
+                        if (isset($_SESSION['message'])){
+                            $errormsg = $_SESSION['message'];
+                            echo "<p id='errormsg'>$errormsg</p>";
+                        }
+                    ?>
                 </div>
             </form>
         </div>
