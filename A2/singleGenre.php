@@ -38,8 +38,11 @@ include('includes/phpFetch.php');
                 echo "<div class ='profile'>
                 <h1 id = 'genreName'>$key->GenreName</h1>
                 <a href='$img'><img src='$img' alt='$key->GenreName'/></a>
+                <details>
+                <summary id='description' class='caption'>Description</summary>
                 <p>$key->Description</p>
-                <a href='$key->Link'>Link to Wikipedia</a>
+                </details>
+                <a id='link' class='caption' href='$key->Link' target='_blank'>Wikipedia Link</a>
                 </div>";
             }
             

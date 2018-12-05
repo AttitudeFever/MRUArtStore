@@ -115,13 +115,13 @@ include('includes/displayHeart.php');
                         populateGallery($galleryID);
                         echo "<div id='links'>";
                         if ($key->MuseumLink != null){
-                            echo "<p class='caption'><a href='$key->MuseumLink'>Museum Link</a></p>";
+                            echo "<p class='caption'><a href='$key->MuseumLink' target='_blank'>Museum Link</a></p>";
                         }
                         if ($key->WikiLink != null){ 
-                            echo "<p class='caption'><a href='$key->WikiLink'>Wiki Link</a></p>";
+                            echo "<p class='caption'><a href='$key->WikiLink' target='_blank'>Wiki Link</a></p>";
                         }
                         if ($key->GoogleLink != null){     
-                        echo "<p class='caption'><a href='$key->GoogleLink'>Google Link</a></p>";
+                        echo "<p class='caption'><a href='$key->GoogleLink' target='_blank'>Google Link</a></p>";
                         }
                         echo "</div>";
                         

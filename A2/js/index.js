@@ -229,8 +229,8 @@ function slideShowGal(){
         let i=0;
         let slides = document.querySelectorAll('.slidesA');
         for (let a_list of Artist_Local_Data_Parsed){
-            
-            let img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=artists/square/" + a_list.ArtistID + "&width=100";
+            let width=100;
+            let img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=artists/square/" + a_list.ArtistID + "&width="+width;
             
             let artistLink = "https://comp3512-assignment-hamid786.c9users.io/A2/singleArtist.php?artistID="+ a_list.ArtistID;
             
@@ -400,8 +400,10 @@ function numberingA(){
         let i=0;
         let slides = document.querySelectorAll('.slidesG');
         for (let gen_list of Genre_Local_Data_Parsed){
-        
-            let img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=genres/" + gen_list.GenreID + "&width=100";
+            
+            let width =100;
+            
+            let img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=genres/" + gen_list.GenreID + "&width="+width;
             
             let genreLink = "https://comp3512-assignment-hamid786.c9users.io/A2/singleGenre.php?genreID="+ gen_list.GenreID;
             

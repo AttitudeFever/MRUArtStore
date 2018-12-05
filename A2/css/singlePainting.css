@@ -88,7 +88,7 @@
 .profile h1 {
   z-index: 1; 
   position: absolute;
-  width: 100%;
+  width: 500px;
   top: 0px;
   left: 60px;
   float: left;
@@ -99,7 +99,7 @@
 .profile #medium {
   z-index: 1; 
   position: absolute;
-  width: 100%;
+  width: 35%;
   bottom: 10px;
   left: 60px;
   float: left;
@@ -112,7 +112,7 @@
   position: absolute;
   width: 100%;
   bottom: 10px;
-  left: 260px;
+  left: 280px;
   float: left;
   color: white;
   font-size: 12pt;

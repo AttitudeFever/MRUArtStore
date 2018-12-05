@@ -38,14 +38,17 @@ include('includes/phpFetch.php');
                 $img_file = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=artists/full/" . $key->ArtistID;
                 
                 echo "<div class='profile'>
-                <h1 id='artistName'>$key->FirstName $key->LastName</h1>
+                <h1 id='artistName' class='caption'>$key->FirstName $key->LastName</h1>
                 <a href=$img_file><img src='$img_file' alt='$key->LastName' /></a>
-                <p>Nationality: $key->Nationality</p>
-                <p>Gender: $key->Gender</p>
-                <p>Year of Birth: $key->YearOfBirth</p>
-                <p>Year of Death: $key->YearOfDeath</p>
-                <p><a href='$key->ArtistLink' target='_blank'>Wiki Link </a></p>
-                <p>Details: $key->Details</p>
+                <p class='caption'>Nationality: $key->Nationality</p>
+                <p class='caption'>Gender: $key->Gender</p>
+                <p class='caption'>Year of Birth: $key->YearOfBirth</p>
+                <p class='caption'>Year of Death: $key->YearOfDeath</p>
+                <details>
+                <summary id='detials' class='caption'>Detials</summary>
+                <p>$key->Details</p>
+                </details>
+                <p class='caption'><a href='$key->ArtistLink' target='_blank'>Wiki Link </a></p>
                 </div>";
             }
         

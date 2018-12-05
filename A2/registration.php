@@ -21,7 +21,7 @@
                             <label> E-mail:</label> <input type="text" name="e-mail" id=email> <br>
                             <label> Password: </label><input type="text" name="password" id=password><br>
                             <label> Re-Enter Password: </label> <input type="text" name="verifyPassword" id="verifyPassword"> <br>
-                            <input type="submit" value="Sign up" id="signUp" name="signUp">
+                            <input type="submit" value="signUp" id="signUp" name="signUp">
                             <button id="cancel" type="button">Cancel</button>
                             <p id='error' style = "color: red"></p>
                             <p id="eError" style = "color: red"></p>

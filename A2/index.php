@@ -24,21 +24,21 @@ include('includes/nav-bar.inc.php');
             
         <div id="galleryList_panel">
             <h3>Gallery List</h3>
-            <ul id="galleryList">
-            </ul>
             <button id='down'>&#8681;</button>
             <button id='up'>&#8679;</button>
+            <ul id="galleryList">
+            </ul>
         </div>
 
 
         <div id="artist_panel">
-            <h3><button id='previousA'></button>Artists <button id='nextA'></button></h3>
+            <h3><button id='previousA'>&#8678;</button>Artists <button id='nextA'>&#8680;</button></h3>
             <div class = 'numbers'></div>
         </div>
 
 
         <div id="genre_panel">
-            <h3><button id='previousG'></button>Genres <button id='nextG'></button></h3>
+            <h3><button id='previousG'>&#8678;</button>Genres <button id='nextG'>&#8680;</button></h3>
             <div class = 'numbers'></div>
         </div>
         

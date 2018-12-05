@@ -55,7 +55,10 @@ include('includes/phpFetch.php');
     }
     
     function makeTitle($paintingURL, $key){
-        echo "<div id='title'><a href='$paintingURL'>$key->Title</a></div>";
+        echo "<div id='title'>
+        <p class='caption'>Title</p>
+        <a href='$paintingURL'>$key->Title</a>
+        </div>";
     }
     
     function makeArtist($artistAPI){
@@ -69,25 +72,32 @@ include('includes/phpFetch.php');
             }
         }
         
-        echo "<div id='artist'><a href='$artistURL'>".$name."</a></div>";
+        echo "<div id='artist'>
+        <p class='caption'>Artist</p>
+        <a href='$artistURL'>".$name."</a>
+        </div>";
     }
     
     function makeYear($key){
-        echo "<div id='year'>$key->YearOfWork</div>";
+        echo "<div id='year'><p class='caption'>YOW</p>
+        $key->YearOfWork
+        </div>";
     }
     
     function remove($paintingID){
         echo "<div id='remove'>
+        <p class='caption'>Action</p>
             <a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/remove_from_favorites.php?paintingID=$paintingID'>
-                <img src='icons/remove.png' alt='remove' width='30'/>
+                <img src='icons/remove.png' alt='remove'/>
             </a>
         </div>";
     }
     
     function removeAll(){
         echo "<div id='removeAll'>
-            <a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/remove_all_paintings.php'><img src='icons/remove_all.png' alt='remove All' width='30'/></a>
-            <p>Remove All</p>
+            <a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/remove_all_paintings.php'><img src='icons/remove_all.png' alt='remove All'/>
+            <p>Remove All</p></a>
+            
         </div>";
     }
     ?>

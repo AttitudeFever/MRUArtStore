@@ -131,6 +131,7 @@ box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
 	transform: scale(1);
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
+	width:25px;
 }
 
 #remove img:hover{
@@ -150,6 +151,7 @@ box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
 	transform: scale(1);
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
+	width:30px;
 }
 
 #removeAll img:hover{
@@ -164,6 +166,14 @@ box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
     display: inline;
     position: relative;
     top:-10px;
+}
+
+.caption{
+  border-radius: 20px;
+  background-color: rgba(0, 204,204, 0.1);
+  position: relative;
+  bottom: -10px;
+  font-size: 10pt;
 }
 
 

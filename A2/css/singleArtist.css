@@ -90,6 +90,23 @@ a:hover{
     color: rgb(80, 156, 133);
 }
 
+.caption{
+  border-radius: 20px;
+  background-color: rgba(0, 204,204, 0.1);
+  font-size: 10pt;
+margin-left: 50px;
+}
+
+
+#detials:hover{
+      cursor: pointer;
+    color: rgb(80, 156, 133);
+}
+
+details p{
+  position: relative;
+  left:30px;
+}
 
 #painting_panel{
   
@@ -159,6 +176,11 @@ width:200px;
 border-radius: 20px;
 box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
   
+}
+
+details p{
+  position: relative;
+  left:30px;
 }
 
 

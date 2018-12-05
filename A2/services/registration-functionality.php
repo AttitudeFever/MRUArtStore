@@ -1,9 +1,18 @@
+<!DOCTYPE>
+<!--<html>-->
+    
+<!--</html>-->
+
+
+
+
 <?php
 session_start();
 require_once('../includes/db-connection.php');
 
 //checks if the email exists in query, also that it isn't an empty string
-if(isset($_GET['signUp']) && !empty($_GET['firstName']) && !empty($_GET['lastName'])&& !empty($_GET['city'])&& !empty($_GET['country'])&& !empty($_GET['e-mail'])&& !empty($_GET['password']))
+
+if(isset($_GET['signUp'])) //probably move into function later
 {
     
     $fName = $_GET['firstName'];
@@ -16,17 +25,24 @@ if(isset($_GET['signUp']) && !empty($_GET['firstName']) && !empty($_GET['lastNam
     $salt = saltGen(6);
     $digest = md5($password . $salt);
     $dataEmail = getEmail($email);
+    $custLogID = createCustomerLogonID();
     $custID = createCustomerID();
+    
+    echo"<script> alert(" . $custLogID . ") </script>";
     
     if($dataEmail !== "")
     {
-        echo "Email Already Exist";
+        echo "<script> alert('Email Already Exist')</script>";
     }
     else
     {
-        addToCustomerLogon($custID, $cmail, $digest, $salt);
+        addToCustomerLogon($custLogID, $cmail, $digest, $salt);
+        // addToCustomer($custID, $fName, $lName, $country);
     }
 }
+
+
+
 // https://www.exchangecore.com/blog/how-create-random-string-php/
 //creates a random string of characters with ur choice of length 
 function saltGen($length){ 
@@ -47,13 +63,13 @@ function getEmail($customerEmail)
     $sql .= "FROM Customers";
     $sql .= "WHERE $customerEmail = Email"; // SQL statements that grabs email from db
     $result = $pdo -> query($sql);
-    return $result; //if blank string is returned, it means nothing in the database matches the customers email info.
+    return $result['Email']; //if blank string is returned, it means nothing in the database matches the customers email info.
     $pdo = null;
     
 }
-
+//boys it looks good !!!!! lol hamid...the code is very clean thanks for doing it .. when u read this comment remove it... just wanted to appreciate
 //once validated, customer email will be added to the table of customerLogOn and customer 
-//CustomerId should be generated somehow via javascript (retrieving largest ID and then adding 1), need to enquire about city and address
+//need to enquire about city and address
 //assignment itself doesn't ask us to input for the other columns, will assume null for now until we can verify. 
 function addToCustomer($customerID, $firstName, $lastName, $country, $customerEmail)
 {
@@ -65,14 +81,6 @@ function addToCustomer($customerID, $firstName, $lastName, $country, $customerEm
     $pdo = null;
 }
 
-//Grabs the highest customer ID and then adds plus 1 to create new customer ID. 
- function createCustomerID(){
-        $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS); //setup PDO connection here
-        $sql = "SELECT MAX(CustomerID) FROM CustomerLogon";
-        $result = $sql->query(); // query should return highest customer ID 
-        return $result + 1;
-        $pdo = null;
-    }
 
 function addToCustomerLogon($customerID, $customerEmail, $pass, $salt)
 {
@@ -83,6 +91,28 @@ function addToCustomerLogon($customerID, $customerEmail, $pass, $salt)
     $formatted->execute();
     $pdo = null; 
 }
+
+//Grabs the highest customer ID and then adds plus 1 to create new customer ID.
+//Both customers and customerLogon have different id for same people (like BJORN), 
+//likely meant to show we need different functions
+function createCustomerLogonID(){
+        $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS); //setup PDO connection here
+        $sql = "SELECT MAX(CustomerID) FROM CustomerLogon";
+        $result = $sql->query(); // query should return highest customer ID 
+        return $result['CustomerID'] + 1;
+        $pdo = null;
+    }
+    
+function createCustomerID()
+{
+    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $sql = "SELECT MAX(CustomerID) FROM Customers";
+    $result = $sql->query();
+    return $result['CustomerID'] + 1;
+    $pdo = null; 
+}
+
+
 
 //below is a function for retrieving from table for testing, will delete later. 
 function retrieve()

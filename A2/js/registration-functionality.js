@@ -78,6 +78,10 @@ signUp.addEventListener('click', function(e){
                 verifyPass.value = "";
             }
       }
+      else
+      {
+          
+      }
       
     });
     
