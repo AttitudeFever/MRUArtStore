@@ -64,6 +64,10 @@
     height: 500px;
 }
 
+.slidesGal{
+    display: none;
+}
+
 #galleryList_panel ul{
 
     margin-top: 60px;
@@ -127,7 +131,7 @@ text-align: center;
 
 
 
-#nextA, #nextG, #previousA, #previousG{
+#nextA, #nextG, #previousA, #previousG, #up, #down{
 display:inline-block;
 padding:0.3em 1.2em;
 margin:0 0.3em 0.3em 0;
@@ -141,7 +145,7 @@ background-color:black;
 text-align:center;
 transition: all 0.2s;
 }
-#nextA:hover, #nextG:hover, #previousA:hover, #previousG:hover{
+#nextA:hover, #nextG:hover, #previousA:hover, #previousG:hover, #up:hover, #down:hover{
 background-color:rgb(80, 156, 133);
 }
 

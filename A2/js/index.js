@@ -56,23 +56,72 @@ window.addEventListener('load', function() {
     function populate_galleryList(){
 
         var GalleryList_Local_Data_Parsed = JSON.parse(localStorage.getItem('Gallery_Local_Data'));
-
+        
+        
         const galleryList =  document.getElementById('galleryList');
         
+        let count=1;
+        for (let g_list of GalleryList_Local_Data_Parsed){
+            if(count ==11){count=1;}
+            if (count ==1){
+                galleryList.innerHTML += "<div class='slidesGal fade'></div>";
+            }
+            count++;
+        }
+        
+        count=1;
+        let i=0;
+        let slides = document.querySelectorAll('.slidesGal');
         for (let g_list of GalleryList_Local_Data_Parsed){
             
             let galleryLink = "https://comp3512-assignment-hamid786.c9users.io/A2/singleGallery.php?galleryID="+ g_list.GalleryID;
             
-            galleryList.innerHTML += "<a href="+galleryLink+"><li>" + g_list.GalleryName + "</li></a>";
-        }
+            if (count <11){
+                slides[i].innerHTML += "<a href="+galleryLink+"><li>" + g_list.GalleryName + "</li></a>";
+            }
+            count++;
+            if (count==11){count=1; i++;}
+            }
            
-        var galleryList_panel_ul = document.querySelectorAll('#galleryList_panel ul');
-        for (let galleryList_panel of galleryList_panel_ul){
-            //verticalScroll(galleryList_panel);
+           slideShowGal();
         }
-    }
     
-
+var indexGal=0;    
+function slideShowGal(){
+    var up = document.getElementById('up');
+    var down = document.getElementById('down');
+    let slides = document.querySelectorAll('.slidesGal');
+    
+    up.disabled=true;
+    up.style.visibility="hidden";
+    slides[indexGal].style.display="block";
+    
+    down.addEventListener('click', ()=>{
+        up.style.visibility="visible";
+        up.disabled=false;
+        slides[indexGal].style.display="none";
+        slides[indexGal+1].style.display="block";
+        
+        if (indexGal == (slides.length-2)){
+            ++indexGal;
+            down.disabled = true;
+            down.style.visibility="hidden"
+        }else{indexGal++;}
+    });
+    
+    up.addEventListener('click', ()=>{
+        down.disabled= false;
+        down.style.visibility = "visible";
+        slides[indexGal].style.display="none";
+        slides[indexGal-1].style.display="block";
+        
+        if (indexGal== 1){
+            indexGal--;
+            up.disabled = true;
+            up.style.visibility ="hidden"; 
+        }else{indexGal--;}
+    });
+}
     
 ///////////------------------------------without local storage -------------------------------------------------//////////////////// 
     // var galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php";

@@ -22,10 +22,12 @@ include('includes/nav-bar.inc.php');
         
             <?php createNavBar(); ?>
             
-<div id="galleryList_panel">
+        <div id="galleryList_panel">
             <h3>Gallery List</h3>
             <ul id="galleryList">
             </ul>
+            <button id='down'>&#8681;</button>
+            <button id='up'>&#8679;</button>
         </div>
 
 
@@ -44,3 +46,5 @@ include('includes/nav-bar.inc.php');
         <p>Loading Please Wait....</p><img src='images/web/Spinner.gif'/>
         </div>
     </body>
+    
+    
