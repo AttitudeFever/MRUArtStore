@@ -28,6 +28,8 @@
 
 #registerBody h2{
     position: relative;
+    left:-100px;
+    text-align: center;
 }
 
 #logo{
@@ -46,7 +48,7 @@
 
 .RegisterFormBody{
     width: 500px;
-    height: 450px;
+    height: 690px;
     border: 1px solid rgb(80, 156, 133);
     -webkit-border-radius:25px;
     -moz-border-radius:25px;
@@ -57,7 +59,8 @@
 padding: 20px;
 }
 
-#registrationForm input[type=text], #registrationForm input[type=password]{
+#registrationForm input[type=text], #registrationForm input[type=password],  
+#registrationForm input[type=tel], #registrationForm input[type=email]{
     width: 100%;
     padding: 12px 20px;
     border: 1px solid #ccc;
@@ -107,12 +110,53 @@ padding: 20px;
     color:rgb(80, 156, 133);
 }
 
+
+#error{
+    color:white;
+    background-color:red;
+    position:absolute;
+    top:0px;
+    left:150px;
+    width: 160px;
+    font-size: 10pt;
+}
+
+#pError{
+    color:white;
+    background-color:red;
+    position: absolute;
+    top:598px;
+    left:160px;
+    font-size: 10pt;
+    width:210px;
+}
+
+#eError{
+    color:white;
+    background-color:red;
+    position:absolute;
+    top:421px;
+    left:80px;
+    width: 80px;
+    font-size: 10pt;
+}
+
+#fError{
+    color:white;
+    background-color:red;
+    position:absolute;
+    top:730px;
+    left:250px;
+    width: 90px;
+    font-size: 10pt;
+}
+
 /*smartphone / tablet look*/
 @media only screen and (max-width: 600px) {
     
 .RegisterFormBody{
     width: 400px;
-    height: 450px;
+    /*height: 450px;*/
     border: 1px solid rgb(80, 156, 133);
     -webkit-border-radius:25px;
     -moz-border-radius:25px;
@@ -124,8 +168,9 @@ padding: 20px;
 }
 
 #registerBody h2{
-    position: relative;
+    left:0px;
     font-size: 10pt;
+    
 }
 #logo{
     width:60px;

@@ -1,5 +1,6 @@
+<?php require_once('services/registration-functionality.php') ?>
 <!DOCTYPE html>
-    
+
 <html lang = "eng">
     <head>
         <meta charset ="utf-8"/>

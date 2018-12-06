@@ -1,9 +1,3 @@
-<!DOCTYPE>
-<!--<html>-->
-    
-<!--</html>-->
-
-
 
 
 <?php
@@ -37,7 +31,7 @@ if(isset($_GET['signUp'])) //probably move into function later
     else
     {
         addToCustomerLogon($custLogID, $cmail, $digest, $salt);
-        // addToCustomer($custID, $fName, $lName, $country);
+        addToCustomer($custID, $fName, $lName, $country);
     }
 }
 
@@ -67,7 +61,7 @@ function getEmail($customerEmail)
     $pdo = null;
     
 }
-//boys it looks good !!!!! lol hamid...the code is very clean thanks for doing it .. when u read this comment remove it... just wanted to appreciate
+
 //once validated, customer email will be added to the table of customerLogOn and customer 
 //need to enquire about city and address
 //assignment itself doesn't ask us to input for the other columns, will assume null for now until we can verify. 
