@@ -1,44 +1,90 @@
-
-
 <?php
 session_start();
 require_once('../includes/db-connection.php');
 
-//checks if the email exists in query, also that it isn't an empty string
-
-if(isset($_GET['signUp'])) //probably move into function later
+if(isset($_POST['signUp']) && !empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['city']) && !empty($_POST['country']) && !empty($_POST['e-mail']) && !empty($_POST['password'])) 
 {
-    
-    $fName = $_GET['firstName'];
-    $lName = $_GET['lastName'];
-    $city = $_GET['city'];
-    $country = $_GET['country'];
-    $email = $_GET['e-mail'];
-    $password = $_GET['password'];
-    
-    $salt = saltGen(6);
-    $digest = md5($password . $salt);
-    $dataEmail = getEmail($email);
-    $custLogID = createCustomerLogonID();
-    $custID = createCustomerID();
-    
-    echo"<script> alert(" . $custLogID . ") </script>";
-    
-    if($dataEmail !== "")
-    {
-        echo "<script> alert('Email Already Exist')</script>";
+    $fName = $_POST['firstName'];
+    $lName = $_POST['lastName'];
+    if ($_POST['address'] !=null){
+        $address = $_POST['address'];
+    }else{
+        $address="";
     }
-    else
-    {
-        addToCustomerLogon($custLogID, $cmail, $digest, $salt);
-        addToCustomer($custID, $fName, $lName, $country);
+    $city = $_POST['city'];
+    if ($_POST['region'] !=null){
+        $region = $_POST['region'];
+    }else{
+        $region="";
+    }
+    $country = $_POST['country'];
+    if ($_POST['postal'] !=null){
+        $postal = $_POST['postal'];
+    }else{
+        $postal ="";
+    }
+    $email = $_POST['e-mail'];
+    if ($_POST['phone'] !=null){
+        $phone = $_POST['phone'];
+    }else{
+        $phone ="";
+    }
+    $password = $_POST['password'];
+    
+    if (EmailExistance($email)){
+        $_SESSION['messageExist'] = "'$email' Already Exists in our system, please use another Email ID for registring this account, or "."<a href='login.php'>Login</a>"." with '$email'";
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+    }else{
+        if (isset($_SESSION['messageExist'])){
+            unset($_SESSION['messageExist']);
+        }
+        $customerID = createCustomerID();
+        addToCustomer($customerID, $fName, $lName, $address, $city, $region, $country, $postal, $phone, $email);
+        
+        $salt = saltGen(30);
+        $digest = md5($password . $salt);
+        addToCustomerLogon($customerID, $email, $digest, $salt);
     }
 }
 
+function EmailExistance($email)
+{
+    $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS); //setup PDO connection here
+    $sth = $pdo->prepare("SELECT Email FROM Customers");
+    $sth->execute();
+    while ($result = $sth->fetch()) {  
+        $Email_List[] = $result['Email'];
+    }
+    $pdo =null;
+    return in_array($email, $Email_List);
+}
 
+function createCustomerID()
+{
+    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $sql = "SELECT MAX(CustomerID) FROM Customers";
+    $sth = $pdo->prepare($sql);
+    $sth->execute();
+    $result = $sth->fetch();
+    $pdo = null; 
+    return $result[0]+1;
+}
 
-// https://www.exchangecore.com/blog/how-create-random-string-php/
-//creates a random string of characters with ur choice of length 
+function addToCustomer($customerID, $fName, $lName, $address, $city, $region, $country, $postal, $phone, $email)
+{
+    $privacy =1; //assume, no explanation is given in assingment
+    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $sql = "INSERT INTO Customers (CustomerID, FirstName, LastName, Address, City, Region, Country, Postal, Phone, Email, Privacy)";
+    $sql .= " VALUES ('$customerID', '$fName', '$lName', :Address, '$city', :Region, '$country', :Postal, :Phone, '$email', '$privacy')";
+    $sth = $pdo->prepare($sql);
+    $sth->bindValue(':Address',!empty($address) ? $address : NULL, PDO::PARAM_STR);
+    $sth->bindValue(':Region',!empty($region) ? $region : NULL, PDO::PARAM_STR);
+    $sth->bindValue(':Postal',!empty($postal) ? $postal : NULL, PDO::PARAM_STR);
+    $sth->bindValue(':Phone',!empty($phone) ? $phone : NULL, PDO::PARAM_INT);
+    $sth->execute();
+    $pdo =null;
+}
+
 function saltGen($length){ 
     $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     $charsLength = strlen($characters) -1;
@@ -50,77 +96,22 @@ function saltGen($length){
     return $string;
 }
 
-function getEmail($customerEmail)
+function addToCustomerLogon($customerID, $email, $digest, $salt)
 {
-    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS); //sets up connection to database
-    $sql = "SELECT Email";
-    $sql .= "FROM Customers";
-    $sql .= "WHERE $customerEmail = Email"; // SQL statements that grabs email from db
-    $result = $pdo -> query($sql);
-    return $result['Email']; //if blank string is returned, it means nothing in the database matches the customers email info.
-    $pdo = null;
-    
-}
-
-//once validated, customer email will be added to the table of customerLogOn and customer 
-//need to enquire about city and address
-//assignment itself doesn't ask us to input for the other columns, will assume null for now until we can verify. 
-function addToCustomer($customerID, $firstName, $lastName, $country, $customerEmail)
-{
+    $state =1; //assume, no explanation is given in assingment
+    $dateJoined="";
+    $dateLastModified="";
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-    $sql = "INSERT INTO Customers";
-    $sql .= "VALUES ($customerID, $firstName, $lastName, null, null, null, $country, null, null, $customerEmail)";
-    $formatted = prepare($sql);
-    $formatted -> execute(); //returns true or false depending on query success
-    $pdo = null;
+    $sql = "INSERT INTO CustomerLogon (CustomerID, UserName, Pass, Salt, State, DateJoined, DateLastModified)";
+    //$sql .= " VALUES ('$customerID', '$email', '$digest', '$salt', '$state', '$dateJoined', '$dateLastModified')";
+    $sql .= " VALUES ('$customerID', :UserName, :Pass, :Salt, '$state', '$dateJoined', '$dateLastModified')";
+    $sth = $pdo->prepare($sql);
+    $sth->bindValue(':UserName',$email, PDO::PARAM_STR);
+    $sth->bindValue(':Pass',$digest, PDO::PARAM_STR);
+    $sth->bindValue(':Salt',$salt, PDO::PARAM_STR);
+    $sth->execute();
+    $pdo =null;
 }
-
-
-function addToCustomerLogon($customerID, $customerEmail, $pass, $salt)
-{
-    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-    $sql = "INSERT INTO CustomerLogon";
-    $sql .= "VALUES ($customerID, $customerEmail, $pass, $salt, 1, date('Y-m-d H:i:s'), getlastmod())";
-    $formatted = prepare($sql);
-    $formatted->execute();
-    $pdo = null; 
-}
-
-//Grabs the highest customer ID and then adds plus 1 to create new customer ID.
-//Both customers and customerLogon have different id for same people (like BJORN), 
-//likely meant to show we need different functions
-function createCustomerLogonID(){
-        $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS); //setup PDO connection here
-        $sql = "SELECT MAX(CustomerID) FROM CustomerLogon";
-        $result = $sql->query(); // query should return highest customer ID 
-        return $result['CustomerID'] + 1;
-        $pdo = null;
-    }
-    
-function createCustomerID()
-{
-    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-    $sql = "SELECT MAX(CustomerID) FROM Customers";
-    $result = $sql->query();
-    return $result['CustomerID'] + 1;
-    $pdo = null; 
-}
-
-
-
-//below is a function for retrieving from table for testing, will delete later. 
-function retrieve()
-{
-    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-    $sql = "SELECT * FROM Customers WHERE customerID = 30";
-    $result = $sql->query();
-    return $result;
-    $pdo = null; //close connection
-}
-
 
 
 ?>
-
-
-<!--used similiar concepts //https://www.youtube.com/watch?v=HLx-zbl6siM-->
