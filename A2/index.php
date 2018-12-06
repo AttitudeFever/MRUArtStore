@@ -2,10 +2,13 @@
     
 include('includes/nav-bar.inc.php');
 
-if (isset($_SESSION['message'])){
-    unset($_SESSION['message']);
-}
-
+    if (isset($_SESSION['message'])){
+        unset($_SESSION['message']);
+    }
+    if (isset($_SESSION['messageExist'])){
+        unset($_SESSION['messageExist']);
+    }
+    
 ?>
 
 <!DOCTYPE html>

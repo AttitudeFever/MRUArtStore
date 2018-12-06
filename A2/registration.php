@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang = "eng">
     <head>
@@ -12,13 +15,13 @@
         <div id="register_panel">
             <h2><img id="logo" src="images/web/logo.png"/> Futureproof Registration for Premium Membership </h2>
                 <div class = "RegisterFormBody" >
-                    <form method = "GET" action="" id="registrationForm">
+                    <form method = "POST" action="services/registration-test.php" id="registrationForm">
                             
                             <label>First Name*:</label> <input type= "text" name="firstName" id="firstName" placeholder = "First Name"> <br>
                             <label>Last Name*: </label><input type= "text" name="lastName" id="lastName" placeholder = "Last Name"> <br>
-                            <label>Address: </label><input type= "text" name="address" id="address" id="address" placeholder = "Address"> <br>
-                            <label>City*: </label><input type= "text" name="city" id="city" id="city" placeholder = "City"> <br>
-                            <label>Region: </label><input type= "text" name="region" id="region" id="region" placeholder = "Region"> <br>
+                            <label>Address: </label><input type= "text" name="address" id="address" placeholder = "Address"> <br>
+                            <label>City*: </label><input type= "text" name="city" id="city" placeholder = "City"> <br>
+                            <label>Region: </label><input type= "text" name="region" id="region" placeholder = "Region"> <br>
                             <label>Country*: </label><input type="text" name="country" id="country" placeholder = "Country"> <br>
                             <label>Postal Code: </label><input type= "text" name="postal" id="postal" id="postal" placeholder = "Postal Code"> <br>
                             <label> E-mail*:</label> <input type="email" name="e-mail" id="email" placeholder = "abc@abc.com"> <br>
@@ -31,6 +34,12 @@
                             <p id="eError"></p>
                             <p id="pError"></p>
                             <p id="fError"></p>
+                            <?php
+                                if (isset($_SESSION['messageExist'])){
+                                    $msg = $_SESSION['messageExist'];
+                                    echo "<p id='emailExist'>$msg</p>";
+                                }
+                            ?>
 
                     </form>
                
