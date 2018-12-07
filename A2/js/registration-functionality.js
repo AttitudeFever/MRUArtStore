@@ -94,6 +94,9 @@ window.addEventListener('load' , ()=>{
             verifyPass.style.backgroundColor = "white";
             password.style.backgroundColor = "white";
         }
+        else{
+            signUp.window.location.href = 'registration_success.php';
+        }
           
     });
     

@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (isset($_SESSION['sessionID'])){
+   header('Location: index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang = "eng">
@@ -15,7 +18,7 @@ session_start();
         <div id="register_panel">
             <h2><img id="logo" src="images/web/logo.png"/> Futureproof Registration for Premium Membership </h2>
                 <div class = "RegisterFormBody" >
-                    <form method = "POST" action="services/registration-test.php" id="registrationForm">
+                    <form method = "POST" action="services/registration-functionality.php" id="registrationForm">
                             
                             <label>First Name*:</label> <input type= "text" name="firstName" id="firstName" placeholder = "First Name"> <br>
                             <label>Last Name*: </label><input type= "text" name="lastName" id="lastName" placeholder = "Last Name"> <br>

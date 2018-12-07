@@ -1,5 +1,15 @@
-#successBox{
-    backgroundColor: grey;
-    height: 150px;
-    width: 200px;
+#successBody{
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+#loading{
+    width:100px;
+      position: relative;
+  top:45px;
+}
+
+#loadingPara{
+
 }

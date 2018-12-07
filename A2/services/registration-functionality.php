@@ -41,9 +41,11 @@ if(isset($_POST['signUp']) && !empty($_POST['firstName']) && !empty($_POST['last
         $customerID = createCustomerID();
         addToCustomer($customerID, $fName, $lName, $address, $city, $region, $country, $postal, $phone, $email);
         
-        $salt = saltGen(30);
+        $salt = saltGen(32);
         $digest = md5($password . $salt);
         addToCustomerLogon($customerID, $email, $digest, $salt);
+        
+        header('Location: registration_success.php');
     }
 }
 
@@ -99,8 +101,8 @@ function saltGen($length){
 function addToCustomerLogon($customerID, $email, $digest, $salt)
 {
     $state =1; //assume, no explanation is given in assingment
-    $dateJoined="";
-    $dateLastModified="";
+    $dateJoined=date("Y-m-d");
+    $dateLastModified=date("Y-m-d");
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
     $sql = "INSERT INTO CustomerLogon (CustomerID, UserName, Pass, Salt, State, DateJoined, DateLastModified)";
     //$sql .= " VALUES ('$customerID', '$email', '$digest', '$salt', '$state', '$dateJoined', '$dateLastModified')";
