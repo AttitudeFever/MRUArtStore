@@ -18,7 +18,7 @@ window.addEventListener('load', function() {
     if (temp_gallery_local_data_array == 0) {
 
         fetch(galleryAPI)
-
+        
         .then(function(response){
             if (response.ok){
 
@@ -55,7 +55,9 @@ window.addEventListener('load', function() {
 
     //popluate gallery list method, creating gallery list from local storage
     function populate_galleryList(){
-
+        
+        
+        
         var GalleryList_Local_Data_Parsed = JSON.parse(localStorage.getItem('Gallery_Local_Data'));
         
         
@@ -423,6 +425,8 @@ function numberingA(){
 
     //popluate genre list method, creating genre list from local storage
     function populate_Genre(){
+        
+        document.getElementById('loading').style="display:none"; //last item to fech and animation goes away
 
         var Genre_Local_Data_Parsed = JSON.parse(localStorage.getItem('Genre_Local_Data'));
 
@@ -530,11 +534,5 @@ function numberingG(){
     }
 }
 
-//loading animation run for 2 secs enough for fetching time, 
-// Reson for putting here and not on fecthing:
-// can't put on actual fecthing because it will be very quick as 4 items per diplay is very short time and animation will never be seen or play in real
-    window.setTimeout( ()=> {
-        document.getElementById('loading').style="display:none"; 
-    }, 2000);
 
 });
