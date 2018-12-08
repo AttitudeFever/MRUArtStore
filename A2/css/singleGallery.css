@@ -48,9 +48,10 @@
 
 #mapHeading{
   position: absolute;
-  top:130px;
+  top:120px;
   left:170px;
   text-align: center;
+  z-index:1;
 }
 
 #galleryMap{
@@ -68,7 +69,6 @@
     
     width: 400px;
     height: 200px;
-    /*float: left;*/
     position:absolute;
     top: 700px;
     border-radius: 10px;
@@ -147,6 +147,31 @@ box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
 /*smartphone / tablet look*/
 @media only screen and (max-width: 600px) {
   
+#mapHeading{
+  position:relative;
+  top:-450px;
+  left:40px;
+}
+
+#galleryMap{
+  width:300px;
+  height:300px;
+}
+
+#gallery_panel{
+    
+    width: 250px;
+    height: 150px;
+    top: 460px;
+    margin-left: 30px;
+    text-align: center;
+    font-size:10pt;
+
+}
+
+#gallery_panel h2{
+    font-size:12pt;
+}
 
 tbody tr td {
   width: 60px;

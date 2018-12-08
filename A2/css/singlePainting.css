@@ -339,6 +339,12 @@ color:rgb(80, 156, 133);
   font-size: 6pt;
 }
 
+#notLogin{
+  top: 258px;
+  left: 210px;
+  font-size: 6pt;
+}
+
 .description{
   width:220px;
   position:absolute;

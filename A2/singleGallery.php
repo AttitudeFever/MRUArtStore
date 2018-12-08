@@ -25,8 +25,7 @@
         
         <h2 id='mapHeading'>Gallery Location</h2>
         <div id='galleryMap'>
-          
-          </div> 
+         </div> 
         
         
 

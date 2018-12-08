@@ -16,30 +16,6 @@ include('includes/displayHeart.php'); //display heart package
         <link rel="stylesheet" href="css/singlePainting.css">
         <link rel="stylesheet" href="css/navigation.css">
         <script src="js/hamburger-functionality.js"></script>
-        <script>
-            //hover over heart filled or empty 
-            window.addEventListener('load', ()=>{
-               
-              var quryHeart = document.querySelector('#heart a img');
-              var quryHeart_result = quryHeart.getAttribute('src');
-              
-              if (quryHeart_result.includes("fav.png")){
-                    quryHeart.addEventListener('mouseenter', ()=>{
-                        quryHeart.setAttribute('src', 'icons/heart_filled.png');
-                    });
-                    quryHeart.addEventListener('mouseleave', ()=>{
-                        quryHeart.setAttribute('src', 'icons/fav.png');
-                    }); 
-              }else if(quryHeart_result.includes("heart_filled.png")){
-                    quryHeart.addEventListener('mouseenter', ()=>{
-                        quryHeart.setAttribute('src', 'icons/fav.png');
-                    });
-                    quryHeart.addEventListener('mouseleave', ()=>{
-                        quryHeart.setAttribute('src', 'icons/heart_filled.png');
-                    }); 
-              }
-            });
-        </script>
     </head>
     <body id = "paintingBody">
          <?php 
@@ -77,6 +53,7 @@ include('includes/displayHeart.php'); //display heart package
                             <p id='size'>Size: $key->Width X $key->Height</p>";
                             if (isset($_SESSION['sessionID'])){ //if user is loged in then heart will displaed
                                 projectHeart($paintingID);
+                                echo "<script src='js/heart-functionality.js'></script>"; //heart hovering
                             }else{ //othrwise login asking 
                                 echo "<div id='notLogin'><a href='login.php'>Favourite?/Login</a></div>";
                             }
@@ -108,7 +85,7 @@ include('includes/displayHeart.php'); //display heart package
                         populateArtist($artistID); //populate artist info usinger helper method
                         echo "<p class='caption'>Year of Work: $key->YearOfWork</p>";
                         echo "<p class='caption'>Cost: $$key->Cost</p>";
-                        echo "<p class='caption'>MSRP: $key->MSRP</p>";
+                        echo "<p class='caption'>MSRP: $$key->MSRP</p>";
                         if ($key->CopyrightText != null){ //if copyright not null
                             echo "<p class='caption'>Copyright: $key->CopyrightText</p>";
                         }

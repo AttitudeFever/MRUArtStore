@@ -219,4 +219,8 @@ padding:1%;
 top:-20px;
 font-size: 8pt;
 }
+
+#remove img{
+    width:20px;
+}
 }
