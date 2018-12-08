@@ -78,6 +78,8 @@
     margin-top: 60px;
     height: 440px;
     width: 210px;
+    position: relative;
+    top:20px;
 }
 
 #galleryList_panel ul a{
@@ -92,6 +94,16 @@
 #galleryList_panel ul li:hover{
     cursor: pointer;
     color: rgb(80, 156, 133);
+}
+
+.numGal{
+    display: inline-block;
+    font-size:8pt;
+    width: 15px;
+    line-height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    border: 1px solid white;
 }
 
 
@@ -145,17 +157,21 @@ outline:none;
 background-color:rgb(80, 156, 133);
 }
 
+#galleryList_panel .numbers{
+
+position: relative;
+left:83px;
+top:-450px;
+}
 
 #artist_panel .numbers{
 
-    /*text-align: center;*/
 position: relative;
 left:240px;
 }
 
 #genre_panel .numbers{
 
-    /*text-align: center;*/
 position: relative;
 left:380px;
 

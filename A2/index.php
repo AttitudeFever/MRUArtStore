@@ -37,6 +37,7 @@ include('includes/nav-bar.inc.php'); //naviagtion package
             <button id='up'>&#8679;</button>
             <ul id="galleryList">
             </ul>
+            <div class = 'numbers'></div>
         </div>
 
 

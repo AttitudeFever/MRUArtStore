@@ -86,6 +86,7 @@ window.addEventListener('load', function() {
             if (count==11){count=1; i++;}
             }
            
+           numberingGal();
            slideShowGal();
         }
         
@@ -93,6 +94,7 @@ window.addEventListener('load', function() {
     //slideShow for Gallery List
     var indexGal=0;    
     function slideShowGal(){
+        var numbers = document.querySelectorAll('.numGal');
         var up = document.getElementById('up');
         var down = document.getElementById('down');
         let slides = document.querySelectorAll('.slidesGal');
@@ -100,12 +102,50 @@ window.addEventListener('load', function() {
         up.disabled=true;
         up.style.visibility="hidden";
         slides[indexGal].style.display="block";
+        numbers[indexGal].style.backgroundColor="rgb(80, 156, 133)";
+        
+        for (let i=0; i<numbers.length; i++){
+            numbers[i].addEventListener('click', ()=>{
+                for (let j=0; j<numbers.length; j++){
+                    slides[j].style.display="none";
+                    numbers[j].style.backgroundColor="black";
+                }
+
+                slides[i].style.display="block";
+                numbers[i].style.backgroundColor="rgb(80, 156, 133)";
+                
+                if (i == 0){
+                    up.disabled=true;
+                    up.style.visibility="hidden";
+                    down.disabled=false;
+                    down.style.visibility="visible"
+                }
+                if (i > 0 && i < numbers.length) {
+                    up.disabled=false;
+                    up.style.visibility="visible";
+                    down.disabled=false;
+                    down.style.visibility="visible"
+                    
+                }
+                if (i== numbers.length-1){
+                    up.disabled=false;
+                    up.style.visibility="visible";
+                    down.disabled=true;
+                    down.style.visibility="hidden"
+                }
+                
+                indexGal = i;
+                
+            });
+        }
         
         down.addEventListener('click', ()=>{
             up.style.visibility="visible";
             up.disabled=false;
             slides[indexGal].style.display="none";
+            numbers[indexGal].style.backgroundColor="black";
             slides[indexGal+1].style.display="block";
+            numbers[indexGal+1].style.backgroundColor="rgb(80, 156, 133)";
             
             if (indexGal == (slides.length-2)){
                 ++indexGal;
@@ -118,7 +158,9 @@ window.addEventListener('load', function() {
             down.disabled= false;
             down.style.visibility = "visible";
             slides[indexGal].style.display="none";
+            numbers[indexGal].style.backgroundColor="black";
             slides[indexGal-1].style.display="block";
+            numbers[indexGal-1].style.backgroundColor="rgb(80, 156, 133)";
             
             if (indexGal== 1){
                 indexGal--;
@@ -127,6 +169,16 @@ window.addEventListener('load', function() {
             }else{indexGal--;}
         });
     }
+    
+    //helper method to display numbering index for gallery panel
+    function numberingGal(){
+    let panel_slidesGal = document.querySelectorAll('.slidesGal');
+    let panelGal = document.querySelector('#galleryList_panel .numbers');
+    for (let i=1; i<=panel_slidesGal.length; i++){
+        panelGal.innerHTML += "<div class='numGal'>"+i+"</div>";
+    }
+}
+
     
     var artistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/artist.php";
     
