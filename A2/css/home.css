@@ -96,8 +96,8 @@
 
 
 #artist_panel{
-    /*width: auto;*/
-    /*height: auto;*/
+    width: auto;
+    height: auto;
 }
 
 
@@ -117,7 +117,7 @@ left:300px;
     display: inline-block;
     width: 170px;
     height: 140px;
-    padding-left: 2%;
+    padding-left: 1%;
     padding-top: 1%;
     text-align: center;
     position: relative;
@@ -139,6 +139,7 @@ color:#FFFFFF;
 background-color:black;
 text-align:center;
 transition: all 0.2s;
+outline:none;
 }
 #nextA:hover, #nextG:hover, #previousA:hover, #previousG:hover, #up:hover, #down:hover{
 background-color:rgb(80, 156, 133);
@@ -217,9 +218,10 @@ left:380px;
 
 
 #genre_panel{
-    /*width: auto;*/
-    /*height: auto;*/
+    width: auto;
+    height: auto;
     margin-top: 50px;  
+    /*width:700px;*/
 }
 
 .slidesG{
@@ -312,7 +314,7 @@ left:300px;
     #up, #down{
         left:20px;
         top:40px;
-    }
+      }
     
     #galleryList_panel ul{
 

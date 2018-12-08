@@ -66,13 +66,15 @@
 
 #gallery_panel{
     
-    width: 80%;
-    height: 100%;
-    float: left;
+    width: 400px;
+    height: 200px;
+    /*float: left;*/
+    position:absolute;
+    top: 700px;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 red, 0 6px 20px 0 rgb(80, 156, 133);
-      margin-left: 50px;
-      text-align: center;
+    margin-left: 50px;
+    text-align: center;
 
 }
 

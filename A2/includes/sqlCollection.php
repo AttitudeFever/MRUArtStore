@@ -1,5 +1,8 @@
 <?php
 
+//Geeric php file that keeps all the SQLs required by different api's at different levels
+
+
 //single view All artists
 function getAllArtistSQL(){
     
@@ -107,11 +110,11 @@ function getPaintingArtistSQL($artistID){
 }
 
 
-//table view paintings belongs to a gallery
+// //table view paintings belongs to a gallery
 function getPaintingGallerySQL($galleryID){
     
     $sql = 'SELECT PaintingID, ImageFileName, Title, ShapeID, MuseumLink, AccessionNumber, CopyrightText, Description, Excerpt, Width, Height, Medium, Cost, MSRP, GoogleLink, GoogleDescription, WikiLink, YearOfWork,
-            Artists.ArtistID, FirstName, LastName Nationality, Gender, YearOfBirth, YearOfDeath, Details, ArtistLink, 
+            Artists.ArtistID, FirstName, LastName, Nationality, Gender, YearOfBirth, YearOfDeath, Details, ArtistLink, 
             Galleries.GalleryID, GalleryName, GalleryAddress, GalleryNativeName, GalleryCity, GalleryCountry, Latitude, Longitude, GalleryWebSite';
     $sql .= ' FROM Paintings INNER JOIN Artists ON Paintings.ArtistID = Artists.ArtistID';
     $sql .= " INNER JOIN Galleries ON Paintings.GalleryID = Galleries.GalleryID";
@@ -138,55 +141,6 @@ function getPaintingGenreSQL($genreID){
     
     return $sql;
 }
-//get all users by customer id
-function getUsers($customerID){
-    $sql = "SELECT C.CustomerID, FirstName, LastName, Address, City, Country, Email";
-    $sql .= "FROM Customers C";
-    $sql .= "INNER JOIN CustomerLogon CL ON C.CustomerID = CL.CustomerID";
-    $sql .= "WHERE C.CustomerID = $customerID";
-    
-    return $sql;
-}
-
-// //login check database for user
-// function checkLoginUsers($customerID,$userName,$password){
-//     $sql = "SELECT CustomerID, UserName, Pass, Salt, State";
-//     $sql .= "FROM Customers";
-//     $sql .= "WHERE CustomerID = $customerID" AND UserName = $userName AND Pass = $password;
-    
-//     return $sql;
-// }
-
-// Registrations SQL 
-//SQL checks the database if the same email already exists. 
-
-//
-// function getEmail($customerEmail)
-// {
-//     $sql = "SELECT Email";
-//     $sql .= "FROM Customers";
-//     $sql .= "WHERE $customerEmail = Email";
-//     return $sql; //if blank string is returned, it means nothing in the database matches the customers email info.
-// }
-
-// //once validated, customer email will be added to the table of customerLogOn and customer 
-// //CustomerId should be generated somehow via javascript (retrieving largest ID and then adding 1), need to enquire about city and address
-// //assignment itself doesn't ask us to input for the other columns, will assume null for now until we can verify. 
-// function addToCustomer($customerID, $firstName, $lastName, $country, $customerEmail)
-// {
-//     $sql = "INSERT INTO Customers";
-//     $sql .= "VALUES ($customerID, $firstName, $lastName, null, null, null, $country, null, null, $customerEmail)";
-//     return $sql; 
-// }
-
-// function addToCustomerLogon($customerID, $customerEmail, $pass, $salt)
-// {
-//     $sql = "INSERT INTO CustomerLogon";
-//     $sql .= "VALUES ($customerID, $customerEmail, $pass, $salt, 1, date('Y-m-d H:i:s'), getlastmod())";
-    
-// }
-
-
 
 
 ?>

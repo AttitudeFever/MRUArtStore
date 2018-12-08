@@ -1,10 +1,12 @@
+//check validity of the registration form
 window.addEventListener('load' , ()=>{
 
-    document.getElementById('cancel').addEventListener('click', ()=>{
+    document.getElementById('cancel').addEventListener('click', ()=>{ //cancel button action
 
         location.href = "index.php";
     });
     
+    //acquire DOM
     const fName = document.querySelector('#firstName');
     const lName = document.querySelector('#lastName');
     const city = document.querySelector('#city');
@@ -21,18 +23,21 @@ window.addEventListener('load' , ()=>{
     password.maxLength = "6"; //sets it as max length of 6 in input field
     verifyPass.maxLength = "6"; 
 
+    //helper method to check Regex of email id entered, reurn true or false
     function checkREGEX(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
 
-
+    
+    //signup actions
     signUp.addEventListener('click', function(e){
         let blankMSG = "Fields with * can't be blank!";
         let emailFormatMSG = "Invalid Email!";
         let verifyPassMSG = "Password verification does not match!";
         let formError = "Validation Error";
-
+        
+        //verify these required fileds are not empty, if they are empty then prevent form to validate and display appropriate errors
         if(!(fName).value || !(lName).value || !(city).value || !(country).value || !(email).value ||  !(password).value || !(verifyPass).value){
             
             e.preventDefault();
@@ -66,11 +71,12 @@ window.addEventListener('load' , ()=>{
             if(!(verifyPass).value){
                 verifyPass.style.backgroundColor = "#EF9A9A";
             }
-        }else{
+        }else{ //if required fileds are not empty then remove away errors
             error.textContent = "";
 
         }
-               
+        
+        //when email regex is not good or good       
         if(!checkREGEX( (email).value) ){
             e.preventDefault();
             eError.textContent = emailFormatMSG;
@@ -80,7 +86,8 @@ window.addEventListener('load' , ()=>{
             eError.textContent = "";
             email.style.backgroundColor = "white";
         }
-           
+        
+        //when two pass are not same
         if(password.value != verifyPass.value){
             e.preventDefault();
             pError.textContent = verifyPassMSG;
@@ -94,9 +101,7 @@ window.addEventListener('load' , ()=>{
             verifyPass.style.backgroundColor = "white";
             password.style.backgroundColor = "white";
         }
-        else{
-            signUp.window.location.href = 'registration_success.php';
-        }
+    
           
     });
     

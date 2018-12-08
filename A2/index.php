@@ -1,11 +1,11 @@
 <?php 
     
-include('includes/nav-bar.inc.php');
+include('includes/nav-bar.inc.php'); //naviagtion package
 
-    if (isset($_SESSION['message'])){
+    if (isset($_SESSION['message'])){ //if login error message exist then remove it
         unset($_SESSION['message']);
     }
-    if (isset($_SESSION['messageExist'])){
+    if (isset($_SESSION['messageExist'])){ //if email already exist message then remoe it 
         unset($_SESSION['messageExist']);
     }
     
@@ -26,8 +26,10 @@ include('includes/nav-bar.inc.php');
 
     </head>
     <body id = "homebody">
-        
-            <?php createNavBar(); ?>
+            
+            <?php 
+            createNavBar(); //generate navigation bar
+            ?>
             
         <div id="galleryList_panel">
             <h3>Gallery List</h3>

@@ -1,8 +1,10 @@
 function initMap() {}
 initMap();
+
+//when page is loaded, 
 window.addEventListener('load', function(){
     
-    let urlQuery = window.location.href;
+    let urlQuery = window.location.href; //js will acquire the url and split it to get gallery id and make gallery api 
     let ID = urlQuery.split("=");
     var gal_ID = ID[1];
     var $galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php?galleryID="+gal_ID;
@@ -26,7 +28,7 @@ window.addEventListener('load', function(){
     }); 
 
     
-
+//popluate map from data received from gallery api data
 var longitude;
 var latitude;
 var city;
@@ -38,8 +40,8 @@ var city;
             let lati = pointer.Latitude;
             let cit = pointer.GalleryCity;
             
-            longitude = parseFloat(longi);
-            latitude = parseFloat(lati);
+            longitude = parseFloat(longi); //parse into float
+            latitude = parseFloat(lati); //parse into float
             city = cit.toString(); 
             
             initMap(longitude, latitude);
@@ -49,6 +51,7 @@ var city;
         }
     }
 
+//map api method
     var map;
     function initMap(longitude, latitude) {
         map = new google.maps.Map(document.getElementById('galleryMap'), {
@@ -58,8 +61,8 @@ var city;
         });
         
     }
-    
-    
+
+//map marker creator method
     function createMarker(map, latitude, longitude, city) {
         let imageLatLong = {lat: latitude, lng: longitude };
         let marker = new google.maps.Marker({

@@ -1,6 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['sessionID'])){
+
+if (isset($_SESSION['sessionID'])){ //if user is already login then this page is not accessable
    header('Location: index.php');
 }
 ?>
@@ -32,7 +33,8 @@ if (isset($_SESSION['sessionID'])){
                     <span><a href = "#">Forgot Password?</a></span><br>
                     <span><a href = "registration.php">Register</a></span>
                     <?php 
-                        if (isset($_SESSION['message'])){
+                        //check if login error msg exist 
+                        if (isset($_SESSION['message'])){ //show login error msg
                             $errormsg = $_SESSION['message'];
                             echo "<p id='errormsg'>$errormsg</p>";
                         }

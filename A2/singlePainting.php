@@ -1,8 +1,8 @@
 <?php 
 session_start();
-include('includes/nav-bar.inc.php');
-include('includes/phpFetch.php');
-include('includes/displayHeart.php');
+include('includes/nav-bar.inc.php'); //navigation package
+include('includes/phpFetch.php'); //api fetching package
+include('includes/displayHeart.php'); //display heart package
 
 ?>
 
@@ -17,6 +17,7 @@ include('includes/displayHeart.php');
         <link rel="stylesheet" href="css/navigation.css">
         <script src="js/hamburger-functionality.js"></script>
         <script>
+            //hover over heart filled or empty 
             window.addEventListener('load', ()=>{
                
               var quryHeart = document.querySelector('#heart a img');
@@ -41,23 +42,28 @@ include('includes/displayHeart.php');
         </script>
     </head>
     <body id = "paintingBody">
-         <?php createNavBar(); ?>
+         <?php 
+         //genrate navigation bar
+         createNavBar();
+         ?>
             
         <?php 
         
-        
+        //check if paiting id is not null and exist
         if (isset($_GET['paintingID'] ) and $_GET['paintingID'] != ""){
             
-            $paintingID = $_GET['paintingID'];
-            populate_PaintingINFO($paintingID);
+            $paintingID = $_GET['paintingID']; //acquire painting id
+            populate_PaintingINFO($paintingID); //populate painitng info section
         }
 
-
+            //helper method painting info section will populate painting and call other helper methods that fetch ineral apis 
             function populate_PaintingINFO($paintingID){
                 
-                $paintingAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?paintingID=$paintingID";
+                
+                $paintingAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?paintingID=$paintingID"; //api
                 $paintingAPIData = fetch($paintingAPI);
                 
+                //loop through painitng api data, call for other heper methods are made in here
                 foreach($paintingAPIData as $key){
                     
                     $artistID = $key->ArtistID;
@@ -69,27 +75,27 @@ include('includes/displayHeart.php');
                             <a href='https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=paintings/full/$key->ImageFileName'><img id='painting_img' src='$img_file' alt='$key->Title' /></a>
                             <p id='medium'>Medium: $key->Medium</p>
                             <p id='size'>Size: $key->Width X $key->Height</p>";
-                            if (isset($_SESSION['sessionID'])){
+                            if (isset($_SESSION['sessionID'])){ //if user is loged in then heart will displaed
                                 projectHeart($paintingID);
-                            }else{
+                            }else{ //othrwise login asking 
                                 echo "<div id='notLogin'><a href='login.php'>Favourite?/Login</a></div>";
                             }
                     echo "</div>";
                     
                     echo "<div class='description'>";
-                        if ($key->Description != null){ 
+                        if ($key->Description != null){ //if description not null
                             echo "<details>";
                             echo "<summary class='caption' id='description'>Description</summary>";
                             echo "<p>$key->Description</p>";
                             echo "</details>";
                         }
-                        if ($key->Excerpt != null){ 
+                        if ($key->Excerpt != null){ //if excerpt not null
                             echo"<details>";
                             echo "<summary class='caption' id='excerpt'>Excerpt</summary>";
                             echo "<p>$key->Excerpt</p>";
                             echo "</details>";
                         }
-                        if ($key->GoogleDescription != null){  
+                        if ($key->GoogleDescription != null){  //if google description is not null
                             echo"<details>";
                             echo "<summary class='caption' id='google'>Google Description</summary>";
                             echo "<p>$key->GoogleDescription</p>";
@@ -99,44 +105,45 @@ include('includes/displayHeart.php');
                          
                     echo "<div class='details'>";
                         echo "<h1>Details</h1>";
-                        populateArtist($artistID);
+                        populateArtist($artistID); //populate artist info usinger helper method
                         echo "<p class='caption'>Year of Work: $key->YearOfWork</p>";
                         echo "<p class='caption'>Cost: $$key->Cost</p>";
                         echo "<p class='caption'>MSRP: $key->MSRP</p>";
-                        if ($key->CopyrightText != null){
+                        if ($key->CopyrightText != null){ //if copyright not null
                             echo "<p class='caption'>Copyright: $key->CopyrightText</p>";
                         }
-                        if ($key->AccessionNumber != null){
+                        if ($key->AccessionNumber != null){ //if accessionnumber not null
                             echo "<p class='caption'>Accession Number: $key->AccessionNumber</p>";
                         }
                         echo "<div id='genres'><p class='caption'>Genre(s)</p>";
-                                populateGenres($paintingID);
+                                populateGenres($paintingID); //populate genres using helper method 
                         echo "</div>";
-                        populateGallery($galleryID);
+                        populateGallery($galleryID); //populate gallery info using hleper method
                         echo "<div id='links'>";
-                        if ($key->MuseumLink != null){
+                        if ($key->MuseumLink != null){ //if meusum link not null
                             echo "<p class='caption'><a href='$key->MuseumLink' target='_blank'>Museum Link</a></p>";
                         }
-                        if ($key->WikiLink != null){ 
+                        if ($key->WikiLink != null){ //if wiki link not null
                             echo "<p class='caption'><a href='$key->WikiLink' target='_blank'>Wiki Link</a></p>";
                         }
-                        if ($key->GoogleLink != null){     
+                        if ($key->GoogleLink != null){ //if google link not mull
                         echo "<p class='caption'><a href='$key->GoogleLink' target='_blank'>Google Link</a></p>";
                         }
                         echo "</div>";
                         
-                        populateRatingsReviews($paintingID);
+                        populateRatingsReviews($paintingID); //calculate and populate rating, rviews using helper method
                         
                     echo "</div>";
                 }
-                    color_plete($paintingID);
+                    color_plete($paintingID); //popuate color theme using helper method
             }
             
+            //helper method color plete will get dominant color info for that painting and popluate it on the page
             function color_plete($paintingID){
-                $paintingAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?paintingID=$paintingID";
+                $paintingAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?paintingID=$paintingID"; //api
                 $paintingAPIData = fetch($paintingAPI);
-                foreach($paintingAPIData as $key){
-                    $JsonAnnotations = json_decode( $key->JsonAnnotations);
+                foreach($paintingAPIData as $key){ //loop thorough api data
+                    $JsonAnnotations = json_decode( $key->JsonAnnotations); 
                     echo "<div class='color_panel'>";
                         echo "<h1 class='caption'>Dominent Colour Theme<h1>";
                         for ($i=0; $i < count($JsonAnnotations->dominantColors); $i++){
@@ -153,12 +160,13 @@ include('includes/displayHeart.php');
                 }
             }
             
+            //helper method to popluate artist info on page
             function populateArtist($artistID){
                 
-                $paintingArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/artist.php?artistID=$artistID";
+                $paintingArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/artist.php?artistID=$artistID"; //api
                 $artistAPIData = fetch($paintingArtistAPI);
                 
-                foreach($artistAPIData as $key){
+                foreach($artistAPIData as $key){ //loop through api
                     $a_img = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=artists/square/$artistID"."&width=100";
                     echo "<div id='artist'><p class='caption'>Artist</p>
                         <a href='https://comp3512-assignment-hamid786.c9users.io/A2/singleArtist.php?artistID=$artistID'>
@@ -168,12 +176,13 @@ include('includes/displayHeart.php');
                 }
             }
             
+            //helper method to populate gallery info
             function populateGallery($galleryID){
                 
-                $paintingGallerytAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php?galleryID=$galleryID";
-                $paintingGallerytAPIData = fetch($paintingGallerytAPI);
+                $paintingGallerytAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php?galleryID=$galleryID"; //api
+                $paintingGallerytAPIData = fetch($paintingGallerytAPI); //fetch api
                 
-                foreach($paintingGallerytAPIData as $key){
+                foreach($paintingGallerytAPIData as $key){ //loop though api
                     echo "<p class='caption'>Gallery:
                         <a href='https://comp3512-assignment-hamid786.c9users.io/A2/singleGallery.php?galleryID=$galleryID'>
                             </span>$key->GalleryName</span>
@@ -181,17 +190,18 @@ include('includes/displayHeart.php');
                 }
             }
             
+            //helper method popluate genere info
             function populateGenres($paintingID){
                 
-                $paintingsGenresAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?pgID=$paintingID";
-                $paintingsGenresAPIAPIData = fetch($paintingsGenresAPI);
+                $paintingsGenresAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?pgID=$paintingID"; //api
+                $paintingsGenresAPIAPIData = fetch($paintingsGenresAPI); //fetch api
                 
-                foreach($paintingsGenresAPIAPIData as $key){
+                foreach($paintingsGenresAPIAPIData as $key){ //loop though api data
                     $genreID = $key->GenreID;
-                    $paintingGenreAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/genre.php?genreID=$genreID";
-                    $paintingGenreAPIData = fetch($paintingGenreAPI);
+                    $paintingGenreAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/genre.php?genreID=$genreID"; //api
+                    $paintingGenreAPIData = fetch($paintingGenreAPI); //feth api
                     
-                    foreach($paintingGenreAPIData as $key){
+                    foreach($paintingGenreAPIData as $key){ //lop through api data
                         $gen_img = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=genres/$genreID"."&width=100";
                         
                         echo "<div class='genre_box'><a href='https://comp3512-assignment-hamid786.c9users.io/A2/singleGenre.php?genreID=$genreID' >
@@ -202,16 +212,16 @@ include('includes/displayHeart.php');
                 }
             }
             
-            
+            //helper method poppluate reviews and calucuate ratings
             function populateRatingsReviews($paintingID){
-                $paintingRatingsAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?ratingPID=$paintingID";
-                $paintingRatingsAPIData = fetch($paintingRatingsAPI);
+                $paintingRatingsAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?ratingPID=$paintingID"; //api
+                $paintingRatingsAPIData = fetch($paintingRatingsAPI); //fetch api
 
-                foreach($paintingRatingsAPIData as $key){
+                foreach($paintingRatingsAPIData as $key){ //loop through api data
                     
                     $ratings[] =$key->Rating;
                     
-                    if ($key->Comment !=null){
+                    if ($key->Comment !=null){ //if reviews are not null
                         $reviews[] =  $key->Comment;
                         $reviewDate[] = $key->ReviewDate;
                         
@@ -219,9 +229,9 @@ include('includes/displayHeart.php');
                 }
 
                 
-                if (!isset($_SESSION['sessionID'])){
+                if (!isset($_SESSION['sessionID'])){ //if login session not exist then give login question next to rating 
                     echo "<div id='ratingAsk'>".AverageRating($ratings)."<a href='login.php'>Add Rating?/Login</a></div>";
-                }else{
+                }else{ //otherwise add voting link next to rating
                     echo "<div id='ratingAsk'>".AverageRating($ratings)."<a href='#'>Add Rating</a></div>";
                 }
 
@@ -233,6 +243,7 @@ include('includes/displayHeart.php');
 
             }
             
+            //helper method to populate reviews
             function reviews($reviews, $reviewDate){
                 if (count($reviews) > 0){
                     for ($i=0; $i<count($reviews); $i++){
@@ -241,6 +252,7 @@ include('includes/displayHeart.php');
                 }
             }
             
+            //helper method to calculate average rating and place star image ext to it
             function AverageRating($ratings){
 
                 $averageRating = round (array_sum($ratings)/count($ratings), 1);

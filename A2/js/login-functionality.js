@@ -1,3 +1,4 @@
+//cancel button action
 window.addEventListener('load' , ()=>{
 
     document.getElementById('cancel').addEventListener('click', ()=>{

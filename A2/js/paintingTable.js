@@ -1,52 +1,53 @@
+//when page is loaded ONE Robust JS file to create PAinting Table on different pages
 window.addEventListener('load' , ()=>{
     
-    localStorage.clear();
+    //localStorage.clear();
 
-    let urlQuery = window.location.href;
+    let urlQuery = window.location.href; //acquire url
     
-    if (urlQuery.includes("artistID")){
+    if (urlQuery.includes("artistID")){ //if its artist
        
-       let a_ID = getID(urlQuery);
+       let a_ID = getID(urlQuery); //artist ID
 
-        var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?artistID="+a_ID;
+        var paintingsArtistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?artistID="+a_ID; //make api of artist
         
-        let storageName = "paintingArtist_Local_Data"+a_ID;
-        
-        //this array will return an ampty array for the first time, next time data from local storage
-        let temp_local_data_array = retrieveStorage_paintings(storageName); 
-        
-        fetching(paintingsArtistAPI, temp_local_data_array, storageName);
-    }
-    else if (urlQuery.includes("galleryID")){
-        
-        let gal_ID = getID(urlQuery);
-        
-        var paintingsGalleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?galleryID="+gal_ID;
-        
-        let storageName = "paintingGallery_Local_Data"+gal_ID;
+        let storageName = "paintingArtist_Local_Data"+a_ID; //local storage name for artist
         
         //this array will return an ampty array for the first time, next time data from local storage
         let temp_local_data_array = retrieveStorage_paintings(storageName); 
         
-        fetching(paintingsGalleryAPI, temp_local_data_array, storageName);
+        fetching(paintingsArtistAPI, temp_local_data_array, storageName); //fecthing of api
+    }
+    else if (urlQuery.includes("galleryID")){ //if its gallery
+        
+        let gal_ID = getID(urlQuery); //gallery ID
+        
+        var paintingsGalleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?galleryID="+gal_ID; //make api of gallery
+        
+        let storageName = "paintingGallery_Local_Data"+gal_ID; //local storage name for gallery
+        
+        //this array will return an ampty array for the first time, next time data from local storage
+        let temp_local_data_array = retrieveStorage_paintings(storageName); 
+        
+        fetching(paintingsGalleryAPI, temp_local_data_array, storageName); //fecthing of api
         
     }
-    else if (urlQuery.includes("genreID")){
+    else if (urlQuery.includes("genreID")){ //if its genre
         
-       let gen_ID = getID(urlQuery);
+       let gen_ID = getID(urlQuery); //genre ID
         
-        var paintingsGenreAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?genreID="+gen_ID;
+        var paintingsGenreAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/painting.php?genreID="+gen_ID; //make api of genre
         
-        let storageName = "paintingGenre_Local_Data"+gen_ID;
+        let storageName = "paintingGenre_Local_Data"+gen_ID;  //local storage name for genre
         
         //this array will return an ampty array for the first time, next time data from local storage
         let temp_local_data_array = retrieveStorage_paintings(storageName);
         
-        fetching(paintingsGenreAPI, temp_local_data_array, storageName);
+        fetching(paintingsGenreAPI, temp_local_data_array, storageName); //fecthing of api
         
     }
 
-
+    //helper method to get id out of url
     function getID(urlQuery){
     
         let ID = urlQuery.split("=");
@@ -59,7 +60,7 @@ window.addEventListener('load' , ()=>{
     } 
 
     
-    //fetch and create local storage for paintings of that particular gallery
+    //fetch and create local storage for paintings of that particular requested page
     function fetching(api, temp_local_data_array, storageName){
         
         if (temp_local_data_array == 0) {
@@ -84,7 +85,7 @@ window.addEventListener('load' , ()=>{
             .catch( (error)=> {
                 console.log(error);
             })
-        //otherwise calls directly to popluate gallery list from local storage
+        //otherwise calls directly to popluate painting table from local storage
         } else {
             populate_table(storageName);
         }
@@ -93,7 +94,6 @@ window.addEventListener('load' , ()=>{
 
 
     //local storage creation method
-    //calling populate gallery list method
     function Create_Painting_Local_Storage(data, storageName){
 
         localStorage.setItem(storageName, JSON.stringify(data));
@@ -101,7 +101,7 @@ window.addEventListener('load' , ()=>{
     }
 
 
-    //popluate gallery list method, creating gallery list from local storage
+    //popluate painting table method, creating it from local storage
     function populate_table(storageName){
 
         let Painting_Local_Data_Parsed = JSON.parse(localStorage.getItem(storageName));
@@ -332,6 +332,8 @@ window.addEventListener('load' , ()=>{
         }
     }
     
+    
+    //thumbnail effect function
     function thumbnail_effect(){
 
     var thumbnails = document.querySelectorAll('#table_body .table_data td img');

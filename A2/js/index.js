@@ -1,6 +1,7 @@
+// index page is getting done through JS
 
 window.addEventListener('load', function() {
-    localStorage.clear();
+    //localStorage.clear();
 
     var galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php";
     
@@ -60,6 +61,7 @@ window.addEventListener('load', function() {
         
         const galleryList =  document.getElementById('galleryList');
         
+        //create slideshow <div>s each <div> has 10 items init and # of total <div>s are based on how many items in the array / 10,
         let count=1;
         for (let g_list of GalleryList_Local_Data_Parsed){
             if(count ==11){count=1;}
@@ -69,6 +71,7 @@ window.addEventListener('load', function() {
             count++;
         }
         
+        //when slideshow <div>s are ready when can populate each <div>s with 10 items each
         count=1;
         let i=0;
         let slides = document.querySelectorAll('.slidesGal');
@@ -85,80 +88,46 @@ window.addEventListener('load', function() {
            
            slideShowGal();
         }
-    
-var indexGal=0;    
-function slideShowGal(){
-    var up = document.getElementById('up');
-    var down = document.getElementById('down');
-    let slides = document.querySelectorAll('.slidesGal');
-    
-    up.disabled=true;
-    up.style.visibility="hidden";
-    slides[indexGal].style.display="block";
-    
-    down.addEventListener('click', ()=>{
-        up.style.visibility="visible";
-        up.disabled=false;
-        slides[indexGal].style.display="none";
-        slides[indexGal+1].style.display="block";
         
-        if (indexGal == (slides.length-2)){
-            ++indexGal;
-            down.disabled = true;
-            down.style.visibility="hidden"
-        }else{indexGal++;}
-    });
+        
+    //slideShow for Gallery List
+    var indexGal=0;    
+    function slideShowGal(){
+        var up = document.getElementById('up');
+        var down = document.getElementById('down');
+        let slides = document.querySelectorAll('.slidesGal');
+        
+        up.disabled=true;
+        up.style.visibility="hidden";
+        slides[indexGal].style.display="block";
+        
+        down.addEventListener('click', ()=>{
+            up.style.visibility="visible";
+            up.disabled=false;
+            slides[indexGal].style.display="none";
+            slides[indexGal+1].style.display="block";
+            
+            if (indexGal == (slides.length-2)){
+                ++indexGal;
+                down.disabled = true;
+                down.style.visibility="hidden"
+            }else{indexGal++;}
+        });
+        
+        up.addEventListener('click', ()=>{
+            down.disabled= false;
+            down.style.visibility = "visible";
+            slides[indexGal].style.display="none";
+            slides[indexGal-1].style.display="block";
+            
+            if (indexGal== 1){
+                indexGal--;
+                up.disabled = true;
+                up.style.visibility ="hidden"; 
+            }else{indexGal--;}
+        });
+    }
     
-    up.addEventListener('click', ()=>{
-        down.disabled= false;
-        down.style.visibility = "visible";
-        slides[indexGal].style.display="none";
-        slides[indexGal-1].style.display="block";
-        
-        if (indexGal== 1){
-            indexGal--;
-            up.disabled = true;
-            up.style.visibility ="hidden"; 
-        }else{indexGal--;}
-    });
-}
-    
-///////////------------------------------without local storage -------------------------------------------------//////////////////// 
-    // var galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php";
-    //         fetch(galleryAPI)
-
-    //     .then(function(response){
-    //         if (response.ok){
-
-    //             return response.json();
-
-    //         }else {
-    //             return Promise.reject({
-    //                 status: response.status,
-    //                 statusText: response.statusText
-    //             })
-    //         }
-    //     })
-    //     .then((data)=> {
-    //           populate_galleryList(data); 
-    //     })
-    //     .catch( (error)=> {
-    //         console.log(error);
-    //     });
-        
-    //     //popluate gallery list method, creating gallery list from local storage
-    //     function populate_galleryList(data){
-
-
-    //     const galleryList =  document.getElementById('galleryList');
-        
-    //     for (let g_list of data){
-    //         galleryList.innerHTML += "<li>" + g_list.GalleryName + "</li>";
-    //     }
-    //     }
-///////////------------------------------without local storage -------------------------------------------------//////////////////// 
-
-
     var artistAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/artist.php";
     
     //this array will return an ampty array for the first time, next time data from local storage
@@ -194,13 +163,13 @@ function slideShowGal(){
             console.log(error);
         });
 
-    //otherwise calls directly to popluate gallery list from local storage
+    //otherwise calls directly to popluate artist list from local storage
     } else {
         populate_Artist();
     }
 
     //local storage creation method
-    //calling populate gallery list method
+    //calling populate artist list method
     function Create_Artist_Local_Storage(data){
 
         localStorage.setItem('Artist_Local_Data', JSON.stringify(data));
@@ -208,13 +177,14 @@ function slideShowGal(){
         populate_Artist(); 
     }
 
-    //popluate gallery list method, creating gallery list from local storage
+    //popluate artist list method, creating artist list from local storage
     function populate_Artist(){
        
         var Artist_Local_Data_Parsed = JSON.parse(localStorage.getItem('Artist_Local_Data'));
 
         var artist_panel = document.querySelector('#artist_panel');
         
+        //create slideshow <div>s each <div> has 4 items init and # of total <div>s are based on how many items in the array / 4
          let count=1;
         for (let a_list of Artist_Local_Data_Parsed){
             
@@ -225,6 +195,7 @@ function slideShowGal(){
             count++;
         }
         
+        //when slideshow <div>s are ready when can populate each <div>s with 4items each
         count=1;
         let i=0;
         let slides = document.querySelectorAll('.slidesA');
@@ -262,16 +233,19 @@ function slideShowGal(){
         slideShowA();
     }
     
+    //helper method for previous condition on last index
     function minCondition(previous){
         previous.disabled=true;
         previous.style.visibility="hidden";
     }
     
+    //helper method for next condition on last index
     function maxCondition(next){
         next.disabled=true;
         next.style.visibility="hidden";
     }
     
+    //helper method for next and previous condition on middle indexes
     function middleCondition(previous, next){
         next.style.visibility="visible"
         next.disabled=false;
@@ -279,7 +253,7 @@ function slideShowGal(){
         previous.disabled=false;
     }
     
-
+    //slideShow for artist List
     var indexA=0;
     function slideShowA(){
         var numbers = document.querySelectorAll('.numA');
@@ -315,6 +289,7 @@ function slideShowGal(){
         });
     }
 
+//helper method to display numbering index for artist panel
 function numberingA(){
     let panel_slidesA = document.querySelectorAll('.slidesA');
     let panelA = document.querySelector('#artist_panel .numbers');
@@ -324,12 +299,7 @@ function numberingA(){
 }
 
 
-    function verticalScroll(panel){
-        panel.style.overflowY="auto";
-        panel.style.overflowX="hidden";
-    }
-    
-    
+
     var genreAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/genre.php";
     
     //this array will return an ampty array for the first time, next time data from local storage
@@ -365,13 +335,13 @@ function numberingA(){
             console.log(error);
         });
 
-    //otherwise calls directly to popluate gallery list from local storage
+    //otherwise calls directly to popluate genre list from local storage
     } else {
         populate_Genre();
     }
 
     //local storage creation method
-    //calling populate gallery list method
+    //calling populate genre list method
     function Create_Genre_Local_Storage(data){
 
         localStorage.setItem('Genre_Local_Data', JSON.stringify(data));
@@ -379,13 +349,14 @@ function numberingA(){
         populate_Genre(); 
     }
 
-    //popluate gallery list method, creating gallery list from local storage
+    //popluate genre list method, creating genre list from local storage
     function populate_Genre(){
 
         var Genre_Local_Data_Parsed = JSON.parse(localStorage.getItem('Genre_Local_Data'));
 
         var genre_panel = document.querySelector('#genre_panel');
         
+        //create slideshow <div>s each <div> has 4 items init and # of total <div>s are based on how many items in the array / 4
         let count=1;
         for (let gen_list of Genre_Local_Data_Parsed){
             if(count ==5){count=1;}
@@ -395,7 +366,7 @@ function numberingA(){
             count++;
         }
             
-        
+        //when slideshow <div>s are ready when can populate each <div>s with 4items each
         count=1;
         let i=0;
         let slides = document.querySelectorAll('.slidesG');
@@ -422,6 +393,7 @@ function numberingA(){
         slideShowG();
 }
 
+    //Slide Show for genre list
     var indexG=0;
     function slideShowG(){
         var numbers = document.querySelectorAll('.numG');
@@ -457,6 +429,7 @@ function numberingA(){
         });
     }
 
+//helper method to display numbering index for genre panel
 function numberingG(){
     let panel_slidesG = document.querySelectorAll('.slidesG');
     let panelG = document.querySelector('#genre_panel .numbers');
@@ -465,8 +438,11 @@ function numberingG(){
     }
 }
 
+//loading animation run for 2 secs enough for fetching time, 
+// Reson for putting here and not on fecthing:
+// can't put on actual fecthing because it will be very quick as 4 items per diplay is very short time and animation will never be seen or play in real
     window.setTimeout( ()=> {
         document.getElementById('loading').style="display:none"; 
-    }, 7000);
+    }, 2000);
 
 });

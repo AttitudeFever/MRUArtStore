@@ -1,7 +1,7 @@
 <?php 
 
-include('includes/nav-bar.inc.php');
-include('includes/phpFetch.php');
+include('includes/nav-bar.inc.php'); //navigation package
+include('includes/phpFetch.php'); //api fecthing package
 ?>
 
 <!DOCTYPE html>
@@ -17,20 +17,24 @@ include('includes/phpFetch.php');
         <script src="js/paintingTable.js"></script>
     </head>
     <body id = "genreBody">
-        <?php createNavBar(); ?>
+        <?php 
+        createNavBar(); //generate navigation bar
+        ?>
         
         <div id = "genre_panel">
             
             <?php
             
+            //check if genre id is not null and exist
             if (isset($_GET['genreID']) and $_GET['genreID'] != "")
             {
-                $genreID = $_GET['genreID'];
+                $genreID = $_GET['genreID']; //acquire gallery ID
             }
             
-            $genreAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/genre.php?genreID=$genreID";
+            $genreAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/genre.php?genreID=$genreID"; //api
             $data = fetch($genreAPI);
             
+            //loop through api data
             foreach($data as $key){
                 
                 $img = "https://comp3512-assignment-hamid786.c9users.io/A2/services/img-maker.php?file=genres/". $key ->GenreID . "&width=400";

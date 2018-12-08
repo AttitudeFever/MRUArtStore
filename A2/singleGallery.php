@@ -1,7 +1,7 @@
 
 <?php
-    include('includes/nav-bar.inc.php');
-    include('includes/phpFetch.php');
+    include('includes/nav-bar.inc.php'); //navigation package
+    include('includes/phpFetch.php'); //api fetching package
     
 ?>
 
@@ -19,7 +19,9 @@
 
     </head>
     <body id = "galleryBody">
-        <?php createNavBar(); ?>
+        <?php 
+        createNavBar(); //generate navigation bar
+        ?>
         
         <h2 id='mapHeading'>Gallery Location</h2>
         <div id='galleryMap'>
@@ -30,13 +32,15 @@
 
             
         <?php 
+            //check if gallery id is not null and exist
             if (isset($_GET['galleryID']) && $_GET['galleryID'] != "" ) 
             {
-                $galleryID = $_GET['galleryID'];    
+                $galleryID = $_GET['galleryID'];    //acquire gallery id
             }
-            $galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php?galleryID=$galleryID";
+            $galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php?galleryID=$galleryID"; //api
             $data =  fetch($galleryAPI);
             
+            //loop through api
             foreach($data as $key)
             {
                 echo "<div id='gallery_panel'>

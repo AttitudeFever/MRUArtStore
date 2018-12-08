@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+//Generic function of creating common nevigation bar(both desktop and mobile) on each page, method also responsible to check if customer has logged in to acquire their fav list count
         function createNavBar() {
             echo "<nav id='navigation'>
                 <ul>
@@ -14,12 +16,12 @@ session_start();
                             <img src='icons/us.png' alt = 'about us'/>
                             About us</a>
                         </li>";
-                        if (isset($_SESSION['sessionID'])){
+                        if (isset($_SESSION['sessionID'])){ //check if session exist, meaning logged in
                             $customerID = $_SESSION['sessionID'];
                             $clientName = $_SESSION['customerName'];
                             $favourites = $_SESSION['favPaintingID'];
                             $items = 0;
-                            foreach ($favourites[$customerID] as $key){
+                            foreach ($favourites[$customerID] as $key){ //fav items count
                                 $items += 1;
                             }
                         echo "<li><a id='fav' href='favourites.php'>
@@ -33,7 +35,7 @@ session_start();
                             <img src='icons/logout.png' alt = 'logout'/>
                             Logout</a>
                         </li>";
-                        }else{
+                        }else{ //not logged in
                         echo "<li id='clientName'>Hello, Guest</li>";
                         echo "<li><a href='login.php'>
                             <img src='icons/signin.png' alt = 'sign in'/>
@@ -53,12 +55,12 @@ session_start();
                                 <li><a id='aboutus' href='aboutus.php'>
                                     About us</a>
                                 </li>";
-                                if (isset($_SESSION['sessionID'])){
+                                if (isset($_SESSION['sessionID'])){ //logged in
                                     $customerID = $_SESSION['sessionID'];
                                     $clientName = $_SESSION['customerName'];
                                     $favourites = $_SESSION['favPaintingID'];
                                     $items = 0;
-                                    foreach ($favourites[$customerID] as $key){
+                                    foreach ($favourites[$customerID] as $key){//count fav items
                                         $items += 1;
                                     }
                                     echo "<li><a id='fav' href='favourites.php'>
@@ -72,7 +74,7 @@ session_start();
                                     <li>
                                     <img id= 'hamburger' src='icons/hamburger_white.png' alt = 'menu'/>
                                     </li>";
-                                }else{
+                                }else{ //not logged in
                                 echo "<li id='clientName'>Hello, Guest</li>
                                 <li><a href='login.php'>
                                     Login</a>

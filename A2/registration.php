@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['sessionID'])){
+if (isset($_SESSION['sessionID'])){ //if user is already logged in then this page is not accessable
    header('Location: index.php');
 }
 ?>
@@ -38,7 +38,8 @@ if (isset($_SESSION['sessionID'])){
                             <p id="pError"></p>
                             <p id="fError"></p>
                             <?php
-                                if (isset($_SESSION['messageExist'])){
+                                //if email already exist error is present 
+                                if (isset($_SESSION['messageExist'])){ //show msg
                                     $msg = $_SESSION['messageExist'];
                                     echo "<p id='emailExist'>$msg</p>";
                                 }

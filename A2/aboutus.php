@@ -1,5 +1,5 @@
 <?php 
-    include('includes/nav-bar.inc.php');
+    include('includes/nav-bar.inc.php'); //navigation package 
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +15,11 @@
         <script src=""></script>
     </head>
     <body id = "aboutusbody">
+    
         
-    <?php createNavBar(); ?>
+    <?php 
+    createNavBar(); //generate navigation bar
+    ?>
     
 <div id="aboutus_panel">
         <h1>Futureproof Team <img src="images/web/logo.png" atl="futureproof Logo" width="100px"/></h1>

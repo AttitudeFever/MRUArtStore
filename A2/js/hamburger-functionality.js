@@ -1,3 +1,5 @@
+//when the page is loaded, javascript will install hamburger icon and replace dekstop navigation with mobile navigation if the width of browser is on mobile size
+//or do opposite based on broser width
 window.addEventListener('load' , ()=>{
 
 
