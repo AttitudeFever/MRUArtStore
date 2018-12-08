@@ -1,7 +1,7 @@
 // index page is getting done through JS
 
 window.addEventListener('load', function() {
-    //localStorage.clear();
+    localStorage.clear();
 
     var galleryAPI = "https://comp3512-assignment-hamid786.c9users.io/A2/services/gallery.php";
     
@@ -263,17 +263,37 @@ window.addEventListener('load', function() {
         minCondition(previous);
         slides[indexA].style.display="block";
         numbers[indexA].style.backgroundColor="rgb(80, 156, 133)";
+        
+        for (let i=0; i<numbers.length; i++){
+            numbers[i].addEventListener('click', ()=>{
+                for (let j=0; j<numbers.length; j++){
+                    slides[j].style.display="none";
+                    numbers[j].style.backgroundColor="black";
+                }
+
+                slides[i].style.display="block";
+                numbers[i].style.backgroundColor="rgb(80, 156, 133)";
+                
+                if (i == 0){minCondition(previous);}
+                if (i > 0 && i < numbers.length) {middleCondition(previous, next);}
+                if (i== numbers.length-1){maxCondition(next);}
+                
+                indexA = i;
+                
+            });
+        }
+        
             next.addEventListener('click', ()=>{
                 middleCondition(previous, next);
-            slides[indexA].style.display="none";
-            numbers[indexA].style.backgroundColor="black";
-            slides[indexA+1].style.display="block";
-            numbers[indexA+1].style.backgroundColor="rgb(80, 156, 133)";
+                slides[indexA].style.display="none";
+                numbers[indexA].style.backgroundColor="black";
+                slides[indexA+1].style.display="block";
+                numbers[indexA+1].style.backgroundColor="rgb(80, 156, 133)";
 
-            if (indexA == (slides.length-2)){
-                ++indexA;
-                maxCondition(next);
-            }else{indexA++;}
+                if (indexA == (slides.length-2)){
+                    ++indexA;
+                    maxCondition(next);
+                }else{indexA++;}
         });
 
         previous.addEventListener('click', ()=>{
@@ -403,17 +423,37 @@ function numberingA(){
         minCondition(previous);
         slides[indexG].style.display="block";
         numbers[indexG].style.backgroundColor="rgb(80, 156, 133)";
+        
+        for (let i=0; i<numbers.length; i++){
+            numbers[i].addEventListener('click', ()=>{
+                for (let j=0; j<numbers.length; j++){
+                    slides[j].style.display="none";
+                    numbers[j].style.backgroundColor="black";
+                }
+
+                slides[i].style.display="block";
+                numbers[i].style.backgroundColor="rgb(80, 156, 133)";
+                
+                if (i == 0){minCondition(previous);}
+                if (i > 0 && i < numbers.length) {middleCondition(previous, next);}
+                if (i== numbers.length-1){maxCondition(next);}
+                
+                indexG = i;
+                
+            });
+        }
+        
             next.addEventListener('click', ()=>{
                 middleCondition(previous, next);
-            slides[indexG].style.display="none";
-            numbers[indexG].style.backgroundColor="black";
-            slides[indexG+1].style.display="block";
-            numbers[indexG+1].style.backgroundColor="rgb(80, 156, 133)";
-
-            if (indexG == (slides.length-2)){
-                ++indexG;
-                maxCondition(next);
-            }else{indexG++;}
+                slides[indexG].style.display="none";
+                numbers[indexG].style.backgroundColor="black";
+                slides[indexG+1].style.display="block";
+                numbers[indexG+1].style.backgroundColor="rgb(80, 156, 133)";
+    
+                if (indexG == (slides.length-2)){
+                    ++indexG;
+                    maxCondition(next);
+                }else{indexG++;}
         });
 
         previous.addEventListener('click', ()=>{

@@ -158,8 +158,12 @@ left:240px;
     /*text-align: center;*/
 position: relative;
 left:380px;
+
 }
 
+.numbers:hover{
+    cursor:pointer;
+}
 
 .numA{
     display: inline-block;
