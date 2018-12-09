@@ -74,7 +74,6 @@
 }
 
 #galleryList_panel ul{
-
     margin-top: 60px;
     height: 440px;
     width: 210px;
@@ -108,8 +107,10 @@
 
 
 #artist_panel{
-    width: auto;
+    width: 73%;
     height: auto;
+    /*width:auto;*/
+    
 }
 
 
@@ -238,10 +239,10 @@ left:380px;
 
 
 #genre_panel{
-    width: auto;
+    width: 73%;
     height: auto;
     margin-top: 50px;  
-    /*width:700px;*/
+    /*width:auto;*/
 }
 
 .slidesG{
@@ -270,7 +271,7 @@ left:300px;
     display: inline-block;
     width: 170px;
     height: 140px;
-    padding-left: 2%;
+    padding-left: 1%;
     padding-top: 1%;
     text-align: center;
     position: relative;
